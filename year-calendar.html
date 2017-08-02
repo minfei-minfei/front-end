@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>一个简易的年历</title>
+    <style>
+        #container{
+            width: 250px;
+            background-color: lightgray;
+            margin-left: 500px;
+            float: left;
+        }
+        #month div{
+            width: 50px;
+            height: 50px;
+            background-color: darkgray;
+            color: white;
+            float: left;
+            margin: 10px 0 0 10px;
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+        #festival div{
+            clear: left;
+            float: left;
+            background-color: lightblue;
+            width: 230px;
+            margin: 10px 10px;
+            border: 1px solid white;
+            font-size: 10px;
+            padding-left: 5px;
+            line-height: 25px;
+            display: none;
+        }
+        #festival .bold{
+            font-size: 14px;
+            font-weight: bolder;
+        }
+        #month .selected{
+            width: 48px;
+            height: 48px;
+            border: 1px solid lightblue;
+            background-color: white;
+            color: lightblue;
+        }
+        #festival .selected{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="month">
+            <div class="selected">1<br>JAN</div>
+            <div>2<br>FER</div>
+            <div>3<br>MAR</div>
+            <div>4<br>ARP</div>
+            <div>5<br>MAY</div>
+            <div>6<br>JUN</div>
+            <div>7<br>JUL</div>
+            <div>8<br>AUG</div>
+            <div>9<br>SEP</div>
+            <div>10<br>OCT</div>
+            <div>11<br>NOV</div>
+            <div>12<br>DEC</div>
+        </div>
+        <div id="festival">
+            <div class="selected">
+                <span class="bold">1月节日</span><br>
+                <span>元旦：1月1日至3日放假三天。</span>
+            </div>
+            <div>
+                <span class="bold">2月节日</span><br>
+                <span>春节：2月2日至8日放假7天。</span>
+            </div>
+            <div>
+                <span class="bold">3月节日</span><br>
+                <span>妇女节：3月8日妇女节，与我无关。</span>
+            </div>
+            <div>
+                <span class="bold">4月节日</span><br>
+                <span>清明节：4月3日至5日放假3天。</span>
+            </div>
+            <div>
+                <span class="bold">5月节日</span><br>
+                <span>劳动节：4月30日至5月2日放假3天。</span>
+            </div>
+            <div>
+                <span class="bold">6月节日</span><br>
+                <span>端午节：6月4日至6日放假3天。</span>
+            </div>
+            <div>
+                <span class="bold">7月节日</span><br>
+                <span>小暑：7月7日小暑。不放假。</span>
+            </div>
+            <div>
+                <span class="bold">8月节日</span><br>
+                <span>七夕节：8月6日七夕节。不放假。</span>
+            </div>
+            <div>
+                <span class="bold">9月节日</span><br>
+                <span>中秋节：9月10日至12日放假3天。</span>
+            </div>
+            <div>
+                <span class="bold">10月节日</span><br>
+                <span>国庆节：10月1日至7日放假7天。</span>
+            </div>
+            <div>
+                <span class="bold">11月节日</span><br>
+                <span>立冬：11月8日立冬。不放假。</span>
+            </div>
+            <div>
+                <span class="bold">12月节日</span><br>
+                <span>艾滋病日:12月1日</span><br>
+                <span>废除奴隶制国际日:12月2日。</span>
+            </div>
+            <!--12月内容多一行，所以月历不能设置高度，解决办法是浮动-->
+        </div>
+    </div>
+    <script>
+        var oMonth = document.getElementById("month");
+        var aMonth = oMonth.getElementsByTagName("div");
+        var oFestival = document.getElementById("festival");
+        var aFestival = oFestival.getElementsByTagName("div");
+        for(var i=0; i<aMonth.length; i++){
+            aMonth[i].index = i;
+            aFestival.index = i;
+            aMonth[i].onmouseover = function(){
+                for(var j=0; j<aMonth.length; j++){
+                    aMonth[j].className = "";
+                    aFestival[j].className = "";
+                }
+                aMonth[this.index].className = "selected";
+                aFestival[this.index].className = "selected";
+            };
+        }
+    </script>
+</body>
+</html>

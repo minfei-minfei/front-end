@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网页换肤</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .wrapper{
+            width: 620px;
+            margin: 0 auto;
+            clear: left;
+        }
+        .skin{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            float: left;
+            margin: 10px 10px 10px 0;
+        }
+        #red{
+            background-color: pink;
+        }
+        #green{
+            background-color: springgreen;
+        }
+        #blue{
+            background-color: deepskyblue;
+        }
+        #nav ul{
+            margin: 0;
+            padding: 0;
+            border: 1px solid white;
+            float: left;
+            width: 100px;
+            text-align: center;
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper" id="skin">
+        <div class="skin" id="red"></div>
+        <div class="skin" id="green"></div>
+        <div class="skin" id="blue"></div>
+    </div>
+    <div class="wrapper">
+        <li id="nav">
+            <ul>home</ul>
+            <ul>page1</ul>
+            <ul>page2</ul>
+            <ul>page3</ul>
+            <ul>page4</ul>
+            <ul>page5</ul>
+        </li>
+    </div>
+    <script>
+        var oSkin = document.getElementById("skin");
+        var aDiv = oSkin.getElementsByTagName("div");
+        var oNav = document.getElementById("nav");
+        var aUl = oNav.getElementsByTagName("ul");
+        var skin;
+        //currentStyle兼容性代码
+        HTMLElement.prototype.__defineGetter__("currentStyle",function(){
+            return this.ownerDocument.defaultView.getComputedStyle(this,null);
+        });
+
+        for(var i=0; i<aDiv.length; i++){
+            aDiv[i].index = i;
+            aDiv[i].onclick = function(){
+                skin = aDiv[this.index].currentStyle.backgroundColor;
+                console.log(skin);
+                for(var j=0; j<aUl.length; j++){
+                    aUl[j].style.backgroundColor = skin;
+                }
+            };
+        }
+
+    </script>
+</body>
+</html>
