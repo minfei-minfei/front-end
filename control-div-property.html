@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>控制div属性</title>
+    <style>
+        #div1{
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 0 auto;
+        }
+        button{
+            cursor: pointer;
+        }
+        #button1{
+            margin-left: 550px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <button id="button1">变宽</button>
+    <button id="button2">变高</button>
+    <button id="button3">变色</button>
+    <button id="button4">隐藏</button>
+    <button id="button5">重置</button>
+    <div id="div1"></div>
+    <script>
+        var div1 = document.getElementById("div1");
+        var button1 = document.getElementById("button1");
+        var button2 = document.getElementById("button2");
+        var button3 = document.getElementById("button3");
+        var button4 = document.getElementById("button4");
+        var button5 = document.getElementById("button5");
+        button1.onclick = function(){
+            div1.style.width = 200+"px";
+        };
+        button2.onclick = function(){
+            div1.style.height = 200+"px";
+        };
+        button3.onclick = function(){
+            div1.style.backgroundColor = "pink";
+        };
+        button4.onclick = function(){
+            div1.style.display = "none";
+        };
+        button5.onclick = function(){
+            div1.style.width = 100+"px";
+            div1.style.height = 100+"px";
+            div1.style.backgroundColor = "black";
+            div1.style.display = "block";
+        };
+    </script>
+</body>
+</html>
