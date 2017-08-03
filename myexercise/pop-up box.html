@@ -4,47 +4,74 @@
     <meta charset="UTF-8">
     <title>弹出层效果</title>
     <style>
+        button{
+            margin-left: 50%;
+            cursor: pointer;
+        }
         #cover{
-            float: left;
+            position: absolute;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
             background-color: gray;
             opacity: 0.5;
+            filter: alpha(opacity=50);
+            display: none;
         }
         #pop-up{
             width: 300px;
             height: 200px;
-            margin: 0 auto;
-            border: 1px solid black;
+            border: 3px solid red;
+            position: absolute;
+            left: 40%;
+            top: 40%;
+            display: none;
         }
         #option{
             height: 30px;
-            border-bottom: 1px solid black;
-            background-color: black;
+            border-bottom: 3px solid red;
+            background-color: white;
+
         }
         #option img{
             width: 20px;
             height: 20px;
-            float: right;
-            margin: 5px 5px 0 0;
+            position: relative;/*如果绝对定位，两个图标就会重叠*/
+            left: 250px;
+            top: 5px;
+            cursor: pointer;
         }
         #content{
-            width: 100%;
-            height: 100%;
+            height: 167px;
             background-color: white;
         }
     </style>
 </head>
 <body>
-    <button>弹出层</button>
-    <div id="cover">
-        <div id="pop-up">
-            <div id="option">
-                <img src="img/minimum-icon.jpg" />
-                <img src="img/cancel-icon.jpg" />
-            </div>
-            <div id="content"></div>
+    <button id="btn">弹出层</button>
+    <div id="cover"></div><!--遮罩层和弹出框是兄弟关系-->
+    <div id="pop-up">
+        <div id="option">
+            <img src="img/minimum-icon.png" />
+            <img src="img/close-icon.png" id="close"/>
         </div>
+        <div id="content"></div>
     </div>
+    <script>
+        var oBtn = document.getElementById("btn");
+        var oCover = document.getElementById("cover");
+        var oPopUp = document.getElementById("pop-up");
+        var oClose = document.getElementById("close");
+        oBtn.onclick = function(){
+            oCover.style.display = "block";
+            oPopUp.style.display = "block";
+            console.log(oCover.style.display);
+        };
+        oClose.onclick = function(){
+            oCover.style.display = "none";
+            oPopUp.style.display = "none";
+        };
+    </script>
 </body>
 </html>
