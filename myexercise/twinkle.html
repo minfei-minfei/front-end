@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>闪烁</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        div{
+            width: 50px;
+            height: 50px;
+            margin: 300px auto;
+        }
+        img{
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/bright-star.png" title="一闪一闪亮晶晶"/>
+    </div>
+    <script>
+        var oDiv = document.getElementById("container");
+        var oImg = oDiv.getElementsByTagName("img")[0];
+        var interval = 0;
+        var timer;
+        function twinkle(){
+            timer = setInterval(function(){
+                if(interval % 2 ==0){
+                    oImg.style.display = "block";
+                }else{
+                    oImg.style.display = "none";
+                }
+                interval ++;
+            },500);
+        }
+        twinkle();
+        oDiv.onmouseover = function(){
+            clearInterval(timer);
+        };
+        oDiv.onmouseout = function(){
+            twinkle();
+        };
+    </script>
+</body>
+</html>
