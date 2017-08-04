@@ -1,0 +1,17 @@
+body{/*body自带8px的外边距*/
+    margin: 0;
+    padding: 0;
+}
+li{/*去掉列表的序号*/
+    list-style: none;
+}
+ul{/*去掉列表项的左内边距*/
+    margin: 0;
+    padding: 0;
+}
+a{/*去掉超链接的下划线*/
+    text-decoration: none;
+}
+img{/*去掉图片的外边框*/
+    border: 0;
+}
