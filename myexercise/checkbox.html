@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>复选框</title>
+    <style>
+        li{
+            list-style: none;
+        }
+        ul{
+            padding: 0;
+            margin: 10px 8px;
+        }
+        input{
+            margin-right: 10px;
+        }
+        #container{
+            width: 120px;
+            border: 1px solid black;
+            border-radius: 10px;/*边框圆角*/
+            margin: 0 auto;
+            font-size: 14px;
+            background-color: ivory;
+        }
+        #top{
+            padding-bottom: 10px;
+            border-bottom: 1px solid black;
+        }
+        #top input{
+            font-weight: bolder;
+        }
+        #top a{
+            text-decoration: none;
+            color: deepskyblue;
+        }
+        #top a:hover{
+            color: salmon;
+        }
+        p{
+            padding-left:500px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <li id="container">
+        <ul id="top">
+            <input type="checkbox" /><label>全选</label>
+            <a href="javascript:;">反选</a>
+        </ul>
+        <div id="option">
+            <ul><input type="checkbox">选项1</input></ul>
+            <ul><input type="checkbox">选项2</input></ul>
+            <ul><input type="checkbox">选项3</input></ul>
+            <ul><input type="checkbox">选项4</input></ul>
+            <ul><input type="checkbox">选项5</input></ul>
+            <ul><input type="checkbox">选项6</input></ul>
+            <ul><input type="checkbox">选项7</input></ul>
+            <ul><input type="checkbox">选项8</input></ul>
+            <ul><input type="checkbox">选项9</input></ul>
+            <ul><input type="checkbox">选项10</input></ul>
+        </div>
+    </li>
+    <p>1、切换全选/全不选文字；2、根据选中个数更新全选框状态；</p>
+    <script>
+        var oState = document.getElementById("top");
+        var oAll = oState.getElementsByTagName("input")[0];
+        var oLabel = document.getElementsByTagName("label")[0];
+        var oContrary = oState.getElementsByTagName("a")[0];
+        var oOption = document.getElementById("option");
+        var aOption = oOption.getElementsByTagName("input");
+        /*事件过程：
+        * 1.点击全选（只要有一个没有选top显示的就是“全选”）
+        * 2.点击全不选（只有全部都勾选了top才显示“全不选”）
+        * 3.随机勾选（每次改变选项的状态都要判断是否改变“全选”“全不选”）
+        * 4.反选
+        * 5.aOption[i].checked返回Boolean值*/
+
+        /*--------------改变“全选”“全不选”----------------*/
+        function new_state(){
+            var tag=0,all_state="";
+            for(var i=0; i<aOption.length; i++){
+                if(aOption[i].checked==true){
+                    tag+=1;//判断选中的个数
+                }
+            }
+            if(tag==10){
+                all_state = "全不选";//只有全部都勾选了才是“全不选”
+            }else{
+                all_state = "全选";//只要有一个没有选就是“全选”
+            }
+            return all_state;
+        }
+
+        /*------------------点击“全选”“全不选”------------*/
+        oAll.onclick = function(){
+            if(oLabel.innerHTML == "全选"){
+                for(var i=0; i<aOption.length; i++){
+                    aOption[i].checked = this.checked;
+                }
+                oLabel.innerHTML = "全不选";
+            }
+            if(oLabel.innerHTML == "全不选"){
+                for(var j=0; j<aOption.length; j++){
+                    aOption[j].checked = false;
+                }
+                oLabel.innerHTML = "全选";
+            }
+        };
+
+        /*--------------随机勾选----------------*/
+        for(var i=0; i<aOption.length; i++){
+            aOption[i].onclick = function(){
+                oLabel.innerHTML = new_state();
+            };
+        }
+
+        /*--------------反选----------------*/
+        oContrary.onclick = function(){
+            for(var i=0; i<aOption.length; i++){
+                aOption[i].onclick = function(){
+                    this.checked = !this.checked;
+                    oLabel.innerHTML = new_state();
+                };
+            }
+        };
+    </script>
+</body>
+</html>
