@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>自定义多级右键菜单</title>
+    <link rel="stylesheet" href="css/reset.css"/>
+    <style>
+        #context-menu{
+            position: relative;
+            display: none;
+        }
+        .container{
+            width: 150px;
+            border: 1px solid darkgray;
+            font-size: 14px;
+            background-color: #f1f1f1;
+        }
+        .container ul{
+            background: url("img/line.png") repeat-y 25px 0;
+            padding: 2px 0 2px 35px;
+            cursor: pointer;
+            margin: 1px;
+            border: 1px solid #f1f1f1;
+        }
+        .container ul:hover{
+            border: 1px solid lightblue;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+        }
+        .container img{
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+        }
+        .first-level{
+            position: relative;
+        }
+        .second-level{
+            position: absolute;
+            left: 145px;
+            top: -3px;
+            display: none;
+        }
+        .arrow{
+            width: 10px;
+            height: 10px;
+            background: url("img/arrow.png") no-repeat;
+            margin-top: 4px;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="context-menu">
+        <li class="container">
+            <ul class="first-level"><strong>我是一级菜单</strong></ul>
+            <ul class="first-level">音乐
+                <div class="arrow"></div>
+                <li class="container second-level">
+                    <ul><strong>我是二级菜单</strong></ul>
+                    <ul>歌手 <img src="img/右键菜单_歌手.png" /></ul>
+                    <ul>专辑 <img src="img/右键菜单_专辑.png" /></ul>
+                    <ul>铃声 <img src="img/右键菜单_铃声.png" /></ul>
+                </li>
+            </ul>
+            <ul class="first-level">播放
+                <div class="arrow"></div>
+                <li class="container second-level">
+                    <ul><strong>我是二级菜单</strong></ul>
+                    <ul>添加 <img src="img/右键菜单_添加歌单.png" /></ul>
+                    <ul>插队 <img src="img/右键菜单_插队播放.png" /></ul>
+                    <ul>下载 <img src="img/右键菜单_下载.png" /></ul>
+                </li>
+            </ul>
+            <ul class="first-level">话题
+                <div class="arrow"></div>
+                <li class="container second-level">
+                    <ul><strong>我是二级菜单</strong></ul>
+                    <ul>评论 <img src="img/右键菜单_评论.png" /></ul>
+                    <ul>分享 <img src="img/右键菜单_分享.png" /></ul>
+                    <ul>收藏 <img src="img/右键菜单_收藏.png" /></ul>
+                </li>
+            </ul>
+            <ul class="first-level">其他 <img src="img/右键菜单_其他.png" /></ul>
+        </li>
+    </div>
+    <script>
+        var oContextMenu = document.getElementById("context-menu");
+        window.oncontextmenu = function(e){
+            oContextMenu.style.display = "block";
+            /*----------------右键菜单定位-----------*/
+            oContextMenu.style.left = e.clientX + "px";
+            oContextMenu.style.top = e.clientY + "px";
+
+            /*阻止浏览器默认行为*/
+            return false;
+        };
+        window.onclick = function(){
+            oContextMenu.style.display = "none";
+        };
+        /*-------------二级菜单---------------*/
+        var aFirstLevel = oContextMenu.getElementsByClassName("first-level");
+        var aSecondLevel = oContextMenu.getElementsByClassName("second-level");
+        for(var i=0; i<aFirstLevel.length; i++){
+            aFirstLevel[i].index = i;
+            aFirstLevel[i].onmouseover = function(){
+                aSecondLevel[this.index-1].style.display = "block";
+            };
+            aFirstLevel[i].onmouseout = function(){
+                aSecondLevel[this.index-1].style.display = "none";
+            };
+        }
+    </script>
+</body>
+</html>
