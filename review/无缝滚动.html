@@ -11,7 +11,7 @@
             border: 1px solid black;
             margin: 200px auto;
             position: relative;
-            /*overflow: hidden;*/
+            overflow: hidden;
         }
         #image{
             width: 420px;
@@ -53,13 +53,13 @@
     </div>
     <script>
         /*事件过程：
-        * 1.图片向左滑动
-        * 2.当图片滑动到第7个的时候，整体向右移动
+        * 1.图片整体区块向左滑动
+        * 2.当图片滑动到整体的一半的时候，将块重新定位到原来的位置
         * 3.循环
         * 4.按钮事件*/
         var oImage = document.getElementById("image");
         var aImg = oImage.getElementsByTagName("img");
-        var timer, speed=5;
+        var timer, speed=50;
         /*---------------复制图片-----------------*/
         oImage.innerHTML += oImage.innerHTML;
         oImage.style.width = oImage.offsetWidth*2 +"px";
@@ -76,14 +76,14 @@
                 }
             },100);
         }
-
+        roll();
         /*-----------响应按钮事件--------------*/
         var oButton = document.getElementById("button");
         var oLeft = oButton.getElementsByTagName("img")[0];
         var oPause = oButton.getElementsByTagName("img")[1];
         var oRight = oButton.getElementsByTagName("img")[2];
+        var tag = 1;
         oPause.onclick = function(){
-            var tag = 1;
             if(tag == 1){
                 clearInterval(timer);
                 this.src = "img/开始.png";
@@ -96,7 +96,13 @@
                 tag = 1;
                 return;
             }
-
+        };
+        oLeft.onclick = oRight.onclick =function(){
+            if(this===oLeft){
+                speed = 5;
+            }else{
+                speed =-5;
+            }
         };
     </script>
 </body>
