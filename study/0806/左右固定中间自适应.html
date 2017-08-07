@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>左右固定中间自适应</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #left{
+            width: 200px;
+            height: 400px;
+            background-color: lightsalmon;
+            float: left;
+        }
+        #center{
+            height: 400px;
+            background-color: lightblue;
+            margin-left: 210px;
+            margin-right: 210px;
+        }
+        #right{
+            width: 200px;
+            height: 400px;
+            background-color: lightgreen;
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="left">Left</div>
+    <div id="center">Center</div>
+    <div id="right">Right</div>
+    <!--这是一个错误案例，center块应该放在right块的后面-->
+</body>
+</html>
