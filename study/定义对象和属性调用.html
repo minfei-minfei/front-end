@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>定义对象和属性调用</title>
+</head>
+<body>
+    <script>
+        /*---------------定义对象---------------------*/
+        /*方法一：先创建对象，再给属性赋值，定义方法*/
+        var obj1 = new Object();
+        obj1.name = "zhangsan";
+        obj1.age = 18;
+        obj1.eat = function(){
+            alert("eating");
+        };
+        /*方法二：创建对象的过程中使用“键值对”给属性和方法赋值*/
+        var obj2 = {
+            name : "lisi",
+            age : 20,
+            code : function(){
+                alert("coding");
+            }
+        };
+        /*注：键值对和键值对之间用逗号分隔，最后一个不加逗号*/
+
+        /*----------------调用属性--------------------*/
+        /*方法一：已经确定的属性的调用（点）*/
+        /*console.log(obj1.name);
+        obj1.eat();
+        console.log(obj2.name);
+        obj2.code();*/
+
+        /*方法二：未确定的属性的调用（中括号）*/
+        for(var p in obj1){
+            console.log(p + ":" + obj1[p]);
+        }
+        for(var p in obj2){
+            console.log(p + ":" + obj2[p]);
+        }
+    </script>
+</body>
+</html>

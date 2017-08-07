@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>事件冒泡在IE浏览器下</title>
+    <style>
+        #div1{
+            width: 400px;
+            height: 400px;
+            background: pink;
+        }
+        #div2{
+            width: 300px;
+            height: 300px;
+            background: lightblue;
+        }
+        #div3{
+            width: 200px;
+            height: 200px;
+            background: yellow;
+        }
+    </style>
+</head>
+<body id="body">
+<div id="div1">
+    <div id="div2">
+        <div id="div3"></div>
+    </div>
+</div>
+
+<script>
+    var oDiv1 = document.getElementById("div1");
+    var oDiv2 = document.getElementById("div2");
+    var oDiv3 = document.getElementById("div3");
+    var oBody = document.getElementById("body");
+    var oHtml = document.getElementById("html");
+    /*同一个对象绑定不同的事件时，后面的事件会覆盖前面的事件*/
+    /*oDiv3.onclick = function(){
+     alert("div3的事件1");
+     };
+     oDiv3.onclick = function(){
+     alert("div3的事件2");
+     };*/
+    /*实验结果：弹出"div3的事件1"*/
+    /*------------------------------*/
+
+    /*第二种绑定事件的方法：关联监听
+     * 给同一个对象绑定不同的事件时不会被覆盖，事件的执行顺序与代码相反，this指向window*/
+    /*oDiv3.attachEvent ("onclick", function(){
+        alert("div3的事件1,this指向"+this);
+    });
+    oDiv3.attachEvent ("onclick", function(){
+        alert("div3的事件2,this指向"+this);
+    });*/
+    /*实验结果：弹出"div3的事件2"和"div3的事件1"*/
+
+    /*事件冒泡：事件从子元素向父元素一层一层传播*/
+    /*oDiv1.onclick = function(){
+        alert("div1");
+     };
+     oDiv2.onclick = function(){
+         alert("div2");
+     };
+     oDiv3.onclick = function(){
+         alert("div3");
+     };*/
+    /*实验结果：点击div3，控制台输出div3，div2，div1*/
+    /*----------------------------------------*/
+
+    /*早期IE不支持事件捕获*/
+
+    /*阻止事件冒泡*/
+    /*oDiv1.onclick = function(){
+        alert("div1");
+        window.event.cancelBubble = true;
+     };
+     oDiv2.onclick = function(){
+         alert("div2");
+         window.event.cancelBubble = true;
+     };
+     oDiv3.onclick = function(){
+         alert("div3");
+         window.event.cancelBubble = true;
+     };*/
+    /*实验结果：点击div3，控制台只输出div3*/
+    /*-------------------------------*/
+
+    /*封装函数*/
+    /* elem:绑定事件的对象
+     * type:绑定事件的类型
+     * handler:事件的处理方法
+     * */
+    function addEvent(elem,type,handler){
+        if(elem.addEventListener){
+            elem.addEventListener(type,handler);
+        }else if(elem.attachEvent){
+            elem.attachEvent("on"+type,handler);
+        }else{//浏览器没有前两种方法的情况
+            elem["on"+type] = handler;
+            /*注：调用未确定的属性使用中括号*/
+        }
+    }
+    /*调用封装函数*/
+    addEvent(oDiv3, "click", function(){
+        alert("div3");
+    });
+</script>
+
+</body>
+</html>
