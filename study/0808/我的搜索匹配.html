@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的搜索匹配</title>
+</head>
+<body>
+    <input type="text" id="search"/>
+    <ul id="result">
+        <li>iphone</li>
+        <li>huawei</li>
+        <li>xiaomi</li>
+    </ul>
+    <script src="../jquery/jquery-1.12.4.js"></script>
+    <script>
+        $("#search").on("keyup",function(){
+            //console.log($(this).val());
+            /*$(this).val()是动态变化的，必须动态获取，采用字符串拼接的方法*/
+            /*重新获取变量前必须先把背景清空*/
+            $("#result li").css("background","transparent");
+            //transparent是透明的意思
+            if($(this).val()!= "")
+            $("#result li:contains("+$(this).val()+")").css("background","pink");
+
+        });
+    </script>
+</body>
+</html>
