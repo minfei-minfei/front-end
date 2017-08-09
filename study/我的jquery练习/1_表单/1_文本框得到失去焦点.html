@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的表单练习</title>
+    <style>
+        #myform{
+            border: 1px solid gray;
+            font-size: 14px;
+            position: relative;
+            left: 5px;
+            top: 5px;
+        }
+        #title{
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            background: white;
+        }
+        #container{
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        #container input{
+            margin-bottom: 5px;
+            border: 1px solid lightgray;
+        }
+    </style>
+</head>
+<body>
+    <form id="myform">
+        <span id="title">个人基本信息</span>
+        <div id="container">
+            名称：<input type="text"/><br>
+            密码：<input type="password"/><br>
+            详细信息：<textarea></textarea>
+        </div>
+    </form>
+    <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        /*事件：文本框获得焦点的时候背景变成粉红色
+        * 文本框失去焦点的时候清空背景颜色*/
+        /*一定要先写文档就绪函数！！！*/
+        $(function(){
+            var $info = $("#container input,textarea");
+            console.log($info);
+            $info.focus(function(){
+                $(this).css("background","pink");
+            });
+            $info.blur(function(){
+                $info.css("background","transparent");
+            });
+        });
+
+    </script>
+</body>
+</html>

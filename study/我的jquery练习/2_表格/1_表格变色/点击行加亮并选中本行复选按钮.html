@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>点击行加亮并选中本行复选按钮</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #mytable{
+            font-size: 14px;
+            border-spacing: 0;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        #mytable th{
+            border-bottom: 1px solid gray;
+        }
+        #mytable td{
+            width: 80px;
+            height: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <table id="mytable">
+        <th></th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>地址</th>
+        <tr>
+            <td><input type="checkbox"/></td>
+            <td>张三</td>
+            <td>男</td>
+            <td>哈尔滨</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"/></td>
+            <td>李四</td>
+            <td>男</td>
+            <td>山东</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"/></td>
+            <td>王五</td>
+            <td>男</td>
+            <td>沈阳</td>
+        </tr>
+        <tr>
+            <td><input type="checkbox"/></td>
+            <td>赵六</td>
+            <td>女</td>
+            <td>大连</td>
+        </tr>
+    </table>
+    <script src="../../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        var $tableInfo = $("#mytable tr").not(":first");
+        $tableInfo.on("click",function(){
+            //如果该行没有点击过
+            $(this).css({
+                background : "pink",
+                color : "white"
+            });
+            $(this).children().children().prop("checked","true");
+            //如果该行点击过了
+            $tableInfo.each(function(index,elem){
+                elem.off("click");
+            });
+
+//            $(this).off("click");
+//            $tableInfo.eq(1).off("click");
+            console.log($(this).index());
+            console.log($tableInfo.eq(1));
+        });
+
+    </script>
+</body>
+</html>

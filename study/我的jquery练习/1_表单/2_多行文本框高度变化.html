@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的表单练习2</title>
+    <style>
+        #myform{
+            font-size: 14px;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        #myform button{
+            background: gray;
+            color: white;
+            border: 0;
+        }
+    </style>
+</head>
+    <body>
+        <form action="" id="myform">
+            <button type="button" id="lengthen">放大</button>
+            <button type="button" id="shorten">缩小</button>
+            <br>
+            <textarea id="text" cols="30" rows="10">多行文本框高度变化</textarea>
+        </form>
+    </body>
+    <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        /*文档就绪函数*/
+        $(function(){
+            var $text = $("#text");
+            $("#lengthen").on("click",function(){
+                $text.height($text.height()+20);
+                //console.log($text.height());
+            });
+            $("#shorten").on("click",function(){
+                $text.height($text.height()-20);
+                //console.log($text.height());
+            });
+
+        });
+
+    </script>
+</html>

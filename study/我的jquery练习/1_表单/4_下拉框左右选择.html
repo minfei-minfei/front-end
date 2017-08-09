@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>下拉框左右选择</title>
+    <style>
+        .container{
+            float: left;
+            width: 150px;
+            text-align: center;
+        }
+        .container select{
+            width: 100px;
+            height: 150px;
+        }
+        .container button{
+            background: gray;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <form action="" id="myform">
+        <div class="container">
+            <select id="left" multiple="multiple">
+                <option>选项1</option>
+                <option>选项2</option>
+                <option>选项3</option>
+                <option>选项4</option>
+                <option>选项5</option>
+            </select>
+            <button type="button" id="button1">选中添加到右边>></button>
+            <button type="button" id="button2">全部添加到右边>></button>
+        </div>
+        <div class="container">
+            <select id="right" multiple="multiple">
+                <option>选项6</option>
+                <option>选项7</option>
+                <option>选项8</option>
+            </select>
+            <button type="button" id="button3">选中添加到左边<<</button>
+            <button type="button" id="button4">全部添加到左边<<</button>
+        </div>
+    </form>
+    <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        /*文档就绪函数*/
+        $(function(){
+            var $left = $("#left");
+            var $right = $("#right");
+            /*选中添加到右边*/
+            $("#button1").on("click", function () {
+                $right.append($("#left option:selected"));
+            });
+            /*全部添加到右边*/
+            $("#button2").on("click",function(){
+                $right.append($("#left option"));
+            });
+            /*选中添加到左边*/
+            $("#button3").on("click", function () {
+                $left.append($("#right option:selected"));
+            });
+            /*全部添加到左边*/
+            $("#button4").on("click",function(){
+                $right.append($("#right option"));
+            });
+        });
+
+    </script>
+</body>
+</html>

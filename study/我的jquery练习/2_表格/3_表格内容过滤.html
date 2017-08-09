@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>表格内容过滤</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #mytable{
+            font-size: 14px;
+            border-spacing: 0;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+        #mytable th{
+            border-bottom: 1px solid gray;
+        }
+        #mytable td{
+            width: 80px;
+            height: 25px;
+            text-align: center;
+        }
+        #filter{
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="filter">
+筛选：<input type="text"/>
+</div>
+<table id="mytable">
+    <tr>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>地址</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>男</td>
+        <td>哈尔滨</td>
+    </tr>
+    <tr>
+        <td>李四</td>
+        <td>男</td>
+        <td>山东</td>
+    </tr>
+    <tr>
+        <td>王五</td>
+        <td>男</td>
+        <td>沈阳</td>
+    </tr>
+    <tr>
+        <td>赵六</td>
+        <td>女</td>
+        <td>大连</td>
+    </tr>
+    <tr>
+        <td>张七</td>
+        <td>男</td>
+        <td>山东</td>
+    </tr>
+    <tr>
+        <td>赵九</td>
+        <td>女</td>
+        <td>哈尔滨</td>
+    </tr>
+</table>
+<script src="../../jquery/jquery-1.12.4.js"></script>
+<script>
+    /*文档就绪函数*/
+    $(function(){
+        var $filter = $("#filter input");
+        var $info = $("#mytable tr").not(":first");
+        $filter.on("keyup",function(){
+            if($filter.val()!=""){
+                $info.show();
+                $info.not(":contains("+$filter.val()+")").hide();
+            }
+            if($filter.val()==""){
+                $info.show();
+            }
+        });
+    });
+</script>
+</body>
+</html>
