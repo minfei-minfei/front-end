@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的导航菜单1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            font-size: 20px;
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+        .menu{
+            width: 150px;
+            text-align: center;
+            float: left;
+            background: gray;
+            cursor: pointer;
+        }
+        .sub-menu{
+            background: lightblue;
+            color: white;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <ul id="container">
+        <li class="menu">☟菜单项1
+            <ul class="sub-menu">
+                <li>子菜单1.1</li>
+                <li>子菜单1.2</li>
+            </ul>
+        </li>
+        <li class="menu">☟菜单项2
+            <ul class="sub-menu">
+                <li>子菜单2.1</li>
+                <li>子菜单2.2</li>
+            </ul>
+        </li>
+        <li class="menu">☟菜单项3
+            <ul class="sub-menu">
+                <li>子菜单3.1</li>
+                <li>子菜单3.2</li>
+            </ul>
+        </li>
+    </ul>
+    <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        /*文档就绪函数*/
+        $(function(){
+            var $menu = $(".menu");
+            $menu.hover(function(){
+                //滑入
+                $menu.children().slideUp("slow");
+                $(this).children().slideDown("slow");
+            },function(){
+                //滑出
+                $(this).children().slideUp("slow");
+            });
+        });
+
+    </script>
+</body>
+</html>

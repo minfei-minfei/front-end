@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>网页换肤</title>
+    <style>
+        body{
+            margin: 0;
+        }
+        li{
+            list-style: none;
+        }
+        .wrapper{
+            width: 620px;
+            margin: 0 auto;
+            clear: left;
+        }
+        .skin{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            float: left;
+            margin: 10px 10px 10px 0;
+        }
+        #gray{
+            background-color: gray;
+        }
+        #red{
+            background-color: pink;
+        }
+        #green{
+            background-color: springgreen;
+        }
+        #blue{
+            background-color: deepskyblue;
+        }
+        #yellow{
+            background-color: yellow;
+        }
+        #nav ul{
+            margin: 0;
+            padding: 0;
+            border: 1px solid white;
+            float: left;
+            width: 100px;
+            text-align: center;
+            background-color: gray;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper" id="skin">
+    <div class="skin" id="gray"></div>
+    <div class="skin" id="red"></div>
+    <div class="skin" id="green"></div>
+    <div class="skin" id="blue"></div>
+    <div class="skin" id="yellow"></div>
+</div>
+<div class="wrapper">
+    <li id="nav">
+        <ul>home</ul>
+        <ul>page1</ul>
+        <ul>page2</ul>
+        <ul>page3</ul>
+        <ul>page4</ul>
+        <ul>page5</ul>
+    </li>
+</div>
+<script src="../../jquery/jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        var $skin = $(".skin");
+        var color;
+        $skin.on("click",function(){
+            color = $(this).css("background-color");
+            $("#nav ul").css("background-color",color);
+        });
+    });
+</script>
+
+</body>
+</html>

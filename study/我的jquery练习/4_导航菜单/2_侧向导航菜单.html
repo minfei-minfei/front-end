@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的导航菜单2</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            margin-top: 30px;
+            padding-left: 50px;
+            padding-top: 20px;
+            border-top: 3px solid pink;
+            width: 100px;
+        }
+        #container .menu{
+            cursor: pointer;
+            border: 1px solid pink;
+        }
+        #container .sub-menu{
+            position: relative;
+            left: 100px;
+            top: -20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h3>我的导航菜单2>></h3>
+<ul id="container">
+    <li class="menu">菜单项1☞
+        <ul class="sub-menu">
+            <li><a href="">子菜单1.1</a></li>
+            <li><a href="">子菜单1.2</a></li>
+        </ul>
+    </li>
+    <li class="menu">菜单项2☞
+        <ul class="sub-menu">
+            <li><a href="">子菜单2.1</a></li>
+            <li><a href="">子菜单2.2</a></li>
+        </ul>
+    </li>
+    <li class="menu">菜单项3☞
+        <ul class="sub-menu">
+            <li><a href="">子菜单3.1</a></li>
+            <li><a href="">子菜单3.2</a></li>
+        </ul>
+    </li>
+</ul>
+<script src="../../jquery/jquery-1.12.4.js"></script>
+<script>
+    /*文档就绪函数*/
+    $(function(){
+        var $menu = $(".menu");
+        $menu.hover(function(){
+            //滑入
+            $menu.children().hide();
+            $(this).children().show();
+        },function(){
+            //滑出
+            $(this).children().hide();
+        });
+    });
+</script>
+</body>
+</html>

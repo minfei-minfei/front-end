@@ -60,34 +60,36 @@
         $(function(){
             var $userInfo = $("#user input");
             var $emailInfo = $("#email input");
-            $userInfo.focus(function(){
-                if($userInfo.val==""){
-                    $("#user .suffix").show();
+            var $userSuffix = $("#user .suffix");
+            var $emailSuffix = $("#email .suffix");
+            var $userTrue = $("#user .checked-true");
+            var $emailTrue = $("#email .checked-true");
+            $userInfo.on("focus",function(){
+                if($userInfo.val()==""){
+                    $userSuffix.show();
                 }
             });
-            $emailInfo.focus(function(){
-                if($emailInfo.val==""){
-                    $("#email .suffix").show();
+            $emailInfo.on("focus",function(){
+                if($emailInfo.val()==""){
+                    $emailSuffix.show();
                 }
             });
             /*表单验证*/
             $userInfo.on("keyup",function(){
-                console.log($userInfo.val.length);
-                if($userInfo.val.length >= 6){
-                    $("#user .suffix").hide();
-                    $("#user .checked-true").show();
+                if($userInfo.val().length >= 6){//length是jq内部构件
+                    $userSuffix.hide();
+                    $userTrue.show();
                 }
             });
             $emailInfo.on("keyup",function(){
-                console.log($userInfo.val.length);
-                if($("#email input:contains('.')")){
-                    $("#email .suffix").hide();
-                    $("#email .checked-true").show();
+                if($emailInfo.val().length >= 0){
+                    $emailSuffix.hide();
+                    $emailTrue.show();
                 }
             });
             /*表单提交*/
             $("button[type=submit]").on("click",function(){
-                if(){
+                if($userInfo.val().length >= 6 && $emailInfo.val().length >= 0){
                     alert("注册成功,密码已发到你的邮箱,请查收.");
                 }
             });

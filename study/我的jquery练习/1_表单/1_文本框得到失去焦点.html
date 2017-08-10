@@ -31,9 +31,10 @@
     <form id="myform">
         <span id="title">个人基本信息</span>
         <div id="container">
-            名称：<input type="text"/><br>
-            密码：<input type="password"/><br>
-            详细信息：<textarea></textarea>
+            <!--input的value值表示浏览器显示的默认值，取到默认值的原生方法是defaultValue-->
+            名称：<input type="text" value="名称"/><br>
+            密码：<input type="password" value="密码"/><br>
+            详细信息：<textarea>详细信息</textarea><!--textarea的默认值写在标签里-->
         </div>
     </form>
     <script src="../../jquery/jquery-1.12.4.js"></script>
@@ -42,13 +43,25 @@
         * 文本框失去焦点的时候清空背景颜色*/
         /*一定要先写文档就绪函数！！！*/
         $(function(){
-            var $info = $("#container input,textarea");
-            console.log($info);
-            $info.focus(function(){
+//            var $info = $("#container input,textarea");
+            //优化方法:input选择所有 input, textarea, select 和 button 元素.
+            var $info = $(":input");
+            /*$info.focus(function(){//不推荐这么写，事件写on方法
                 $(this).css("background","pink");
             });
             $info.blur(function(){
                 $info.css("background","transparent");
+            });*/
+            $info.on("focus",function(){
+                /*获取焦点时，背景变红，清除默认值*/
+                $(this).css("background","pink");
+                this.value = "";
+            });
+            $info.on("blur",function(){
+                $info.css("background","transparent");
+                if(this.value==""){
+                    this.value = this.defaultValue;//defaultValue是原生方法
+                }
             });
         });
 

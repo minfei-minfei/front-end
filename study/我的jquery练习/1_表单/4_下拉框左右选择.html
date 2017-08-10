@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>下拉框左右选择</title>
+    <title>我的表单练习3</title>
     <style>
         .container{
             float: left;
@@ -63,7 +63,21 @@
             });
             /*全部添加到左边*/
             $("#button4").on("click",function(){
-                $right.append($("#right option"));
+                $left.append($("#right option"));
+            });
+            /*双击添加到右边*/
+            $left.on("dblclick",function(e){
+                /*判断事件源是否是option*/
+                /*如果事件源是$left，则不执行*/
+                if(this != e.target){//this指向$left
+                    $(e.target).appendTo($right);
+                }
+            });
+            /*双击添加到左边*/
+            $right.on("dblclick",function(e){
+                if(this != e.target){
+                    $(e.target).appendTo($left);
+                }
             });
         });
 

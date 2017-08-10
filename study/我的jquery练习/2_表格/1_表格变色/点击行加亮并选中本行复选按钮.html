@@ -10,7 +10,7 @@
         }
         #mytable{
             font-size: 14px;
-            border-spacing: 0;
+            border-spacing: 0;/*每个单元格之间的间隙*/
             margin-left: 20px;
             margin-top: 20px;
         }
@@ -22,14 +22,20 @@
             height: 25px;
             text-align: center;
         }
+        .selected{
+            background: pink;
+            color: white;
+        }
     </style>
 </head>
 <body>
     <table id="mytable">
-        <th></th>
-        <th>姓名</th>
-        <th>性别</th>
-        <th>地址</th>
+        <tr>
+            <th></th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>地址</th>
+        </tr>
         <tr>
             <td><input type="checkbox"/></td>
             <td>张三</td>
@@ -55,27 +61,36 @@
             <td>大连</td>
         </tr>
     </table>
-    <script src="../../../jquery/jquery-1.12.4.js"></script>
-    <script>
+<script src="../../../jquery/jquery-1.12.4.js"></script>
+<script>
+    /*文档就绪函数*/
+    $(function(){
         var $tableInfo = $("#mytable tr").not(":first");
+        console.log($tableInfo);
+        /*$tableInfo.on("toggle",function(){
+         //点击奇数次
+         console.log("123");
+         $(this).addClass("selected");
+         $(this).children().children().prop("checked","true");
+         },function(){
+         //点击偶数次
+         $(this).removeClass("selected");
+         $(this).children().children().removeProp("checked","true");
+         });*/
+        $tableInfo.attr("flag","0");
         $tableInfo.on("click",function(){
-            //如果该行没有点击过
-            $(this).css({
-                background : "pink",
-                color : "white"
-            });
-            $(this).children().children().prop("checked","true");
-            //如果该行点击过了
-            $tableInfo.each(function(index,elem){
-                elem.off("click");
-            });
-
-//            $(this).off("click");
-//            $tableInfo.eq(1).off("click");
-            console.log($(this).index());
-            console.log($tableInfo.eq(1));
+            if($(this).attr("flag")==0){//点击奇数次
+                $(this).addClass("selected");
+                $(this).children().children().prop("checked","true");
+                $(this).attr("flag","1");
+            }else{//点击偶数次
+                $(this).removeClass("selected");
+                $(this).children().children().removeProp("checked","true");
+                $(this).attr("flag","0");
+            }
         });
+    });
 
-    </script>
+</script>
 </body>
 </html>

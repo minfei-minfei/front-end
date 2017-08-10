@@ -30,14 +30,41 @@
         $(function(){
             var $text = $("#text");
             $("#lengthen").on("click",function(){
-                $text.height($text.height()+20);
-                //console.log($text.height());
+                /*规定最大高度*/
+                if($text.height()<300){
+//                    $text.height($text.height()+20);
+                    //方法二
+                    /*$text.css({
+                     height: $text.height()+20
+                     });*/
+                    //方法三
+                    /*$text.css({
+                        height: "+=20"
+                    });*/
+                }
+                /*动画效果*/
+                $text.animate({
+                    height: 300
+                },500);
             });
             $("#shorten").on("click",function(){
-                $text.height($text.height()-20);
-                //console.log($text.height());
+                /*规定最小高度*/
+                if($text.height()>50){
+//                    $text.height($text.height()-20);
+                    //方法二
+                    /*$text.css({
+                     height: $text.height()-20
+                     });*/
+                    //方法三
+                    $text.css({
+                        height: "-=20"
+                    });
+                }
+                /*动画效果*/
+                $text.animate({
+                    height: 50
+                },500);
             });
-
         });
 
     </script>
