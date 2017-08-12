@@ -1,0 +1,158 @@
+/*首页*/
+/*ad开始*/
+#ad{
+    width: 550px;
+    height: 321px;
+    float: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+#ad .ad{
+    width: 109px;
+    height: 44px;
+    background: gray;
+    color: white;
+    opacity: 0.7;
+    float: left;
+    margin-right: 1px;
+    font-size: 12px;
+    text-align: center;
+    line-height: 20px;
+    position: relative;
+    bottom: 48px;
+}
+#ad img{
+    display: none;
+}
+#ad img.selected{
+    display: block;
+}
+#ad .ad.selected{
+    background: orange;
+}
+/*ad结束*/
+
+/*news开始*/
+#news{
+    float: right;
+}
+#act{
+    width: 230px;
+    height: 135px;
+    font-size: 12px;
+    border: 1px solid gray;
+    margin-top: 5px;
+}
+#act span{
+    color: black;
+    font-weight: bolder;
+    padding-left: 10px;
+    border-bottom: 1px solid gray;
+    height: 24px;
+    line-height: 24px;
+    display: block;
+}
+#act ul{
+    margin-left: 10px;
+    margin-top: 8px;
+}
+#act li{
+    width: 181px;
+    height: 20px;
+}
+#act a{
+    color: gray;
+}
+#act div{
+    display: none;
+}
+#act .selected{
+    border: 1px solid gray;
+    position: absolute;
+    background: lightblue;
+    color: white;
+    display: block;
+}
+/*news结束*/
+
+/*brand开始*/
+#brand{
+    font-size: 12px;
+    width: 790px;
+    height: 230px;
+    float: left;
+    margin-top: 5px;
+    padding-left: 10px;
+    overflow: hidden;
+}
+#brand-tag{
+    width: 100%;
+    height: 20px;
+}
+#brand-tag span{
+    font-weight: bolder;
+}
+#brand-tag ul{
+    width: 216px;
+    height: 20px;
+    float: right;
+}
+#brand-tag li{
+    float: left;
+    width: 45px;
+    height: 20px;
+    background: lightgray;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 20px;
+    cursor: pointer;
+}
+#brand-tag li.selected{
+    background: pink;
+    color: white;
+}
+#brand-img{
+    width: 3160px;
+    padding-top: 10px;
+    padding-left: 5px;
+    border-top: 1px solid gray;
+    position: relative;
+}
+#brand-img li{
+    float: left;
+    position: relative;
+    margin-right: 14px;
+}
+#brand-img li img{
+    cursor: pointer;
+}
+#brand-img li span{
+    position: absolute;
+    right: 0;
+    top: 180px;
+    width: 183px;
+    height: 20px;
+    background: lightgray;
+    font-size: 16px;
+    text-align: center;
+    line-height: 20px;
+}
+#brand-img li a{
+    color: gray;
+}
+#brand-img .mask{
+    width: 183px;
+    height: 164px;
+    background: gray;
+    opacity: 0.6;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+#brand-img .mask img{
+    width: 30px;
+    height: 30px;
+    margin: 80px 0 0 80px;
+}
+/*brand结束*/
