@@ -8,5 +8,6 @@ $(function(){
     $introTitle.on("click",function(){
         $(this).addClass("selected").siblings().removeClass("selected");
         $introDetail.eq($(this).index()).addClass("selected").siblings().removeClass("selected");
+        //console.log($(this).addClass("selected"));
     });
 });

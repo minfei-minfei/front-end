@@ -54,28 +54,27 @@ img{
     float: left;
     margin-right: 5px;
 }
-#gray{
+#skin_1{
     background-color: gray;
 }
 
-#pink{
+#skin_2{
     background-color: pink;
 }
-#yellow{
+#skin_3{
     background-color: yellow;
 }
-#green{
+#skin_4{
     background-color: springgreen;
 }
-#blue{
+#skin_5{
     background-color: deepskyblue;
 }
-#purple{
+#skin_6{
     background-color: mediumpurple;
 }
 #nav{
     height: 38px;
-    background: #4A4A4A;
     margin-top: 8px;
     line-height: 38px;
 }
@@ -118,7 +117,6 @@ img{
 #menu-title{
     width: 178px;
     height: 30px;
-    background: gray;
     color: white;
     font-weight: bolder;
     line-height: 30px;

@@ -2,55 +2,51 @@
  * Created by Administrator on 2017/8/12.
  */
 /*文档就绪函数*/
-$(function(){
-    var $smallPic = $("#small");
-    var $bigPic;
+$(function() {
+    var $small = $("#small");
+    var $big = $("#big");
+    var $bigPic = $("#big img");
     var $drag = $("#drag");
-    var scaleX;
-    var scaleY;
-    $smallPic.hover(function(){
-        $drag.show();
-        $("#big").show();
-        $bigPic = $("#big img");
-        /*大图片与小图片的比例*/
-        scaleX = $bigPic.width()/$("#small img").width();
-        scaleY = $bigPic.height()/$("#small img").height();
-    },function(){
-        $drag.hide();
-        $("#big").hide();
-    });
-    /*指针相对于小图片的位置*/
-    var disX;
-    var disY;
-
-    $smallPic.on("mousemove",function(e){
-        disX = e.pageX-$smallPic.offset().left;
-        disY = e.pageY-$smallPic.offset().top;
-        /*drag移动*/
-        if(disX<50){
-            $drag.css("left",""+$smallPic.offset().left);
-        }else if(disX>260){
-            $drag.css("left","260"+$smallPic.offset().left);
-        }else{
-            $drag.css({
-                left: e.pageX-50
-            });
+    $small.hover(function () {
+        $drag.stop().show("fast");
+        $big.stop().show("fast");
+    }, function () {
+        $drag.stop().hide("fast");
+        $big.stop().hide("fast");
+    }).on("mousemove", function (e) {//JQuery的链式操作
+        /*-----------------drag移动---------------*/
+        /*让指针始终在drag的正中心*/
+        var left = e.pageX - $small.offset().left - $drag.width() / 2;
+        var top = e.pageY - $small.offset().top - $drag.height() / 2;
+        /*保证drag不超出div*/
+        var maxLeft = $small.width() - $drag.width();
+        var maxTop = $small.height() - $drag.height();
+        /*给drag定位*/
+        if (left < 0) {
+            left = 0;
         }
-        if(disY<50){
-            $drag.css("top",""+$smallPic.offset().top);
-        }else if(disY>260){
-            $drag.css("top","260"+$smallPic.offset().top);
-        }else{
-            $drag.css({
-                top: e.pageY-50
-            });
+        if (left > maxLeft) {
+            left = maxLeft;
         }
-        /*大图片移动*/
-        $bigPic.css({//后加入的元素事件绑定
-            left: "-"+(disX-50)*scaleX+"px",
-            top: "-"+(disY-50)*scaleY+"px"
+        if (top < 0) {
+            top = 0;
+        }
+        if (top > maxTop) {
+            top = maxTop;
+        }
+        $drag.css({
+            left: left + "px",
+            top: top + "px"
         });
 
+        /*-----------------大图片移动------------------*/
+        /*drag移动的百分比等于大图片移动的百分比*/
+        var scaleX = left / maxLeft;
+        var scaleY = top / maxTop;
+        $bigPic.css({
+            left: -($bigPic.width() - $big.width()) * scaleX + "px",
+            top: -($bigPic.height() - $big.height()) * scaleY + "px"
+        });
     });
 
 });

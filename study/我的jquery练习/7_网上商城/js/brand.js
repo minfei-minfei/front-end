@@ -10,7 +10,7 @@ $(function(){
     $brandTag.on("click",function(){
         /*移动图片*/
         n = $(this).index()-$nowindex;
-        $brandImg.animate({
+        $brandImg.stop().animate({/*注意：动画前面记得加stop*/
             left: "-="+790*n
         },2000);
         $nowindex = $(this).index();

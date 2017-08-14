@@ -4,24 +4,22 @@
 /*文档就绪函数*/
 $(function(){
     var $skin = $(".skin");
-    var $bgcolor;
-    var date = new Date();
-    if($bgcolor!=null){
+    var curIndex,curSkin;
+    if($.cookie("curSkin")!=undefined){
         /*加载皮肤颜色*/
-        $("#nav").css("background",$bgcolor);
-        $("#menu-title").css("background",$bgcolor);
+        changeSkin($.cookie("curSkin"));
     }
     /*换肤*/
     $skin.on("click",function(){
-        $bgcolor = $(this).css("background");
-        $skin.empty(".selected");
-        $(this).append('<div class="selected"></div>');
-        $("#nav").css("background",$bgcolor);
-        $("#menu-title").css("background",$bgcolor);
+        curIndex = $(this).index();
+        curSkin = $(this).attr("id");
+        changeSkin(curSkin);
         /*设置cookie*/
-        /*date.setDate(date.getDate() + 7);
-        document.cookie = "$bgcolor="+$bgcolor+";expires=" + date.toUTCString();
-        alert(date.toUTCString());*/
+        $.cookie("curSkin",curSkin,{expires:7});
     });
-
+    function changeSkin(skin){
+        $skin.empty();
+        $skin.eq(curIndex).append('<div class="selected"></div>');
+        $("#skinfile").attr("href","css/"+skin+".css");
+    }
 });

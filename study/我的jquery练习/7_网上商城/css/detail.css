@@ -8,11 +8,15 @@
 }
 /*---------------pro开始---------------*/
 /*show开始*/
-#small{
-    width: 310px;
-    height: 310px;
-    border: 1px solid gray;
+#small,#big{
     float: left;
+}
+#small img{/*解决img撑大div的问题*/
+    display: block;
+    /*float: left;*/
+}
+#small{
+    border: 1px solid gray;
 }
 #drag{
     width: 100px;
@@ -28,10 +32,10 @@
     width: 330px;
     height: 330px;
     border: 1px solid gray;
-    float: left;
     margin-left: 5px;
     overflow: hidden;
-    position: relative;
+    position: absolute;
+    left: 310px;
     display: none;
 }
 #big span{
@@ -44,6 +48,7 @@
     opacity: 0.5;
     position: relative;
     display: block;
+    z-index: 1;
 }
 #big img{
     position: absolute;
@@ -118,11 +123,14 @@
 
 /*pro-info开始*/
 #pro-info{
-    width: 468px;
+    float: left;
+    width: 463px;
     height: 432px;
-    position: absolute;
-    left: 320px;
+    position: relative;
+    left: 0;
     top: 0;
     font-size: 12px;
+    margin-left: 5px;
+    z-index: -1;
 }
 /*pro-info结束*/

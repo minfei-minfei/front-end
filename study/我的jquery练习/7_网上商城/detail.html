@@ -5,6 +5,7 @@
     <title>我的网上商城详情页</title>
     <link rel="stylesheet" href="css/common.css"/>
     <link rel="stylesheet" href="css/detail.css"/>
+    <link id="skinfile" rel="stylesheet" href="css/skin_1.css"/>
 </head>
 <body>
     <div id="header">
@@ -12,12 +13,12 @@
             <a href=""><img id="logo" src="img/logo.gif" /></a>
             <input type="text" value="请输入商品名称"/>
             <div id="skin">
-                <div id="gray" class="skin"></div>
-                <div id="pink" class="skin"></div>
-                <div id="yellow" class="skin"></div>
-                <div id="green" class="skin"></div>
-                <div id="blue" class="skin"></div>
-                <div id="purple" class="skin"></div>
+                <div id="skin_1" class="skin"></div>
+                <div id="skin_2" class="skin"></div>
+                <div id="skin_3" class="skin"></div>
+                <div id="skin_4" class="skin"></div>
+                <div id="skin_5" class="skin"></div>
+                <div id="skin_6" class="skin"></div>
             </div>
             <div id="nav">
                 <ul>
@@ -78,22 +79,23 @@
                     </div>
                 </div>
                 <div id="pro-info">
-                    <span></span>
-                    <div></div>
-                    价格：<span></span>元
-                    促销：<span></span>元
+                    <span>免烫高支棉条纹衬衣</span>
+                    <div>全新精品高支棉衬衫再次提升品质，精选100%新疆长绒棉织造而成，平整度好，短绒少； 80-100高支双股经纬交织，带来无与伦比的舒适享受；而且面料反光效果好，具有漂亮的光泽，质感上佳，有利于免烫效果的维持！</div>
+                    价格：<span>379.00</span>元
+                    促销：<span>200.00</span>元
                     <div>颜色：<span></span>
                     <div></div>
                     <div></div>
                     <div></div>
                     </div>
-                    <div>尺寸：<span></span>
-                        <div></div>
-                        <div></div>
-                        <div></div>
+                    <div>尺寸：<span>未选择</span>
+                        <div>S</div>
+                        <div>L</div>
+                        <div>SL</div>
+                        <div>LL</div>
                     </div>
                     <div>数量：<span></span>
-                        <select name="" id="">
+                        <select name="number" id="number">
                             <option value="">1</option>
                             <option value="">2</option>
                             <option value="">3</option>
@@ -101,7 +103,7 @@
                             <option value="">5</option>
                         </select>
                     </div>
-                    总计：<span></span>元
+                    总计：<span></span>元<br>
                     给商品评分：
                     <div>放入购物车</div>
                 </div>
@@ -112,6 +114,7 @@
         <div class="wrapper">Copyright © 2009 - 2012 JaneShop Inc.</div>
     </div>
     <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script src="../../jquery/jquery.cookie.js"></script>
     <script src="js/input.js"></script>
     <script src="js/change-skin.js"></script>
     <script src="js/hot.js"></script>
