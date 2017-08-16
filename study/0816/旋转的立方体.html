@@ -22,6 +22,11 @@
             position: relative;
             transform-style: preserve-3d;
             animation: rotate 2s linear infinite;
+            /*transform-origin: 100px 0 100px;*/
+            /*改变旋转原点：因为平面本身就是围绕y轴旋转，所以改变y的坐标对旋转轴的定位无影响
+            * x和z的定位起点是container平面的左上角
+            * 改变x，旋转轴左右移动
+            * 改变z，旋转轴前后移动*/
         }
         .cube{
             width: 200px;
