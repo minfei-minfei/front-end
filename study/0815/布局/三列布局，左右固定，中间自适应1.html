@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>三列布局，左右固定，中间自适应</title>
+    <style>
+        /*方法1*/
+        /*左侧左浮，右侧右浮，中间设置左外边距和右外边距*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #left{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            float:left;
+        }
+        #right{
+            width: 200px;
+            height: 200px;
+            background: lightblue;
+            float: right;
+        }
+        #center{
+            height: 200px;
+            background: lightgreen;
+            margin-left: 210px;
+            margin-right: 210px;
+        }
+    </style>
+</head>
+<body>
+    <div id="left"></div>
+    <div id="right"></div>
+    <div id="center"></div><!--注意：中间的放最后，否则右浮的元素上不去-->
+</body>
+</html>

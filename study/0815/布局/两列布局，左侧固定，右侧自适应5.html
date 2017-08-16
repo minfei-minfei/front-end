@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>两列布局，左侧固定，右侧自适应</title>
+    <style>
+        /*方法5*/
+        /*父元素display:table子元素display:table-cell*/
+        /*父元素充满浏览器，左侧子元素设置款顶，右侧子元素不设置宽度*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            display: table;
+            width: 100%;
+        }
+        #left{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            display: table-cell;
+        }
+        #right{
+            height: 200px;
+            background: lightblue;
+            display: table-cell;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="left"></div>
+    <div id="right"></div>
+</div>
+</body>
+</html>

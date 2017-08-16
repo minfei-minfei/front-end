@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的弹性盒模型</title>
+    <style>
+        body{
+            height: 1000px;
+        }
+        /*--------------旧版弹性盒模型-------------*/
+        #container{
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            /*-webkit-box-direction: reverse;*/
+            /*-webkit-box-align: start;*/
+            -webkit-box-pack: justify;
+        }
+        #div1{
+            background: lightpink;
+            height: 100px;
+            width: 100px;
+            /*-webkit-box-flex: 1;*/
+            -webkit-box-ordinal-group: 3;
+        }
+        #div2{
+            background: lightgreen;
+            height: 200px;
+            width: 200px;
+            /*-webkit-box-flex: 1;*/
+            -webkit-box-ordinal-group: 1;
+        }
+        #div3{
+            background: lightblue;
+            height: 300px;
+            width: 300px;
+            /*-webkit-box-flex: 1;*/
+            -webkit-box-ordinal-group: 2;
+        }
+
+        /*-----------------新版盒模型------------------*/
+        /*#container{
+            display: flex;
+            flex-direction: column;
+            /!*align-items: center;*!/
+            justify-content : space-between;
+        }
+        #div1{
+            background: lightpink;
+            height: 100px;
+            width: 100px;
+            flex-grow: 1;
+            order: 2;
+        }
+        #div2{
+            background: lightgreen;
+            height: 200px;
+            width: 200px;
+            flex-grow: 1;
+            order: 3;
+        }
+        #div3{
+            background: lightblue;
+            height: 300px;
+            width: 300px;
+            flex-grow: 1;
+            order: 1;
+        }*/
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="div1"></div>
+        <div id="div2"></div>
+        <div id="div3"></div>
+    </div>
+</body>
+</html>

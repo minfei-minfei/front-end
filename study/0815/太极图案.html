@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的太极图案</title>
+    <style>
+        body{
+            background-color: pink;
+        }
+        #big{
+            width: 100px;
+            height: 200px;
+            background-color: white;
+            border: 5px solid black;
+            border-right: 100px solid black;
+            border-radius: 50%;
+            position: relative;
+            margin: 200px auto;
+        }
+        #up{
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 40px solid black;
+            border-radius: 50%;
+            position: absolute;
+            left: 50px;
+            top: 0;
+        }
+        #down{
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border: 40px solid white;
+            border-radius: 50%;
+            position: absolute;
+            left: 50px;
+            top: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="big">
+    <div id="up"></div>
+    <div id="down"></div>
+</div>
+</body>
+</html>

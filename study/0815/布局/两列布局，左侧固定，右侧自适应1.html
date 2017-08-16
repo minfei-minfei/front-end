@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>两列布局，左侧固定，右侧自适应</title>
+    <style>
+        /*方法1*/
+        /*css3:左侧设置宽度，右侧分一份*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            display: flex;
+        }
+        #left{
+            width: 200px;
+            height: 200px;
+            background: pink;
+        }
+        #right{
+            height: 200px;
+            background: lightblue;
+            flex-grow: 1;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="left"></div>
+        <div id="right"></div>
+    </div>
+</body>
+</html>

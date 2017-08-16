@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>两列布局，左侧固定，右侧自适应</title>
+    <style>
+        /*方法3*/
+        /*左侧绝对定位，右侧设置左外边距*/
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #left{
+            width: 200px;
+            height: 200px;
+            background: pink;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        #right{
+            height: 200px;
+            background: lightblue;
+            margin-left: 210px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="left"></div>
+    <div id="right"></div>
+</div>
+</body>
+</html>

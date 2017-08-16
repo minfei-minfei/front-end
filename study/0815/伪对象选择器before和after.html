@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>::before和::after</title>
+    <style>
+        div{
+            background: lightblue;
+        }
+        div::after{
+            content: "afterafterafter";
+            background: pink;
+            /*display: block;*/
+        }
+        div::before{
+            content: "beforebeforebefore";
+            background: lightgreen;
+            /*display: block;*/
+        }
+    </style>
+</head>
+<body>
+    <div>divdivdiv</div>
+</body>
+</html>
