@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>旋转的照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        #container{
+            width: 100%;
+            height: 100%;
+            background: url("img/bg.jpg");
+            position: relative;
+        }
+        #container .img{
+            width: 125px;
+            height: 125px;
+            position: absolute;
+            left: -500px;
+            top: -500px;
+            border: 5px solid white;
+            box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.5);
+            transition: all 1s ease;
+            cursor: pointer;
+        }
+        #container .img span{
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0;
+            transition: all 1s ease;
+        }
+        #left,#right{
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            cursor: pointer;
+            display: none;
+        }
+        #left{
+            background-image: url("img/prev.png");
+            left: 0;
+            border-radius: 0 8px 8px 0;
+        }
+        #right{
+            background-image: url("img/next.png");
+            right: 0;
+            border-radius: 8px 0 0 8px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="left"></div>
+    <div id="right"></div>
+    <script>
+        (function(){
+            var COL = 6, ROW = 4, NUM= COL*ROW, BIG_W=750, BIG_H=500, THUMB_W=THUMB_H=125;//定义常量
+            var count=0;//成功加载的图片个数
+            var oContainer = document.getElementById("container");
+            var oLeft = document.getElementById("left");
+            var oRight = document.getElementById("right");
+            /*-------------------图片预加载--------------------*/
+            for(var i=0; i<NUM; i++){
+                var oBigImg = new Image();
+                oBigImg.onload =function(){
+                    count++;
+                    if(count == NUM*2){//所有的图片加载完成才执行
+                        loadSuccess();
+                    }
+                };
+                oBigImg.src = "img/"+ (i+1) +".jpg";
+
+                var oThumbImg = new Image();
+                oThumbImg.onload = function(){
+                    count++;
+                    if(count == NUM*2){//所有的图片加载完成才执行
+                        loadSuccess();
+                    }
+                };
+                oThumbImg.src = "img/thumbs/"+ (i+1) +".jpg";
+//                console.log(count);
+            }
+//            console.log(count);
+            var index = 0;
+            function loadSuccess(){
+//                console.log(count);
+                /*---------------------插入div-------------------*/
+                for(var i=0; i<ROW; i++){
+                    for(var j=0; j<COL; j++){
+                        index++;//index取值1~24
+                        var oDiv = document.createElement("div");
+                        oDiv.innerHTML ="<span></span>";/*插入span*/
+                        oDiv.className = "img";
+                        oDiv.style.backgroundImage = "url(img/thumbs/"+ index +".jpg)";
+                        oContainer.appendChild(oDiv);
+//                      console.log("插入div");
+                        /*记录每个div的行列值*/
+                        oDiv.pos = {
+                            row:i,
+                            col:j
+                        };
+                        oDiv.index = index;
+                        /*--------------------插入span----------------*/
+                        /*var oSpan = document.createElement("span");
+                        oDiv.appendChild(oSpan);*/
+                    }
+                }
+
+                var aImg = oContainer.getElementsByTagName("div");
+                var iImg_W = aImg[0].offsetWidth;
+                var iImg_H = aImg[0].offsetHeight;
+                var fGapCol = (oContainer.offsetWidth - iImg_W*COL)/(COL+1);
+                var fGapRow = (oContainer.offsetHeight - iImg_H*ROW)/(ROW+1);
+                for(var i=0;i<NUM; i++){
+                    /*--------------------给div排序-------------------*/
+                    aImg[i].style.left= (fGapCol+iImg_W)*aImg[i].pos.col+ fGapCol +"px";
+                    aImg[i].style.top= (fGapRow+iImg_H)*aImg[i].pos.row+ fGapRow +"px";
+                    /*-----------------------div飞入-------------------*/
+                    /*图片旋转,旋转角度在-20~20之间*/
+                    aImg[i].style.transform = "rotate("+ (Math.random()*40-20) +"deg)";
+                    aImg[i].style.transitionDelay = (NUM-i)*100+"ms";
+                    /*------------------给每个div绑定事件-----------------*/
+                    var iFlag = true;//定义标志符，判断当前div是散开还是聚合的，true表示散开
+                    var fGigGapCol = (oContainer.offsetWidth-BIG_W)/2;
+                    var fGigGapRow = (oContainer.offsetHeight-BIG_H)/2;
+                    var aSpan = oContainer.getElementsByTagName("span");
+                    var nowIndex = 0;
+                    aImg[i].onclick = function(){
+                        nowIndex = this.index;
+                        if(iFlag){//当前div是散开的，点击聚合
+                            for(var j=0; j<NUM; j++){
+                                //给每个div重新定位,并修改样式和动画
+                                aImg[j].style.borderWidth = "1px";
+                                aImg[j].style.left = (fGigGapCol+aImg[j].pos.col*THUMB_W)+"px";
+                                aImg[j].style.top = (fGigGapRow+aImg[j].pos.row*THUMB_H)+"px";
+                                aImg[j].style.transform = "rotate(0deg)";
+                                aImg[j].style.transitionDelay = "0ms";
+                                /*修改背景图片*/
+                                aSpan[j].style.opacity = "1";
+                                aSpan[j].style.backgroundImage = "url('img/"+ this.index +".jpg')";
+                                for(var i=0; i<NUM; i++){
+                                    aSpan[i].style.backgroundPosition = "-"+ THUMB_W*aImg[i].pos.col +"px -"+ THUMB_H*aImg[i].pos.row +"px";
+                                }
+                            }
+                            oLeft.style.display = oRight.style.display = "block";
+                        }else{//当前div是聚合的，点击散开
+                            for(var j=0; j<NUM; j++){
+                                //给每个div重新定位,并修改样式和动画
+                                aImg[j].style.borderWidth = "5px";
+                                aImg[j].style.left= (fGapCol+iImg_W)*aImg[j].pos.col+ fGapCol +"px";
+                                aImg[j].style.top= (fGapRow+iImg_H)*aImg[j].pos.row+ fGapRow +"px";
+                                aImg[j].style.transform = "rotate("+ (Math.random()*40-20) +"deg)";
+                                aImg[j].style.transitionDelay = "0ms";
+                                /*修改背景图片*/
+                                aSpan[j].style.opacity = "0";
+                            }
+                            oLeft.style.display = oRight.style.display = "none";
+                        }
+                        iFlag = !iFlag;//每点击一次，更改一次
+                    };
+                }
+                /*左右按钮点击事件*/
+                oLeft.onclick = oRight.onclick = function(){
+                    if(this===oLeft){
+                        nowIndex --;
+                        if(nowIndex==0){
+                            nowIndex = NUM;
+                        }
+                    }else{
+                        nowIndex++;
+                        if(nowIndex==NUM+1){
+                            nowIndex = 1;
+                        }
+                    }
+                    /*--------------给数组元素随机排序----------*/
+                    var arr = [];
+                    for(var i=0; i<24; i++){
+                        arr.push(i);
+                    }
+                    arr.sort(function(){
+                        return Math.random()-0.5;
+                    });
+                    /*----------------------------------------*/
+
+                    for(var i=0; i<NUM; i++){
+                        //24个div随机延迟
+                        //找到一个随机的div，再找到它下面的子元素span
+                        var oSpan = aImg[arr[i]].getElementsByTagName("span")[0];/*注意：别忘了写下标0*/
+                        oSpan.style.backgroundImage = "url(img/"+ nowIndex +".jpg)";
+                        //不同的延迟时间
+                        oSpan.style.transitionDelay = (i+4)*80+"ms";
+                    }
+                };
+            }
+        })();
+    </script>
+</body>
+</html>
