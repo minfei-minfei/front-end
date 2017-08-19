@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>放大镜</title>
+    <title>我的放大镜</title>
     <style>
         *{
             margin: 0;
@@ -12,13 +12,15 @@
             float: left;
         }
         #small{
-            width: 400px;
-            height: 400px;
             position: relative;
         }
+        #small img{/*解决img撑大div问题*/
+            display: block;
+            /*float: left;*/
+        }
         #big{
-            width: 400px;
-            height: 400px;
+            width: 450px;
+            height: 450px;
             overflow: hidden;
             display: none;
             position: relative;
@@ -27,82 +29,72 @@
             position: absolute;
         }
         #drag{
-            width: 200px;
-            height: 200px;
-            background-color: #cccccc;
-            opacity: .5;
-            filter: alpha(opacity=500);
+            width: 100px;
+            height: 100px;
+            background: lightgray;
+            opacity: .6;
             position: absolute;
-            top: 0;
-            left: 0;
+            cursor:crosshair;
             display: none;
-        }
-        #mask{
-            width: 100%;
-            height: 100%;
-            background: #ff0000;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-            filter: alpha(opacity=0);
         }
     </style>
 </head>
 <body>
+<div id="container">
     <div id="small">
-        <img src="img/1.jpg" alt=""/>
+        <img src="img/sister1.jpg" />
         <div id="drag"></div>
-        <div id="mask"></div>
     </div>
     <div id="big">
-        <img src="img/2.jpg" alt=""/>
+        <img src="img/sister2.jpg" />
     </div>
-    <script>
-        (function(){
-            var oSmall = document.getElementById("small");
-            var oDrag = document.getElementById("drag");
-            var oBig = document.getElementById("big");
-            var oBigImg = oBig.getElementsByTagName("img")[0];
-            var oMask = document.getElementById("mask");
-            oMask.onmouseover = function(){
-                oDrag.style.display = "block";
-                oBig.style.display = "block";
-            };
-            oMask.onmouseout = function(){
-                oDrag.style.display = "none";
-                oBig.style.display = "none";
-            };
-            oMask.onmousemove = function(e){
-                var left = e.clientX - oDrag.offsetWidth/2;
-                var top = e.clientY - oDrag.offsetHeight/2;
+</div>
+<script>
+    /*函数立即调用*/
+    (function(){
+        var oSmall = document.getElementById("small");
+        var oDrag = document.getElementById("drag");
+        var oBig = document.getElementById("big");
+        var oBigPic = oBig.getElementsByTagName("img")[0];
+        oSmall.onmouseover = function(){
+            oDrag.style.display = "block";
+            oBig.style.display = "block";
+        };
+        oSmall.onmouseout = function(){
+            oDrag.style.display = "none";
+            oBig.style.display = "none";
+        };
+        var left,top;//left和top表示drag到div的相对距离
+        oSmall.onmousemove = function(e){
+            //maxLeft和maxTop表示drag到div的最大相对距离
+            var maxLeft=oSmall.offsetWidth-oDrag.offsetWidth;
+            var maxTop=oSmall.offsetHeight-oDrag.offsetHeight;
+            /*---------------给drag定位----------------*/
+            left = e.clientX - oDrag.offsetWidth/2;
+            top = e.clientY - oDrag.offsetHeight/2;
+            if(left<0){
+                left = 0;
+            }
+            if(left>maxLeft){
+                left = maxLeft;
+            }
+            if(top<0){
+                top = 0;
+            }
+            if(top>maxTop){
+                top = maxTop;
+            }
+            oDrag.style.left = left + "px";
+            oDrag.style.top = top + "px";
+            /*-------------------给大图片定位----------------*/
+            /*思路：小图片移动的百分比=大图片移动的百分比*/
+            var scaleX = left / maxLeft;
+            var scaleY = top / maxTop;
+            oBigPic.style.left = -(oBigPic.offsetWidth-oBig.offsetWidth)*scaleX+"px";
+            oBigPic.style.top = -(oBigPic.offsetHeight-oBig.offsetHeight)*scaleY+"px";
+        };
+    })();
 
-                if(left<0){
-                    left=0;
-                }
-                if(top<0){
-                   top=0;
-                }
-                var maxX = oSmall.offsetWidth - oDrag.offsetWidth;
-                var maxY = oSmall.offsetHeight - oDrag.offsetHeight;
-                if(left>maxX){
-                    left=maxX;
-                }
-                if(top>maxY){
-                   top=maxY;
-                }
-                oDrag.style.left = left + "px";
-                oDrag.style.top = top + "px";
-                /*第一次练习出现的问题：赋值顺序不对，附了两次值，并且一开始就赋值，导致周围出现空白*/
-                var scaleX = left/maxX;
-                var scaleY = top/maxY;
-                oBigImg.style.left = -(scaleX * (oBigImg.offsetWidth-oBig.offsetWidth)) +"px";
-                oBigImg.style.top = -(scaleY * (oBigImg.offsetHeight-oBig.offsetHeight)) + "px";
-                //console.log(scaleX);
-            };
-
-        })();
-
-    </script>
+</script>
 </body>
 </html>

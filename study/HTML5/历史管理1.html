@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>浏览器前进后退按钮的实现1：改变URL</title>
+</head>
+<body>
+    <button id="btn">随机数</button>
+    <div id="result"></div>
+    <script>
+        var oBtn = document.getElementById("btn");
+        var oResult = document.getElementById("result");
+        var obj={};//用一个对象将url和浏览器内容对应起来
+        oBtn.onclick = function(){
+            //产生5个1~10的随机数
+            var result = [];
+            for(var i=0; i<5; i++){
+                result.push(Math.ceil(Math.random()*10));
+            }
+            oResult.innerHTML = result;
+            //通过改变url使得浏览器的“前进”“后退”按钮可用
+            location.hash = Math.random();
+            //保存浏览器内容
+            obj[location.hash]=result;//将url作为变量保存起来，并将变量的值设为浏览器的内容
+        };
+
+        window.onhashchange = function(){//当锚点发生变化时执行
+            //显示历史的浏览器内容
+            oResult.innerHTML = obj[location.hash];//先找到变量url,再通过url找到浏览器内容
+        };
+
+    </script>
+</body>
+</html>

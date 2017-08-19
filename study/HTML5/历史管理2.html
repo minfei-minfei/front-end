@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>浏览器前进后退按钮的实现2：HTML5</title>
+    <!--好处：在不加载新页面的情况下改变浏览器的url-->
+</head>
+<body>
+    <button id="btn">随机数</button>
+    <div id="result"></div>
+    <script>
+        var oBtn = document.getElementById("btn");
+        var oResult = document.getElementById("result");
+        oBtn.onclick = function(){
+            var result = [];
+            for(var i=0; i<5; i++){
+                result.push(Math.ceil(Math.random()*10));
+            }
+            oResult.innerHTML = result;
+            history.pushState(result,"");
+        };
+        window.onpopstate = function(e){
+            oResult.innerHTML = e.state;
+        };
+    </script>
+</body>
+</html>

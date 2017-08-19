@@ -2,7 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>我的婚纱照片墙</title>
+    <title>我们结婚啦</title>
+    <link rel="shortcut icon" href="cut.ico"/>
     <style>
         *{
             margin: 0;
@@ -66,6 +67,7 @@
     <div id="container"></div>
     <div id="prev"></div>
     <div id="next"></div>
+    <audio src="music.mp3" autoplay loop></audio>
     <script>
         (function(){
             var COL= 6,ROW= 4,NUM=COL*ROW;
@@ -112,13 +114,19 @@
                         oDiv.className = "img";
                         oDiv.style.backgroundImage = "url(img/thumbs/"+ index +".jpg)";
                         oDiv.pos = {//row和col从0开始
-                            row:i,
-                            col:j
+                            row: i,
+                            col: j,
+                            row_v: Math.floor((index-1)/4),
+                            col_v: (index-1)%4
                         };
+                        /*console.log("index="+index);
+                        console.log("行："+oDiv.pos.row_v);
+                        console.log("列："+oDiv.pos.col_v);*/
                         oDiv.index = index;//index从1开始
                         oContainer.appendChild(oDiv);
                     }
                  }
+
                 /*--------------------------------------------------*/
 
                 aImg = oContainer.getElementsByTagName("div");//这里的aImg相当于所有的oDiv
@@ -145,6 +153,9 @@
             //重新计算行距和列距
             var fBigGapCol = (oContainer.offsetWidth-BIG_W)/2;
             var fBigGapRow = (oContainer.offsetHeight-BIG_H)/2;
+            //竖着的图片排列
+            var fBigGapCol_v = (oContainer.offsetWidth-BIG_H)/2;
+            var fBigGapRow_v = (oContainer.offsetHeight-BIG_W)/2;
             /*--------------------------------------------------------------*/
             /*③给每个div绑定点击事件--事件委托*/
             oContainer.onclick = function(e){
@@ -160,8 +171,13 @@
                                 nowindex = e.target.parentNode.index;
                             }
                             /*给每个div重新定位*/
-                            aImg[i].style.left = (fBigGapCol +THUMB_W*aImg[i].pos.col)+"px";
-                            aImg[i].style.top = (fBigGapRow + THUMB_H*aImg[i].pos.row)+"px";
+                            if(nowindex %3 ==0){//竖着的图片排列
+                                aImg[i].style.left = (fBigGapCol_v +THUMB_W*aImg[i].pos.col_v)+"px";
+                                aImg[i].style.top = (fBigGapRow_v + THUMB_H*aImg[i].pos.row_v)+"px";
+                            }else{
+                                aImg[i].style.left = (fBigGapCol +THUMB_W*aImg[i].pos.col)+"px";
+                                aImg[i].style.top = (fBigGapRow + THUMB_H*aImg[i].pos.row)+"px";
+                            }
                             /*给每个div重设样式和动画*/
                             aImg[i].style.borderWidth = "1px";
                             aImg[i].style.transform = "rotate(0deg)";
@@ -172,7 +188,12 @@
                             oSpan.style.backgroundImage = "url(img/"+ nowindex +".jpg)";
                             var oBigImg = new Image();
                             oBigImg.src = "img/"+ nowindex +".jpg";
-                            oSpan.style.backgroundPosition = "-"+ aImg[i].pos.col*THUMB_W +"px -"+ aImg[i].pos.row*THUMB_H +"px";
+                            if(nowindex %3 ==0){//竖着的图片排列
+                                oSpan.style.backgroundPosition = "-"+ aImg[i].pos.col_v*THUMB_W +"px -"+ aImg[i].pos.row_v*THUMB_H +"px";
+                            }else{
+                                oSpan.style.backgroundPosition = "-"+ aImg[i].pos.col*THUMB_W +"px -"+ aImg[i].pos.row*THUMB_H +"px";
+
+                            }
                         }
                     }else{//当前div是聚合的
                         oPrev.style.display = oNext.style.display = "none";
@@ -218,11 +239,21 @@
                 arr.sort(function(){
                     return Math.random() - 0.5;
                 });
+                var aSpan = oContainer.getElementsByTagName("span");
                 /*切换背景图片*/
                 for(var i=0; i<aImg.length; i++){
                     var oSpan = aImg[arr[i]].getElementsByTagName("span")[0];
                     oSpan.style.backgroundImage = "url(img/"+ nowindex +".jpg)";
-                    oSpan.style.transitionDelay = (i+2)*50+"ms";
+//                    oSpan.style.transitionDelay = (i+2)*5+"ms";
+                    if(nowindex %3 ==0){//竖着的图片排列
+                        aImg[i].style.left = (fBigGapCol_v +THUMB_W*aImg[i].pos.col_v)+"px";
+                        aImg[i].style.top = (fBigGapRow_v + THUMB_H*aImg[i].pos.row_v)+"px";
+                        aSpan[i].style.backgroundPosition = "-"+ aImg[i].pos.col_v*THUMB_W +"px -"+ aImg[i].pos.row_v*THUMB_H +"px";
+                     }else{
+                        aImg[i].style.left = (fBigGapCol +THUMB_W*aImg[i].pos.col)+"px";
+                        aImg[i].style.top = (fBigGapRow + THUMB_H*aImg[i].pos.row)+"px";
+                        aSpan[i].style.backgroundPosition = "-"+ aImg[i].pos.col*THUMB_W +"px -"+ aImg[i].pos.row*THUMB_H +"px";
+                     }
                 }
             };
             /*-------------------------------------------------------*/
