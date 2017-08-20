@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的3d立方体图片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            background: #000;
+            perspective: 800px;
+        }
+        h3{
+            color: white;
+            opacity: .5;
+            text-align: center;
+        }
+        #container{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin: 200px auto;
+            /*background: #ff0000;*/
+            transform-style: preserve-3d;
+            transform: rotateY(-60deg) rotateX(45deg);
+        }
+        #container img{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0.8;
+            box-shadow: 0 0 100px #5fbcff;
+        }
+        .front{
+            transform: translateZ(100px);
+        }
+        .back{
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .bottom{
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .left{
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .right{
+            transform: rotateY(90deg) translateZ(100px);
+        }
+    </style>
+</head>
+<body>
+    <h3>按住鼠标左键拖动</h3>
+    <div id="container">
+        <img class="front" src="img/a1.png"/>
+        <img class="back" src="img/a2.png"/>
+        <img class="top" src="img/a3.png"/>
+        <img class="bottom" src="img/a4.png"/>
+        <img class="left" src="img/a5.png"/>
+        <img class="right" src="img/a6.png"/>
+    </div>
+    <script>
+        /*函数立即调用*/
+        (function(){
+//            var oContainer = document.getElementById("container");
+            //html5
+            var oContainer = document.querySelector("#container");
+            var nowX=45,nowY=-60;//记录当前旋转角度
+            //鼠标左右移动改变rotateY,上下移动改变rotateX
+            oContainer.onmousedown = function(e){
+                var bLeft = e.clientY-nowX;
+                var bTop = e.clientX-nowY;
+                document.onmousemove = function(e){
+                    nowX = e.clientY -bLeft;
+                    nowY = e.clientX -bTop;
+                    oContainer.style.transform = "rotateX("+ nowX +"deg) rotateY("+ nowY +"deg)";
+                    /*注：每次都要减去当前旋转角度*/
+                };
+                document.onmouseup = function(){
+                    document.onmousemove = null;
+                };
+                return false;
+            };
+
+        })();
+    </script>
+</body>
+</html>

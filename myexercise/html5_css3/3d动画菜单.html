@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>3d动画菜单</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        body{
+            background: url(lavender_farm.jpg) center top no-repeat;
+            /*perspective: 1000px;
+            perspective-origin: 1000px -500px;*/
+        }
+        #nav{
+            background: black;
+            margin: 0 30px;
+        }
+        #nav li{
+            /*background: yellow;*/
+            display: inline-block;
+            font-size: 24px;
+            font-weight: bolder;
+            padding: 20px;
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            /*旋转原点：立方体的中心*/
+            /*transform-origin: 50% 50% -36px;*/
+            /*旋转原点：前面的上棱中心*/
+            transform-origin: 50% 0 0;
+            transition: all 0.5s ease;
+        }
+        #nav li a{
+            color: white;
+        }
+        #nav li::before{
+            content: attr(data-menu);
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: lavender;
+            color: mediumpurple;
+            padding: 20px;
+            transform: rotateX(-90deg) translateZ(36px) translateY(36px);
+        }
+        #nav li:hover{
+            transform: rotateX(90deg) translateY(-36px);
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <ul>
+            <li data-menu="STUDY"><a href="">STUDY</a></li>
+            <li data-menu="HTML5"><a href="">HTML5</a></li>
+            <li data-menu="CSS3"><a href="">CSS3</a></li>
+            <li data-menu="JQUERY"><a href="">JQUERY</a></li>
+        </ul>
+    </div>
+</body>
+</html>
