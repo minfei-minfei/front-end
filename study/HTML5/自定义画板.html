@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的自定义画板</title>
+    <style>
+        body{
+            margin: 0;
+            background: #000;
+        }
+        #mycanvas{
+            background: white;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="mycanvas" width="400px" height="300px"></canvas>
+    <script>
+        var oCvs = document.getElementById("mycanvas");
+        var mycanvas = oCvs.getContext("2d");
+        var startAngle = 0*Math.PI;
+        var endAngle = 0.5*Math.PI;
+        var radius = 50;
+        oCvs.onmousedown = function(e){
+            mycanvas.beginPath();
+            mycanvas.moveTo(e.clientX, e.clientY);//起点
+            oCvs.onmousemove = function(e){
+                mycanvas.lineTo(e.clientX, e.clientY);//终点
+                mycanvas.strokeStyle = "red";
+                mycanvas.lineWidth = 5;
+                mycanvas.lineCap = "round";
+                mycanvas.stroke();//描线
+            };
+            oCvs.onmouseup = function(){
+                oCvs.onmousemove = null;
+            };
+        };
+    </script>
+</body>
+</html>
