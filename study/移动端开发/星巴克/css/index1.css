@@ -1,0 +1,39 @@
+/*断点:992*/
+/*星巴克图片更换*/
+#banner{
+    width: 100%;
+    height: 0;
+    padding-top: 117%;
+    background: url(../img/kv-mobile-cn-20170724152449.jpg) no-repeat;
+    background-size: cover;
+}
+#banner a{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    color: white;
+    font-size: 14px;
+}
+#rewards .wrapper{
+    width: 100%;
+}
+#rewards-mark{
+    float: left;
+    height: 100%;
+    text-align: left;
+    width: 30%;
+}
+#rewards-content{
+    float: left;
+    height: 100%;
+    width: 50%;
+}
+/*用星说*/
+#say .wrapper{
+    padding: 30px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+

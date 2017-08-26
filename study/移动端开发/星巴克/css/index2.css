@@ -1,0 +1,99 @@
+/*断点:768*/
+/*“星享俱乐部”字体变小*/
+#register{
+    font-size: 12px;
+    transition: all 1s ease;
+}
+/*布局从横排变为竖排*/
+#rewards{
+    height: 490px;
+}
+#rewards-mark{
+    float: left;
+    height: 30%;
+    width: 100%;
+    text-align: center;
+    padding-left: 0;
+}
+#rewards-content{
+    float: left;
+    height: 70%;
+    width: 100%;
+    text-align: center;
+}
+#rewards-content-title{
+    padding: 10px 0;
+}
+#rewards-content-text{
+    padding: 10px 0;
+}
+#rewards-content-link{
+    position: relative;
+    width: 100%;
+}
+#rewards-content-link div{
+    float: left;
+    width: 100%;
+}
+.btn{
+    display: block;
+    width: 90%;
+    height: 50px;
+    padding: 0;
+    margin: 0 auto;
+    text-align: center;
+    line-height: 50px;
+}
+.know-more{
+    float: right;
+}
+/*促销图片更换*/
+#moon-cake{
+    width: 100%;
+    padding-top: 117%;
+    background: url(../img/mooncake-mobile.jpg) no-repeat;
+    background-size: cover;
+}
+#double-seven{
+    width: 100%;
+    padding-top: 100%;
+}
+#cold-brew{
+    width: 100%;
+    padding-top: 100%;
+}
+/*产品介绍从横排变为竖排*/
+#product img{
+    float: left;
+}
+#product-info{
+    width: 100%;
+    float: left;
+}
+/*footer变为折叠菜单*/
+#footer{
+    padding-top: 20px;
+}
+.footer-link{
+    width: 100%;
+    display: inline;
+}
+.footer-link-block{
+    height: 0;
+    margin-bottom: 0;
+}
+.footer-link h3{
+    margin-bottom: 10px;
+    background: url(../img/footer_menu_icon.png) no-repeat right center;
+}
+.footer-link-items{
+    display: none;
+    padding-left: 10px;
+}
+#download-items{
+    display: none;
+}
+#footer-icons a{
+    width: 30px;
+    height: 30px;
+}

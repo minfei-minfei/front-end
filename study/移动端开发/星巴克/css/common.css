@@ -1,0 +1,44 @@
+/*css重置开始*/
+*{
+    margin: 0;
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
+li{
+    list-style: none;
+}
+img{
+    border: 0;
+}
+/*css重置结束*/
+.wrapper{
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+/*多行文本居中*/
+.middle-box{
+    display: table;
+}
+.middle-inner{
+    display: table-cell;
+    vertical-align: middle;
+}
+.btn{
+    border: 2px solid #a98e67;
+    padding: 14px 40px;
+    color: #a98e67;
+    font-size: 14px;
+    font-weight: bolder;
+}
+.btn:hover{
+    color: white;
+    background: #a98e67;
+}
+.know-more{
+    margin-left: 40px;
+    color: #a98e67;
+    font-size: 14px;
+}

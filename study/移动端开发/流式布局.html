@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>流式布局</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        h3{
+            width: 960px;
+            height: 100px;
+            background: lightgray;
+            color: white;
+            margin: 30px auto;
+            text-align: center;
+            line-height: 100px;
+        }
+        #banner{
+            width: 960px;
+            margin: 0 auto;
+        }
+        #banner img{
+            width: 960px;
+            display: block;
+        }
+        #content{
+            width: 960px;
+            height: 300px;
+            margin: 0 auto;
+        }
+        #left,#right{
+            float: left;
+            color: white;
+            height: 300px;
+            text-align: center;
+            display: table;
+        }
+        /*多行文本居中*/
+        #left p,#right p{
+            display: table-cell;
+            vertical-align: middle;
+        }
+        #left{
+            background: pink;
+            width: 60%;
+            margin-right: 10%;
+        }
+        #right{
+            background: lightblue;
+            width: 30%;
+        }
+        #footer{
+            clear: both;
+        }
+        @media (max-width: 960px) {
+            h3{
+                width: 100%;
+            }
+            #content{
+                width: 100%;
+            }
+            #banner{
+                width: 100%;
+            }
+            #banner img{
+                width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            #left,#right{
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h3>页头</h3>
+    </div>
+    <div id="nav">
+        <h3>导航</h3>
+    </div>
+    <div id="banner">
+        <img src="01.jpg" alt="">
+    </div>
+    <div id="content">
+        <div id="left">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem erat, egestas quis luctus ut, rhoncus vitae risus. Integer venenatis libero sit amet sapien dictum, quis bibendum mi volutpat. Cras pretium quam quis magna facilisis, eget feugiat nisi lacinia.</p>
+        </div>
+        <div id="right">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sem erat, egestas quis luctus ut, rhoncus vitae risus. Integer venenatis libero sit amet sapien dictum, quis bibendum mi volutpat. Cras pretium quam quis magna facilisis, eget feugiat nisi lacinia.</p>
+        </div>
+    </div>
+    <div id="footer">
+        <h3>页脚</h3>
+    </div>
+</body>
+</html>
