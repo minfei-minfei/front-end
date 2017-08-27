@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title>工具提示（Tooltip）插件方法</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div style="padding: 100px 100px 10px;">
+    这是一个
+    <a href="#" class="tooltip-show" data-toggle="tooltip" title="show">Tooltip 方法 show</a>.
+    这是一个
+    <a href="#" class="tooltip-hide" data-toggle="tooltip" data-placement="left" title="hide">Tooltip 方法 hide</a>.
+    这是一个
+    <a href="#" class="tooltip-destroy" data-toggle="tooltip" data-placement="top" title="destroy">Tooltip 方法 destroy</a>.
+    这是一个
+    <a href="#" class="tooltip-toggle" data-toggle="tooltip" data-placement="bottom" title="toggle">Tooltip 方法 toggle</a>.
+    <br><br><br><br><br><br>
+    <p class="tooltip-options" >
+        这是一个
+        <a href="#" data-toggle="tooltip" title="<h2>I'm h2 </h2>">Tooltip 方法 html</a>.
+        这是一个
+        <a href="#" data-toggle="tooltip" title="没有动画">Tooltip 方法 animation</a>.
+        这是一个
+        <a href="#" data-toggle="tooltip" title="我应该在右边">Tooltip 方法 placement</a>.
+        这是一个
+        <a href="#" data-toggle="tooltip" title="我是selector的tooltip">Tooltip 方法 selector</a>.
+        <br>
+        这是一个
+        <a href="#" data-toggle="tooltip" title="show延迟1s&nbsp;hide延迟2s">Tooltip 方法 delay</a>.
+    </p>
+    <script>
+        $(function(){
+//            $("[data-toggle='tooltip']").tooltip();
+            $('.tooltip-show').tooltip('show');
+            $('.tooltip-hide').tooltip('hide');
+            $('.tooltip-destroy').tooltip('destroy');
+            $('.tooltip-toggle').tooltip('toggle');
+            var $tooltipOpt = $(".tooltip-options a");
+            $tooltipOpt.eq(0).tooltip({html : true });
+            $tooltipOpt.eq(1).tooltip({animation : false });
+            $tooltipOpt.eq(2).tooltip({placement : "auto right" });
+//            $("div").css("padding","0");//测试placement
+            $tooltipOpt.eq(3).tooltip({//没有效果？？？？？
+                selector : ".tooltip-show",
+                placement: "left"
+            });
+            $tooltipOpt.eq(4).tooltip({
+                delay: { show: 1000, hide: 2000 }
+            });
+        });
+    </script>
+    <div>
+
+</body>
+</html>
