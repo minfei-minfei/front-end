@@ -1,0 +1,25 @@
+body{
+    /*导航栏遮挡内容*/
+    padding-top: 70px;
+    padding-bottom: 70px;
+}
+.media p{
+    /*溢出文本用省略号替代*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    /*-------------------*/
+    margin-bottom: 0;
+}
+#user-order-footer ul{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+#pay{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+
+}

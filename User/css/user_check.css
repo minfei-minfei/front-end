@@ -1,0 +1,15 @@
+.media p{
+    /*溢出文本用省略号替代*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.media-bottom{
+    border-top: 1px solid lightgray;
+}
+#user-order-footer ul{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}

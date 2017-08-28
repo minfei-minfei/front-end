@@ -1,0 +1,15 @@
+.list-group-item input{
+    display: inline-block;
+    border: none;
+    outline: medium;
+}
+.list-group-item:nth-child(3){
+    position: relative;
+}
+.list-group-item:nth-child(3) button{
+    font-size: 12px;
+    background: lightgray;
+    color: darkgrey;
+    position: absolute;
+    right: 5px;
+}

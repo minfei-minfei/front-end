@@ -1,0 +1,10 @@
+.list-group-item input{
+    display: inline-block;
+    border: none;
+    outline: medium;
+}
+.forget{
+    text-align: right;
+    margin-bottom: 30px;
+    margin-top: -10px;
+}
