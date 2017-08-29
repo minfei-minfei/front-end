@@ -16,6 +16,13 @@
             </div>
         </div>
     </nav>
+    <div class="alert alert-warning" id="myAlert">
+        <a href="#" class="close" data-dismiss="alert">
+            &times;
+        </a>
+        <strong>警告！</strong>
+        <span>您的网络连接有问题。</span>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -26,7 +33,7 @@
         <div class="panel-body">
             <div class="media">
                 <a class="media-left" href="#">
-                    <img class="media-object" src="img/portrait.png"
+                    <img class="media-object" src="img/nurse_portrait_default.png"
                          alt="媒体对象">
                 </a>
                 <div class="media-body">
@@ -103,7 +110,7 @@
         </li>
         <li class="list-group-item">
             <img src="img/address.png" alt="地址"/>
-            <a href="#">请选择地址</a>
+            <a href="#address" id="address">请选择地址</a>
             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
         </li>
         <li class="list-group-item">
@@ -141,7 +148,7 @@
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <li class="pull-right"><a href="#">加入购物车</a></li>
-                <li class="pull-right"><a href="#">立即付款</a></li>
+                <li class="pull-right"><a href="#pay" id="paynow">立即付款</a></li>
             </ul>
         </div>
     </nav>

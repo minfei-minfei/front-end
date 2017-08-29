@@ -2,6 +2,9 @@ body{
     /*导航栏遮挡内容*/
     padding-top: 70px;
     padding-bottom: 70px;
+    /*充满整个屏幕*/
+    position: relative;
+    bottom: 0;
 }
 .media p{
     /*溢出文本用省略号替代*/
@@ -18,8 +21,16 @@ body{
     right: 0;
 }
 #pay{
-    position: absolute;
+    position: fixed;
     width: 100%;
-    bottom: 0;
-
+    margin-bottom: 0;
+    bottom: 50px;
+    display: none;
+}
+#myAlert{
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    z-index: 1;
+    display: none;
 }
