@@ -1,0 +1,42 @@
+body{
+    padding: 50px 0;
+}
+.navbar{
+    margin: 0;
+}
+#search{
+    background: url(../img/search.png) no-repeat 5px center;
+    text-indent: 10px;
+    border-radius: 20px;
+}
+.dropdown-menu{
+    min-width: 100px;
+}
+.media{
+    border-bottom: 1px solid gray;
+}
+.media p{
+    /*溢出文本用省略号替代*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    /*-----------------*/
+    margin: 0;
+}
+.star{
+    width: 120px;
+    height: 15px;
+    background: url(../img/star-matrix.gif) no-repeat;
+    text-align: right;
+}
+.pager{
+    background: white;
+}
+#nurse-filter{
+    margin: 0;
+}
+#nurse-filter li{
+    padding: 0;
+    text-align: center;
+}

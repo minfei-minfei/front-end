@@ -1,0 +1,34 @@
+.register-link{
+    width: 20px;
+    background: url(../img/register.png) no-repeat center;
+}
+.navbar-title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+/*分页*/
+#bottom-nav{
+    border-top: 1px solid lightgray;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 0;
+    background: white;
+}
+#bottom-nav li a{
+    border: 0;
+    color: gray;
+}
+#bottom-nav li a:hover{
+    color: lightgreen;
+}
+#bottom-nav .glyphicon{
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+/*取消点击过链接的下划线*/
+a:focus{
+    text-decoration: none;
+}
