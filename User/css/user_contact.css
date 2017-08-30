@@ -1,0 +1,24 @@
+body{
+    background: lightgray;
+}
+.navbar-header{
+    width: 100%;
+}
+.navbar-title{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.media{
+    background: white;
+    padding: 10px;
+    position: relative;
+}
+.media .glyphicon-edit{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+a:focus{
+    text-decoration: none;
+}
