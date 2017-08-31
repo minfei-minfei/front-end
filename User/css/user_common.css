@@ -32,3 +32,7 @@
 a:focus{
     text-decoration: none;
 }
+/*去除input的焦点颜色*/
+input{
+    outline: none;
+}

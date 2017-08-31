@@ -34,3 +34,18 @@ body{
     z-index: 1;
     display: none;
 }
+
+/*  修改日历控件 */
+/*移除向下箭头*/
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+}
+/*移除叉叉按钮*/
+input[type="date"]::-webkit-clear-button{
+    display:none;
+}
+/*移除焦点颜色*/
+input{
+    outline: none;
+}
+

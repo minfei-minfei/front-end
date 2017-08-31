@@ -7,9 +7,10 @@
     <title>用户首页_订单界面</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/user_common.css"/>
+    <link rel="stylesheet" href="css/user_index_order.css"/>
 </head>
 <body>
-<nav class="navbar navbar-default" role="navigation">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
     <div class="navbar-header">
         <a href="#" class="navbar-brand register-link"></a>
@@ -17,6 +18,33 @@
     </div>
 
 </nav>
+<ul id="order-filter" class="nav nav-tabs row">
+    <li class="active dropdown col-xs-4">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">全部</a>
+    </li>
+    <li class="dropdown col-xs-4">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">未完成</a>
+    </li>
+    <li class="dropdown col-xs-4">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">已完成</a>
+    </li>
+</ul>
+
+<div class="media">
+    <div class="container">
+        <a class="media-left" href="#">
+            <img class="media-object" src="img/nurse_portrait_default.png"
+                 alt="张三">
+        </a>
+        <div class="media-body">
+            <h4 class="media-heading">张三
+                <span class="pull-right small">已受理</span>
+            </h4>
+            <span>￥100&times;30天</span><span class="price lead pull-right">￥1000</span>
+            <span class="glyphicon glyphicon-time">2017-09-01至2017-10-01</span>
+        </div>
+    </div>
+</div>
 
 <ul id="bottom-nav" class="pager">
     <li><a href="#"><span class="glyphicon glyphicon-home"></span>首页</a></li>
@@ -28,5 +56,6 @@
 
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/user_common.js"></script>
 </body>
 </html>

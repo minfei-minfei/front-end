@@ -1,19 +1,33 @@
 body{
     padding: 50px 0;
+    background: lightgray;
 }
 .navbar{
     margin: 0;
 }
 #search{
-    background: url(../img/search.png) no-repeat 5px center;
-    text-indent: 10px;
+    background: white url(../img/search.png) no-repeat 10px center;
+    text-indent: 20px;
     border-radius: 20px;
 }
-.dropdown-menu{
-    min-width: 100px;
+#nurse-filter{
+    margin: 0;
+    background: #f8f8f8;
+}
+#nurse-filter .dropdown{
+    padding: 0;
+    text-align: center;
+}
+#nurse-filter .dropdown-menu{
+    min-width: 80px;
 }
 .media{
-    border-bottom: 1px solid gray;
+    padding: 5px 0;
+    background: white;
+    margin-top: 5px;
+}
+.media .media-object{
+    border-radius: 50%;
 }
 .media p{
     /*溢出文本用省略号替代*/
@@ -29,14 +43,4 @@ body{
     height: 15px;
     background: url(../img/star-matrix.gif) no-repeat;
     text-align: right;
-}
-.pager{
-    background: white;
-}
-#nurse-filter{
-    margin: 0;
-}
-#nurse-filter li{
-    padding: 0;
-    text-align: center;
 }

@@ -1,0 +1,20 @@
+body{
+    background: lightgray;
+}
+.navbar{
+    margin: 0;
+}
+.jumbotron{
+    text-align: center;
+    background: url(../img/me_bg.jpg) no-repeat;
+    background-size: cover;
+}
+.jumbotron img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+#user-name{
+    margin-bottom: 0;
+    margin-top: 10px;
+}
