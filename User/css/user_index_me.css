@@ -13,8 +13,16 @@ body{
     width: 80px;
     height: 80px;
     border-radius: 50%;
+    margin-bottom: 10px;
+    /*display: block;
+    margin: 0 auto;*/
 }
-#user-name{
-    margin-bottom: 0;
-    margin-top: 10px;
+#me-page .list-group-item{
+    padding: 0;
+}
+#me-page .list-group-item a{
+    padding: 10px 15px;
+    display: block;
+    width: 100%;
+    height: 100%;
 }

@@ -1,10 +1,13 @@
-.list-group-item input{
-    display: inline-block;
-    border: none;
-    outline: medium;
-}
-.forget{
-    text-align: right;
-    margin-bottom: 30px;
+#login-help{
+    overflow: hidden;/*子元素浮动父元素塌陷*/
+    margin-bottom: 20px;
     margin-top: -10px;
+}
+/*去除input边框*/
+#user-name,#user-psd{
+    border: 0;
+    box-shadow: none;
+    display: inline;
+    width: 90%;
+    height: 22px;
 }

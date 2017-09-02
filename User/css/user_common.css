@@ -28,11 +28,25 @@
     width: 100%;
     text-align: center;
 }
-/*取消点击过链接的下划线*/
+/*去除点击过的链接的下划线*/
 a:focus{
     text-decoration: none;
 }
-/*去除input的焦点颜色*/
-input{
+/*修改表单控件input的字体颜色*/
+.form-control{
+    color: lightgray;
+}
+/*去除input的蓝色焦点*/
+.form-control:focus{
+    border-color: inherit;
+    box-shadow: none;
+}
+/*去除button的黄色焦点*/
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus,
+.btn.focus,
+.btn:active.focus,
+.btn.active.focus{
     outline: none;
 }
