@@ -27,13 +27,6 @@ body{
     bottom: 50px;
     display: none;
 }
-#myAlert{
-    position: fixed;
-    width: 100%;
-    top: 50px;
-    z-index: 1;
-    display: none;
-}
 
 /*  修改日历控件 */
 /*移除向下箭头*/

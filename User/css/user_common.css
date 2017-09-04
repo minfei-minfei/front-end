@@ -1,3 +1,4 @@
+/*µ¼º½À¸*/
 .register-link{
     width: 20px;
     background: url(../img/register.png) no-repeat center;
@@ -49,4 +50,11 @@ a:focus{
 .btn:active.focus,
 .btn.active.focus{
     outline: none;
+}
+/*¾¯¸æ¿ò*/
+.alert-warning{
+    position: fixed;
+    width: 100%;
+    top: 50px;
+    z-index: 1;
 }

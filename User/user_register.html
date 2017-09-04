@@ -17,22 +17,41 @@
             </div>
         </div>
     </nav>
-    <form id="user-register-form" class="container" role="form" action="javascript:;">
+    <form id="user-register-form" class="container" role="form" action="user_login.html">
         <ul class="list-group">
             <li class="list-group-item">
                 <span class="glyphicon glyphicon-user"></span>
-                <input type="text" class="form-control" id="user-name" value="请输入用户名"/>
+                <input type="text" class="form-control" id="user-name" value="请输入用户名"
+                        data-toggle="tooltip" title="用户名小于8位" autocomplete="off"/>
+                <img class="checked" src="img/checked.png" alt="输入正确"/>
+                <img class="checked-false" src="img/checked-false.png" alt="输入错误"/>
             </li>
             <li class="list-group-item">
                 <span class="glyphicon glyphicon-lock"></span>
-                <input type="text" class="form-control" id="user-psd" value="请输入密码"/>
+                <input type="text" class="form-control user-psd" id="user-psd" value="请输入密码"
+                        data-toggle="tooltip" title="密码6~12位" autocomplete="off"/>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <img class="checked" src="img/checked.png" alt="输入正确"/>
+                <img class="checked-false" src="img/checked-false.png" alt="输入错误"/>
             </li>
             <li class="list-group-item">
-                <img src="img/security_code.png" alt="验证码"/>
-                <input type="text" class="form-control" id="security-code" value="请输入验证码"/>
-                <button type="button" class="btn btn-default btn-xs">获取验证码</button>
+                <span class="glyphicon glyphicon-lock"></span>
+                <input type="text" class="form-control user-psd" id="user-psd2" value="请再次输入密码"
+                        data-toggle="tooltip" title="确认密码" autocomplete="off"/>
+                <span class="glyphicon glyphicon-eye-open"></span>
+                <img class="checked" src="img/checked.png" alt="输入正确"/>
+                <img class="checked-false" src="img/checked-false.png" alt="输入错误"/>
+            </li>
+            <li class="list-group-item">
+                <span class="vcode"></span>
+                <input type="text" class="form-control" id="vcode" value="请输入验证码"
+                       data-toggle="tooltip" title="不区分大小写" autocomplete="off"/>
             </li>
         </ul>
+        <div class="code">
+            <span id="code" class="label label-default" title="看不清，换一张">abcd</span>
+            <span id="change-code">看不清？换一张</span>
+        </div>
         <button type="submit" class="btn btn-default btn-lg btn-block">注册</button>
     </form>
 
