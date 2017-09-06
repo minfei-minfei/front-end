@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            width: 600px;
+            margin: 100px auto;
+            border: 5px solid pink;
+            border-radius: 10px;
+            position: relative;
+        }
+        #image{
+            height: 400px;
+        }
+        #image img{
+            float: left;
+        }
+        #navigator{
+            height: 100px;
+        }
+        #navigator img{
+            width: 146px;
+            border: 2px solid white;
+            float: left;
+            cursor: pointer;
+            opacity: 0.6;
+        }
+        #navigator img:hover{
+            opacity: 1;
+        }
+        #narrow img{
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+        #left{
+            left: 0;
+            top: 200px;
+        }
+        #right{
+            right: 0;
+            top: 200px;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="image">
+        <img src="../img/wedding1.jpg" />
+    </div>
+    <div id="navigator">
+        <img src="../img/wedding1.jpg" />
+        <img src="../img/wedding2.jpg" />
+        <img src="../img/wedding3.jpg" />
+        <img src="../img/wedding4.jpg" />
+    </div>
+    <div id="narrow">
+        <img id="left" src="../img/向左.png" />
+        <img id="right" src="../img/向右.png" />
+    </div>
+</div>
+<script>
+    var oContainer = document.getElementById("container");
+    var oImage = document.getElementById("image");
+    var oBigImg = oImage.getElementsByTagName("img")[0];
+    var oNav = document.getElementById("navigator");
+    var aSmallImg = oNav.getElementsByTagName("img");
+    var oLeft = document.getElementById("left");
+    var oRight = document.getElementById("right");
+    var nowindex = 0;
+    function changeImg(){}
+    for(var i=0; i<aSmallImg.length; i++){
+        aSmallImg[i].index = i;
+        aSmallImg[i].onmouseover = function(){
+            oBigImg.src = this.src;
+            nowindex = this.index;
+        };
+    }
+    oLeft.onclick = oRight.onclick = function(){
+        if(this===oRight){
+            nowindex++;
+            if(nowindex==aSmallImg.length){
+                nowindex = 0;
+            }
+        }else{
+            nowindex--;
+            if(nowindex==-1){
+                nowindex = aSmallImg.length-1;
+            }
+        }
+        oBigImg.src = aSmallImg[nowindex].src;
+    };
+    var timer;
+    function play(){
+        timer = setInterval(function(){
+            oRight.onclick();
+        },1000);
+    }
+    play();
+    oContainer.onmouseover = function(){
+        clearInterval(timer);
+    };
+    oContainer.onmouseout = function(){
+        play();
+    };
+</script>
+</body>
+</html>

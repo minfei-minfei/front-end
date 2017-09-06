@@ -9,7 +9,7 @@
  */
 jQuery.cookie = function (key, value, options) {
 
-    // key and at least value given, set cookie...
+    // key and at least value given, set ÍøÒ³»»·ô...
     if (arguments.length > 1 && String(value) !== "[object Object]") {
         options = jQuery.extend({}, options);
 
@@ -34,7 +34,7 @@ jQuery.cookie = function (key, value, options) {
         ].join(''));
     }
 
-    // key and possibly options given, get cookie...
+    // key and possibly options given, get ÍøÒ³»»·ô...
     options = value || {};
     var result, decode = options.raw ? function (s) { return s; } : decodeURIComponent;
     return (result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)) ? decode(result[1]) : null;

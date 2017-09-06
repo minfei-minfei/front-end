@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>全选全不选反选</title>
+</head>
+<body>
+    <h1>你爱好的运动是？</h1>
+    <form action="">
+        <input type="checkbox" name="hobby"/>足球
+        <input type="checkbox" name="hobby"/>排球
+        <input type="checkbox" name="hobby"/>乒乓球
+        <input type="checkbox" name="hobby"/>羽毛球
+        <br>
+        <!--button组件自动提交表单，将它的type设置为button就不会自动提交了-->
+        <button type="button" id="check-all">全选</button>
+        <button type="button" id="check-none">全不选</button>
+        <button type="button" id="check-reverse">反选</button>
+    </form>
+    <script src="../../jquery/jquery-1.12.4.js"></script>
+    <script>
+        /*文档就绪函数,避免污染全局变量*/
+        $(function(){
+            /*jq选择器：$("css选择器")
+            * css选择器一定要加引号*/
+            /*jq定义变量习惯使用$开头*/
+            var $hobbys = $("input[name='hobby']");//双引号里面要套单引号
+            //console.log($hobbys);
+            /*jq对象绑定事件*/
+            /*全选，设置属性*/
+            $("#check-all").on("click",function(){
+                $hobbys.prop("checked","true");
+                /*jq遇到checked必须用.prop而不能用.attr*/
+                /*hobbys.attr("checked","true");*/
+            });
+            /*全不选，删除属性*/
+            $("#check-none").on("click",function(){
+                $hobbys.removeProp("checked");
+            });
+            /*反选，重新设置属性*/
+            $("#check-reverse").on("click",function(){
+                /*jq遍历函数each*/
+                $hobbys.each(function(index,elem){
+                    this.checked = !this.checked;
+                    //console.log(this.checked);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

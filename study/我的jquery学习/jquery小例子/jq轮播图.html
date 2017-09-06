@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的jq轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+        }
+        img{
+            border: 0;
+        }
+        #container{
+            width: 600px;
+            height: 400px;
+            position: relative;
+            margin: 100px auto;
+        }
+        #imgs img{
+            display: none;
+        }
+        #imgs .selected{
+            display: block;
+        }
+        #nav{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        #nav li, #arrows span{
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            color: #fff;
+            text-align: center;
+            line-height: 20px;
+            cursor: pointer;
+            float: left;
+            margin-right: 5px;
+        }
+        #nav .selected{
+            background: orange;
+        }
+        #arrows{
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+    </style>
+
+</head>
+<body>
+<div id="container">
+    <div id="imgs">
+        <img src="../../img/wedding1.jpg" alt="" class="selected">
+        <img src="../../img/wedding2.jpg" alt="">
+        <img src="../../img/wedding3.jpg" alt="">
+        <img src="../../img/wedding4.jpg" alt="">
+    </div>
+    <ul id="nav">
+        <li class="selected">1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <div id="arrows">
+        <span id="prev">&lt;</span>
+        <span id="next">&gt;</span>
+    </div>
+</div>
+
+<script src="../../jquery/jquery-1.12.4.js"></script>
+<script>
+    /*文档就绪函数*/
+    $(function(){
+        var $nav = $("#nav li");
+        var $imgs = $("#imgs img");
+        var $nowindex = 0;
+        function changeImg(){
+            $nav.removeClass("selected");
+            $nav.eq($nowindex).addClass("selected");
+            $imgs.removeClass("selected");
+            $imgs.eq($nowindex).addClass("selected");
+        }
+        $nav.on("mouseover",function(){
+            $nowindex = $(this).index();
+            changeImg();
+        });
+        $("#prev").on("click",function(){
+            $nowindex--;
+            if($nowindex == 0){
+                $nowindex = $imgs.length - 1;//length是jq内部构件
+            }
+            changeImg();
+        });
+        $("#next").on("click",function(){
+            $nowindex++;
+            if($nowindex == $imgs.length){
+                $nowindex = 0;
+            }
+            changeImg();
+        });
+        var $container = $("#container");
+        var timer;
+        function play(){
+            timer = setInterval(function(){
+                $("#next").trigger("click");
+            },1000);
+        }
+        play();
+        $container.hover(function(){
+            clearInterval(timer);
+        },function(){
+            play();
+        });
+    });
+</script>
+</body>
+</html>

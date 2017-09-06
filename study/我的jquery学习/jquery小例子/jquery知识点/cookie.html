@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>cookie的使用</title>
+</head>
+<body>
+<script src="../../jquery/jquery-1.12.4.js"></script>
+<script src="../../jquery/jquery.cookie.js"></script>
+<script src="../../../myjs/cookie.js"></script>
+<script>
+    /*----------------原生cookie--------------------*/
+    /*①设置cookie*/
+    var date = new Date();
+    date.setDate(date.getDate()+7);
+    document.cookie = "name=minfei;expires="+date.toUTCString();
+    document.cookie = "age=20";
+    /*②获取cookie*/
+    console.log(document.cookie);
+    console.log(date);
+    console.log(date.toUTCString());
+    /*③删除cookie*/
+    date.setDate(date.getDate()-1);
+    document.cookie = "name=;experes="+date.toUTCString();
+
+    /*----------------原生cookie封装函数---------------*/
+    addCookie("hobby","eat","1");
+    console.log(getCookie("hobby"));
+//    delCookie("hobby");
+
+    /*-----------------JQuery的cookie----------------*/
+    /*①设置cookie*/
+    $.cookie("school","nefu",{expires:10});
+    /*②获取cookie*/
+    console.log($.cookie("school"));
+    /*③删除cookie*/
+    $.cookie("school","",{expires:-1});
+</script>
+</body>
+</html>

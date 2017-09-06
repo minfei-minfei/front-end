@@ -1,0 +1,74 @@
+/*css重置开始*/
+*{
+    margin: 0;
+    padding: 0;
+}
+/*body,html{
+    width: 100%;
+    height: 100%;
+}*/
+/*css重置结束*/
+
+#container{
+    width: 100%;
+    height: 100%;
+    /*overflow: hidden;*//*注意这句代码的作用*/
+    position: absolute;
+    background: #607e8b;
+}
+#wrapper{
+    margin: 20px auto;
+    padding: 0 20px;
+    max-width:660px;
+}
+
+/*丝带标题开始*/
+h2{
+    background: #dbf7ff;
+    width: 50%;
+    color: deepskyblue;
+    text-align: center;
+    font-weight: normal;
+    margin: 0 auto;
+    padding: 10px 0;
+    border-radius: 5px;
+    position: relative;
+}
+h2:before, h2:after {
+    content: "";
+    position: absolute;
+    border: 18px solid #c7ecff;
+    top: -6px;
+}
+h2:before {
+    left: -36px;
+    border-left-color: transparent;
+}
+h2:after {
+    right: -36px;
+    border-right-color: transparent;
+}
+h2 span:before, h2 span:after {
+    content: "";
+    position: absolute;
+    border: 3px solid #b5d3cb;
+    top: -5px;
+}
+h2 span:before {
+    left: 0;
+    border-color: transparent transparent #b5d3cb #b5d3cb;
+}
+h2 span:after {
+    right: 0;
+    border-color: transparent #b5d3cb #b5d3cb transparent;
+}
+/*丝带标题结束*/
+
+/*丝带公共部分*/
+.ribbon{
+    width: 300px;
+    height: 200px;
+    float: left;
+    margin-right: 30px;
+    margin-top: 20px;
+}

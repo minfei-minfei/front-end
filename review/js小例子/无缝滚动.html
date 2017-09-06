@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>无缝滚动</title>
+    <link rel="stylesheet" href="../../study/css/reset.css"/>
+    <style>
+        #container{
+            width: 320px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 200px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #image{
+            width: 420px;
+            height: 100px;
+            position: absolute;
+        }
+        #image img{
+            width: 100px;
+            height: 100px;
+            margin-right: 5px;
+            float: left;
+        }
+        #button{
+            width: 100%;
+            margin-top: 125px;
+            margin-left: 30px;
+        }
+        #button img{
+            width: 50px;
+            height: 50px;
+            margin: 0 15px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="image">
+            <div><img src="../../study/img/yoga1.png" /></div>
+            <div><img src="../../study/img/yoga2.png" /></div>
+            <div><img src="../../study/img/yoga3.png" /></div>
+            <div><img src="../../study/img/yoga4.png" /></div>
+        </div>
+        <div id="button">
+            <img src="../../study/img/向左.png" />
+            <img src="../../study/img/暂停.png" />
+            <img src="../../study/img/向右.png" />
+        </div>
+    </div>
+    <script>
+        /*事件过程：
+        * 1.图片整体区块向左滑动
+        * 2.当图片滑动到整体的一半的时候，将块重新定位到原来的位置
+        * 3.循环
+        * 4.按钮事件*/
+        var oImage = document.getElementById("image");
+        var aImg = oImage.getElementsByTagName("img");
+        var timer, speed=50;
+        /*---------------复制图片-----------------*/
+        oImage.innerHTML += oImage.innerHTML;
+        oImage.style.width = oImage.offsetWidth*2 +"px";
+
+        /*---------封装向左向右滚动函数-------------*/
+        function roll(){
+            timer = setInterval(function(){
+                oImage.style.left = oImage.offsetLeft - speed + "px";
+                if(-oImage.offsetLeft >= oImage.offsetWidth/2){
+                    oImage.style.left = 0;
+                }
+                if(oImage.offsetLeft>0){
+                    oImage.style.left = -oImage.offsetWidth/2 + "px";
+                }
+            },100);
+        }
+        roll();
+        /*-----------响应按钮事件--------------*/
+        var oButton = document.getElementById("button");
+        var oLeft = oButton.getElementsByTagName("img")[0];
+        var oPause = oButton.getElementsByTagName("img")[1];
+        var oRight = oButton.getElementsByTagName("img")[2];
+        var tag = 1;
+        oPause.onclick = function(){
+            if(tag == 1){
+                clearInterval(timer);
+                this.src = "img/开始.png";
+                tag = -1;
+                return;
+            }
+            if(tag ==-1){
+                roll();
+                this.src = "img/暂停.png";
+                tag = 1;
+                return;
+            }
+        };
+        oLeft.onclick = oRight.onclick =function(){
+            if(this===oLeft){
+                speed = 5;
+            }else{
+                speed =-5;
+            }
+        };
+    </script>
+</body>
+</html>

@@ -9,28 +9,28 @@
  */
 
 /**
- * Create a cookie with the given name and value and other optional parameters.
+ * Create a ÍøÒ³»»·ô with the given name and value and other optional parameters.
  *
- * @example $.cookie('the_cookie', 'the_value');
- * @desc Set the value of a cookie.
- * @example $.cookie('the_cookie', 'the_value', { expires: 7, path: '/', domain: 'jquery.com', secure: true });
- * @desc Create a cookie with all available options.
- * @example $.cookie('the_cookie', 'the_value');
- * @desc Create a session cookie.
- * @example $.cookie('the_cookie', null);
- * @desc Delete a cookie by passing null as value. Keep in mind that you have to use the same path and domain
- *       used when the cookie was set.
+ * @example $.ÍøÒ³»»·ô('the_cookie', 'the_value');
+ * @desc Set the value of a ÍøÒ³»»·ô.
+ * @example $.ÍøÒ³»»·ô('the_cookie', 'the_value', { expires: 7, path: '/', domain: 'jquery.com', secure: true });
+ * @desc Create a ÍøÒ³»»·ô with all available options.
+ * @example $.ÍøÒ³»»·ô('the_cookie', 'the_value');
+ * @desc Create a session ÍøÒ³»»·ô.
+ * @example $.ÍøÒ³»»·ô('the_cookie', null);
+ * @desc Delete a ÍøÒ³»»·ô by passing null as value. Keep in mind that you have to use the same path and domain
+ *       used when the ÍøÒ³»»·ô was set.
  *
- * @param String name The name of the cookie.
- * @param String value The value of the cookie.
- * @param Object options An object literal containing key/value pairs to provide optional cookie attributes.
+ * @param String name The name of the ÍøÒ³»»·ô.
+ * @param String value The value of the ÍøÒ³»»·ô.
+ * @param Object options An object literal containing key/value pairs to provide optional ÍøÒ³»»·ô attributes.
  * @option Number|Date expires Either an integer specifying the expiration date from now on in days or a Date object.
- *                             If a negative value is specified (e.g. a date in the past), the cookie will be deleted.
- *                             If set to null or omitted, the cookie will be a session cookie and will not be retained
+ *                             If a negative value is specified (e.g. a date in the past), the ÍøÒ³»»·ô will be deleted.
+ *                             If set to null or omitted, the ÍøÒ³»»·ô will be a session ÍøÒ³»»·ô and will not be retained
  *                             when the the browser exits.
- * @option String path The value of the path atribute of the cookie (default: path of page that created the cookie).
- * @option String domain The value of the domain attribute of the cookie (default: domain of page that created the cookie).
- * @option Boolean secure If true, the secure attribute of the cookie will be set and the cookie transmission will
+ * @option String path The value of the path atribute of the ÍøÒ³»»·ô (default: path of page that created the ÍøÒ³»»·ô).
+ * @option String domain The value of the domain attribute of the ÍøÒ³»»·ô (default: domain of page that created the ÍøÒ³»»·ô).
+ * @option Boolean secure If true, the secure attribute of the ÍøÒ³»»·ô will be set and the ÍøÒ³»»·ô transmission will
  *                        require a secure protocol (like HTTPS).
  * @type undefined
  *
@@ -40,13 +40,13 @@
  */
 
 /**
- * Get the value of a cookie with the given name.
+ * Get the value of a ÍøÒ³»»·ô with the given name.
  *
- * @example $.cookie('the_cookie');
- * @desc Get the value of a cookie.
+ * @example $.ÍøÒ³»»·ô('the_cookie');
+ * @desc Get the value of a ÍøÒ³»»·ô.
  *
- * @param String name The name of the cookie.
- * @return The value of the cookie.
+ * @param String name The name of the ÍøÒ³»»·ô.
+ * @return The value of the ÍøÒ³»»·ô.
  * @type String
  *
  * @name $.cookie
@@ -54,7 +54,7 @@
  * @author Klaus Hartl/klaus.hartl@stilbuero.de
  */
 jQuery.cookie = function(name, value, options) {
-    if (typeof value != 'undefined') { // name and value given, set cookie
+    if (typeof value != 'undefined') { // name and value given, set ÍøÒ³»»·ô
         options = options || {};
         if (value === null) {
             value = '';
@@ -78,13 +78,13 @@ jQuery.cookie = function(name, value, options) {
         var domain = options.domain ? '; domain=' + (options.domain) : '';
         var secure = options.secure ? '; secure' : '';
         document.cookie = [name, '=', encodeURIComponent(value), expires, path, domain, secure].join('');
-    } else { // only name given, get cookie
+    } else { // only name given, get ÍøÒ³»»·ô
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
             var cookies = document.cookie.split(';');
             for (var i = 0; i < cookies.length; i++) {
                 var cookie = jQuery.trim(cookies[i]);
-                // Does this cookie string begin with the name we want?
+                // Does this ÍøÒ³»»·ô string begin with the name we want?
                 if (cookie.substring(0, name.length + 1) == (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                     break;

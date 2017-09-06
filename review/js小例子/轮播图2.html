@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的轮播图</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style: none;
+        }
+        #container{
+            position: relative;
+            width: 225px;
+            height: 200px;
+            margin: 100px auto;/*先设置宽高才能设置整体水平居中*/
+        }
+        #imgs img{
+            /*float: left;*/
+            display: none;     /*要设置成img的display属性而不能设置成#imgs的属性*/
+        }
+        #imgs .selected{
+            display: block;
+        }
+        #narrows{
+            position: absolute;/*相对于最近的已定位的祖先元素，所以别忘了给container定位*/
+            left: 10px;
+            bottom: 10px;
+        }
+        #nav{
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        #narrows div,#nav li{   /*如果不给父框定位，div和li就会消失*/
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            float: left;
+            margin-right: 3px;
+            cursor: pointer;
+        }
+        #nav .selected{
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="../../study/img/110.jpg" alt="图片加载失败" class="selected"/>
+            <img src="../../study/img/111.jpg" alt="图片加载失败"/>
+            <img src="../../study/img/112.jpg" alt="图片加载失败"/>
+            <img src="../../study/img/113.jpg" alt="图片加载失败"/>
+        </div>
+        <div id="narrows">
+            <div id="left">&lt;</div>
+            <div id="right">&gt;</div>        <!--一定要用转义字符！！！-->
+        </div>
+        <ul id="nav">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        var oNav = document.getElementById("nav");
+        var aLi = oNav.getElementsByTagName("li");
+        var oImg = document.getElementById("imgs");
+        var aImg = oImg.getElementsByTagName("img");
+        var oLeft = document.getElementById("left");
+        var oRight = document.getElementById("right");
+        var oContainer = document.getElementById("container");
+        var nowindex = 0;//保存当前选中的下标
+        //重复使用的代码封装成一个函数
+        function changeImg(){
+            for(var i=0; i<aLi.length; i++){
+                aLi[i].className = "";
+                aImg[i].className = "";
+            }
+            aLi[nowindex].className = "selected";
+            aImg[nowindex].className = "selected";
+        }
+        //顺序切换图片
+        for(var i=0; i<aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function(){
+                nowindex = this.index;
+                changeImg();
+            };
+        }
+        /*console.log(nowindex);*/
+        //左右切换图片
+        oLeft.onclick = oRight.onclick = function () {
+            /*console.log(nowindex);*/
+            if (this == oRight) {
+                nowindex++;
+                //判断数组是否越界
+                if(nowindex>aImg.length-1){//数字不能写死
+                    nowindex = 0;
+                }
+                changeImg();
+
+                }else{
+                    nowindex--;
+                    //判断数组是否越界
+                    if(nowindex<0){
+                        nowindex = aImg.length-1;
+                    }
+                    changeImg();
+                }
+        };
+
+        //轮播图片
+        var timer;
+        function play(){
+            timer = setInterval(function(){
+                oRight.onclick();
+            },1000);
+        };
+        play();
+        //鼠标滑入滑出
+        oContainer.onmouseover = function(){
+            clearInterval(timer);
+            /*console.log("滑入");*/
+        };
+        oContainer.onmouseout = function(){
+            play();
+            /*console.log("滑出");*/
+        };
+        //清除“选中”浏览器默认行为
+        oLeft.onselectstart = oRight.onselectstart = function(){
+            return false;
+        };
+        /*console.log(oLeft);
+        console.log(oLeft.onselectstart);*/
+
+        /*定时器：延迟执行*/
+        var i=0;
+        var timer2 = setTimeout(function(){
+            console.log("延时1s");
+        }, 1000);
+
+        //定时器的特殊情况：第二个参数为0
+        var timer3 = setTimeout(function(){
+            console.log("时间参数为0");
+        }, 0);
+
+        //定时器的类型：number
+        console.log("time的类型"+timer);
+        console.log("time2的类型"+timer2);
+        console.log("time3的类型"+timer3);
+    </script>
+</body>
+</html>

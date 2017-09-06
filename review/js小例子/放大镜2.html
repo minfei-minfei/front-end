@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>放大镜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #small,#big{
+            float: left;
+        }
+        #small{
+            width: 400px;
+            height: 400px;
+            position: relative;
+        }
+        #big{
+            width: 400px;
+            height: 400px;
+            overflow: hidden;
+            display: none;
+            position: relative;
+        }
+        #big img{
+            position: absolute;
+        }
+        #drag{
+            width: 200px;
+            height: 200px;
+            background-color: #cccccc;
+            opacity: .5;
+            filter: alpha(opacity=500);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #mask{
+            width: 100%;
+            height: 100%;
+            background: #ff0000;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+    </style>
+</head>
+<body>
+    <div id="small">
+        <img src="../../study/img/1.jpg" alt=""/>
+        <div id="drag"></div>
+        <div id="mask"></div>
+    </div>
+    <div id="big">
+        <img src="../../study/img/2.jpg" alt=""/>
+    </div>
+    <script>
+        (function(){
+            var oSmall = document.getElementById("small");
+            var oDrag = document.getElementById("drag");
+            var oBig = document.getElementById("big");
+            var oBigImg = oBig.getElementsByTagName("img")[0];
+            var oMask = document.getElementById("mask");
+            oMask.onmouseover = function(){
+                oDrag.style.display = "block";
+                oBig.style.display = "block";
+            };
+            oMask.onmouseout = function(){
+                oDrag.style.display = "none";
+                oBig.style.display = "none";
+            };
+            oMask.onmousemove = function(e){
+                var left = e.clientX - oDrag.offsetWidth/2;
+                var top = e.clientY - oDrag.offsetHeight/2;
+
+                if(left<0){
+                    left=0;
+                }
+                if(top<0){
+                   top=0;
+                }
+                var maxX = oSmall.offsetWidth - oDrag.offsetWidth;
+                var maxY = oSmall.offsetHeight - oDrag.offsetHeight;
+                if(left>maxX){
+                    left=maxX;
+                }
+                if(top>maxY){
+                   top=maxY;
+                }
+                oDrag.style.left = left + "px";
+                oDrag.style.top = top + "px";
+                /*第一次练习出现的问题：赋值顺序不对，附了两次值，并且一开始就赋值，导致周围出现空白*/
+                var scaleX = left/maxX;
+                var scaleY = top/maxY;
+                oBigImg.style.left = -(scaleX * (oBigImg.offsetWidth-oBig.offsetWidth)) +"px";
+                oBigImg.style.top = -(scaleY * (oBigImg.offsetHeight-oBig.offsetHeight)) + "px";
+                //console.log(scaleX);
+            };
+
+        })();
+
+    </script>
+</body>
+</html>

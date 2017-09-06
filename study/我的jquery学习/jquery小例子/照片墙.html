@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>我的照片墙</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #container{
+            position: relative;
+            left: 400px;
+            top: 150px;
+        }
+        #container img{
+            border: 10px solid lightgray;
+            box-shadow: 10px 10px 5px gray;
+            position: absolute;
+            transition: all 1s;
+        }
+        #container img:first-child{
+            transform: rotate(15deg);
+        }
+        #container img:last-child{
+            transform: rotate(-15deg);
+        }
+        #container img:hover{
+            z-index: 1;
+            transform: scale(1.2) rotate(0deg);
+            box-shadow: 15px 15px 5px gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="../../img/life1.jpg" alt=""/>
+        <img src="../../img/life2.jpg" alt=""/>
+    </div>
+</body>
+</html>
