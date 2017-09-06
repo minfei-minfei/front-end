@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>异步加载</title>
+    <script src="../js/echarts.js"></script>
+    <script src="../../jquery/jquery-1.12.4.min.js"></script>
+    <style>
+        #container{
+            width: 600px;
+            height: 400px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script>
+    var myChart = echarts.init(document.getElementById("container"));
+    myChart.setOption({
+        title: {
+            text: '异步数据加载示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量']
+        },
+        xAxis: {
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: []
+        }]
+    });
+    $.get("data.json").done(function(data){
+        myChart.setOption({
+            xAxis: {
+                data: data.categories
+            },
+            series: [{
+                // 根据名字对应到相应的系列
+                name: '销量',
+                data: data.data
+            }]
+        });
+    });
+
+
+</script>
+
+</body>
+</html>
