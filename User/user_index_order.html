@@ -13,20 +13,20 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 
     <div class="navbar-header">
-        <a href="#" class="navbar-brand register-link"></a>
+        <a href="user_login.html" class="navbar-brand login-link"></a>
         <span class="navbar-brand navbar-title">订单</span>
     </div>
 
 </nav>
 <ul id="order-filter" class="nav nav-tabs row">
     <li class="active dropdown col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">全部</a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="user_index_order.html">全部</a>
     </li>
     <li class="dropdown col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">未完成</a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="user_index_order.html">未完成</a>
     </li>
     <li class="dropdown col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">已完成</a>
+        <a class="dropdown-toggle" data-toggle="dropdown" href="user_index_order.html">已完成</a>
     </li>
 </ul>
 
@@ -47,15 +47,24 @@
 </div>
 
 <ul id="bottom-nav" class="pager">
-    <li><a href="#"><span class="glyphicon glyphicon-home"></span>首页</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-leaf"></span>护工</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-globe"></span>圈子</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span>订单</a></li>
-    <li><a href="#"><span class="glyphicon glyphicon-user"></span>我的</a></li>
+    <li><a href="user_index.html"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+    <li><a href="user_index_nurse.html"><span class="glyphicon glyphicon-leaf"></span>护工</a></li>
+    <li><a href="user_index_chat.html"><span class="glyphicon glyphicon-globe"></span>圈子</a></li>
+    <li class="active"><a href="user_index_order.html"><span class="glyphicon glyphicon-list-alt"></span>订单</a></li>
+    <li><a href="user_index_me.html"><span class="glyphicon glyphicon-user"></span>我的</a></li>
 </ul>
 
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/user_common.js"></script>
+    <script>
+        $(function(){
+            $(".media-body").on("click",function(){
+                //重定向
+//                window.location.href = "user_check.html";
+                self.location = "user_check.html";
+            });
+        });
+    </script>
 </body>
 </html>

@@ -1,35 +1,84 @@
 $(function () {
     var $fullText = $("#full-text");
-    $fullText.prop("full",false);
+    var $psIntro = $("#order-info .personal-intro");
+    //计算个人简介的文本行数
+    function countLine(elem){
+        var $height = parseInt(elem.css("height"));
+        var $lineHeight = parseInt(elem.css("lineHeight"));
+        return Math.ceil($height/$lineHeight);
+    }
+    //当文本行数大于3时只显示3行
+    if(countLine($psIntro)<=3){
+        $fullText.hide();
+    }else{
+        $psIntro.css("display","-webkit-box");
+    }
+    $fullText.prop("full",false);//标志位full，false表示不是全文
+    /*显示全文&收起全文*/
     $fullText.on("click",function(){
         if(!$(this).prop("full")){
-            $(this).text("收起");
-            $(".media p").css("display","block");
+            $(this).text("收起全文");
+            $psIntro.css("display","block");
         }else{
             $(this).text("显示全文");
-            $(".media p").css("display","-webkit-box");
+            $psIntro.css("display","-webkit-box");
         }
         $(this).prop("full",!$fullText.prop("full"));
     });
-    $("#paynow").prop("flag",false).on("click",function(){
+    /*预约选择*/
+    $("#order-duration .label").on("click",function(){
+        $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
+    });
+    $("#order-place .label").on("click",function(){
+        $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
+    });
+    //标志位flag，false表示没选中
+    $("#service").prop("flag",false).on("click",function(){
         if(!$(this).prop("flag")){
-            $("#pay").show();
+            $("#service .pull-right").attr("src","img/checked.png");
         }else{
-            $("#pay").hide();
+            $("#service .pull-right").attr("src","img/check-none.png");
         }
         $(this).prop("flag",!$(this).prop("flag"));
     });
+    /*立即支付*/
+    $("#pay").hide();
+    //标志位flag，false表示隐藏
+    $("#paynow").prop("flag",false).on("click",function(){
+        if(!$(this).prop("flag")){
+            $("#pay").show();
+            //禁止滚动条
+            $("body").css("overflow","hidden");
+        }else{
+            $("#pay").hide();
+            //取消禁止滚动条
+            $("body").css("overflow","scroll");
+        }
+        $(this).prop("flag",!$(this).prop("flag"));
+    });
+    $("#mask").on("click",function(){
+        $("#pay").hide();
+        $("body").css("overflow","scroll");
+        $("#paynow").prop("flag",false);
+    });
+    /*支付方式*/
+    $("#pay .pay-way").on("click",function(){
+
+    });
     /*地理定位*/
     var $address = $("#address");
-    var $alert = $("#myAlert");
-    var $aContent = $("#myAlert span");
+
     $address.on("click",function(){
         if(navigator.geolocation){
             $address.html("搜索中...");
             navigator.geolocation.getCurrentPosition(showPosition,showError);
         }else{
-            $aContent.html('该浏览器不支持地理位置!');
-            $alert.show();
+            var settings = {
+                type: "alert-warning",
+                content: "该浏览器不支持地理位置!"
+            };
+            var myAlert = new Alert(settings);
+            myAlert.init();
         }
     });
 
@@ -39,25 +88,44 @@ $(function () {
         $address.html("纬度:"+parseInt(lat)+","+"经度:"+parseInt(lng));
     }
     function showError(error){
+        var settings;
+        var myAlert;
         switch(error.code)
         {
             case error.PERMISSION_DENIED:
-                $aContent.html("用户拒绝对获取地理位置的请求。");
-                $alert.show();
+                settings = {
+                    type: "alert-warning",
+                    content: "用户拒绝对获取地理位置的请求。"
+                };
+                myAlert = new Alert(settings);
+                myAlert.init();
                 break;
             case error.POSITION_UNAVAILABLE:
-                $aContent.html("位置信息是不可用的。");
-                $alert.show();
+                settings = {
+                    type: "alert-warning",
+                    content: "位置信息是不可用的。"
+                };
+                myAlert = new Alert(settings);
+                myAlert.init();
                 break;
             case error.TIMEOUT:
-                $aContent.html("请求用户地理位置超时。");
-                $alert.show();
+                settings = {
+                    type: "alert-warning",
+                    content: "请求用户地理位置超时。"
+                };
+                myAlert = new Alert(settings);
+                myAlert.init();
                 break;
             case error.UNKNOWN_ERROR:
-                $aContent.html("未知错误。");
-                $alert.show();
+                settings = {
+                    type: "alert-warning",
+                    content: "未知错误。"
+                };
+                myAlert = new Alert(settings);
+                myAlert.init();
                 break;
         }
+        $address.html("请选择地址");
     }
     /*日期校验*/
     //转换时间类型为 yyyy-mm-dd

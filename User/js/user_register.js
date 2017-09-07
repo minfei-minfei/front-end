@@ -1,4 +1,3 @@
-/*验证码*/
 $(function(){
     var code;//声明一个变量用于存储生成的验证码
     /*切换验证码*/
@@ -30,29 +29,34 @@ $(function(){
 
 /*效验验证码(表单被提交时触发)*/
     $("#user-register-form button").on("click",checkCode);
+    var settings1 = {
+        type: "alert-danger",
+        content: "请填写正确信息"
+    };
+    var submitAlert = new Alert(settings1);
     function checkCode(){
         //获取用户输入的验证码
         var $vcode = $("#vcode");
         if($vcode.val().toLowerCase()==code.toLowerCase())
         {
-            //验证码正确(提交表单)
-            if($oUserPsd.siblings(".checked").css("display")=="block" && $oUserPsd2.siblings(".checked").css("display")=="block"
-                && $userName.siblings(".checked").css("display")=="block"){
-                //清空所有信息
-                var $aInput = $("input");
-                $aInput.val("");
-                $aInput.trigger("blur");
+            //先检查验证码，再检查用户信息
+            if($userName.siblings(".checked").css("display")=="block"
+                && $oUserPsd.siblings(".checked").css("display")=="block"
+                && $oUserPsd.val() == $oUserPsd2.val()){
                 return true;
-            }else{
-                $("body").append(alert);
-                $(".alert-warning span").html("请填写正确信息");
+            }else{//用户信息不正确，弹出警告框
+                submitAlert.init();
                 return false;
             }
         }
         //验证码不正确,表单不允许提交
         /*弹出警告框*/
-        $("body").append(alert);
-        $(".alert-warning span").html("请输入正确的验证码");
+        var settings = {
+            type: "alert-warning",
+            content: "验证码不正确"
+        };
+        var codeAlert = new Alert(settings);
+        codeAlert.init();
         $vcode.val("");
         $vcode.trigger("blur");
         return false;
@@ -72,8 +76,10 @@ $(function(){
         }
     });
 /*验证密码*/
-    var $aUserPsd = $(".user-psd");
-    $aUserPsd.on("keyup",function(){
+    var $oUserPsd = $("#user-psd");
+    var $oUserPsd2 = $("#user-psd2");
+    /*只验证第一个密码的长度*/
+    $oUserPsd.on("keyup",function(){
         if($(this).val().length>=6 && $(this).val().length<=12){
             $(this).siblings(".checked").show().siblings(".checked-false").hide();
         }else{
@@ -81,35 +87,47 @@ $(function(){
         }
     }).on("blur",function(){
         if(this.value == this.defaultValue){
-            $(this).attr("type","text");
-            $(this).siblings(".glyphicon-eye-open").css("display","none");
             $(this).siblings(".checked-false").hide().siblings(".checked").hide();
         }
-    }).on("focus",function(){
-        $(this).attr("type","password");
-        $(this).siblings(".glyphicon-eye-open").css("display","block");
     });
     /*验证两次密码的一致性*/
-    var $oUserPsd = $("#user-psd");
-    var $oUserPsd2 = $("#user-psd2");
+    var settings2 = {
+        type: "alert-warning",
+        content: "两次密码不一致"
+    };
+    var psdAlert = new Alert(settings2);
     $oUserPsd2.on("blur",function(){
-        //两次密码长度正确后再验证一致性
-        if($oUserPsd.siblings(".checked").css("display")=="block" && $oUserPsd2.siblings(".checked").css("display")=="block"
-            && $oUserPsd.val() != $oUserPsd2.val()){
+        if($oUserPsd.val() != $oUserPsd2.val()){
             /*弹出警告框*/
-            $("body").append(alert);
-            $(".alert-warning span").html("两次密码不一致");
-        }else if($oUserPsd.val() == $oUserPsd2.val()){
-            //如果用户没有关闭警告框，修改正确后自动移除警告框
-            if($(".alert","body").length){
-                // console.log($(".alert","body").length);
-                $(".alert-warning button").trigger("click");
-            }
+            psdAlert.init();
+        }else{
+            //若两次密码一致则自动移除警告框
+            psdAlert.close();
         }
     });
 /*小眼睛*/
-    var $eye = $(".glyphicon-eye-open");
-    $eye.on("click",function(){
-        alert("111");
+    var $aUserPsd = $(".user-psd");
+    $aUserPsd.on("focus",function(){
+        //显示小眼睛
+        $(this).siblings(".eye").css("display","block");
+    }).on("blur",function(){
+        //隐藏小眼睛
+        if(this.value == this.defaultValue){
+            $(this).attr("type","text");
+            $(this).siblings(".eye").css("display","none");
+        }
     });
+    var $eye = $(".eye");
+    $eye.on("click",function(){
+        if($(this).attr("class").indexOf("glyphicon-eye-open")!=-1){
+            //显示密码
+            $(this).removeClass("glyphicon-eye-open").addClass("glyphicon-eye-close");
+            $(this).siblings(".form-control").attr("type","text");
+        }else{
+            //隐藏密码
+            $(this).removeClass("glyphicon-eye-close").addClass("glyphicon-eye-open");
+            $(this).siblings(".form-control").attr("type","password");
+        }
+    });
+
 });

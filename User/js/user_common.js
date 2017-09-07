@@ -1,12 +1,25 @@
-/*动态创建警告框DOM结构*/
-var alert = '<div class="alert alert-warning alert-dismissable">'+
-    '<button class="close" data-dismiss="alert">'+
-    '&times;'+
-    '</button>'+
-    '<strong>警告！</strong>'+
-    '<span>网络连接错误</span>'+
-    '</div>';
-
+/*定义一个Alert类*/
+function Alert(settings){
+    this.$alert = $('<div class="alert alert-dismissable"></div>');
+    this.$close = $('<button class="close" data-dismiss="alert">&times;</button>');
+    this.$strong = $('<strong>警告！</strong>');
+    this.$span = $('<span>网络连接错误</span>');
+    this.defaultSettings = {
+        type: "alert-warning",
+        content: "网络连接错误"
+    };
+    $.extend(this.defaultSettings,settings);
+}
+Alert.prototype.init = function(){
+    this.$alert.append(this.$close).append(this.$strong).append(this.$span);
+    $("body").append(this.$alert);
+    this.$span.html(this.defaultSettings.content);
+    this.$alert.addClass(this.defaultSettings.type);
+};
+Alert.prototype.close = function(){
+    this.$close.trigger("click");
+};
+/*-----------------------------------*/
 $(function(){
     //切换标签页
     $(".dropdown-toggle").on("click",function(){

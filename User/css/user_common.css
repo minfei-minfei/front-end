@@ -1,5 +1,5 @@
 /*µ¼º½À¸*/
-.register-link{
+.login-link{
     width: 20px;
     background: url(../img/register.png) no-repeat center;
 }
@@ -16,13 +16,16 @@
     bottom: 0;
     margin-bottom: 0;
     background: white;
+    text-align: center;
 }
 #bottom-nav li a{
     border: 0;
     color: gray;
 }
-#bottom-nav li a:hover{
+#bottom-nav li.active a{
     color: lightgreen;
+    border: 1px solid #ddd;
+    border-radius: 15px
 }
 #bottom-nav .glyphicon{
     display: block;
@@ -52,7 +55,7 @@ a:focus{
     outline: none;
 }
 /*¾¯¸æ¿ò*/
-.alert-warning{
+.alert{
     position: fixed;
     width: 100%;
     top: 50px;
