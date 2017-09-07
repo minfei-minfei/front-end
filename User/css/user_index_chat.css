@@ -60,3 +60,22 @@ body{
     width: 25px;
     border-radius: 50%;
 }
+/*话题*/
+.topic .row{
+    margin: 0;
+}
+.topic .col-xs-4{
+    padding: 2px;
+}
+.topic .article-header{
+    margin-bottom: 0;
+}
+.topic .article-content{
+    margin: 0;
+    color: #333;
+    /*溢出文本用省略号替代*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
