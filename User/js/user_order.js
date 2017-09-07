@@ -44,7 +44,7 @@ $(function () {
     /*立即支付*/
     $("#pay").hide();
     //标志位flag，false表示隐藏
-    $("#paynow").prop("flag",false).on("click",function(){
+    $("#pay-now").prop("flag",false).on("click",function(){
         if(!$(this).prop("flag")){
             $("#pay").show();
             //禁止滚动条
@@ -59,11 +59,13 @@ $(function () {
     $("#mask").on("click",function(){
         $("#pay").hide();
         $("body").css("overflow","scroll");
-        $("#paynow").prop("flag",false);
+        $("#pay-now").prop("flag",false);
     });
     /*支付方式*/
     $("#pay .pay-way").on("click",function(){
-
+        //注意：遇到checked属性只能用prop而不能用attr
+        $(this).find("input").prop("checked","checked");
+        $(this).siblings(".pay-way").find("input").removeAttr("checked");
     });
     /*地理定位*/
     var $address = $("#address");

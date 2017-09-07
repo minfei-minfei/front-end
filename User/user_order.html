@@ -11,10 +11,8 @@
 </head>
 <body>
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand glyphicon glyphicon-chevron-left">下单</a>
-            </div>
+        <div class="navbar-header">
+            <a href="javascript:;" class="navbar-brand glyphicon glyphicon-chevron-left">下单</a>
         </div>
     </nav>
 
@@ -27,7 +25,7 @@
         </div>
         <div id="order-info" class="panel-body">
             <div class="media">
-                <a class="media-left" href="#">
+                <a class="media-left" href="javascript:;">
                     <img class="media-object" src="img/nurse_portrait_default.png"
                          alt="媒体对象">
                 </a>
@@ -40,7 +38,7 @@
                     个人简介个人简介个人简介个人简介个人简介个人简介个人简介
                     个人简介个人简介个人简介个人简介个人简介个人简介个人简介
                 </p>
-                <a id="full-text" href="#">显示全文</a>
+                <a id="full-text" href="javascript:;">显示全文</a>
             </div>
             <br>
             <div id="order-duration">预约时长:
@@ -94,7 +92,7 @@
         </li>
         <li class="list-group-item">
             <img src="img/discount.png" alt="优惠券"/>
-            <a href="#">请选择优惠券</a>
+            <a href="javascript:;">请选择优惠券</a>
             <span class="glyphicon glyphicon-chevron-right pull-right"></span>
         </li>
     </ul>
@@ -113,30 +111,28 @@
             <li class="list-group-item pay-way">
                 <img src="img/alipay.png" alt=""/>
                 <span>支付宝</span>
-                <label class="radio-inline">
-                    <input class="pull-right" type="radio" name="payWay" id="alipay" checked> 选项 1
+                <label class="pull-right">
+                    <input type="radio" name="payWay" id="alipay" >
                 </label>
             </li>
             <li class="list-group-item pay-way">
                 <img src="img/wechat.png" alt=""/>
                 <span>微信</span>
-                <label class="radio-inline">
-                    <input class="pull-right" type="radio" name="payWay" id="wechat" checked> 选项 1
+                <label class="pull-right">
+                    <input type="radio" name="payWay" id="wechat" >
                 </label>
             </li>
         </ul>
 
     </div>
     <nav id="user-order-footer" class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand bg-danger">应付款:￥1000</a>
-            </div>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="pull-right"><a href="user_index_order.html">加入购物车</a></li>
-                <li class="pull-right"><a href="#pay" id="paynow">立即付款</a></li>
-            </ul>
+        <div class="navbar-header">
+            <span class="navbar-brand">应付款:￥1000</span>
         </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="pull-right"><a href="user_index_order.html" id="pull-cart">加入购物车</a></li>
+            <li class="pull-right"><a href="#pay" id="pay-now">立即付款</a></li>
+        </ul>
     </nav>
 
 <script src="js/jquery-1.12.4.min.js"></script>
