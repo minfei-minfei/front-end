@@ -14,8 +14,15 @@
     background: url(../img/vcode.svg) no-repeat center;
     background-size: cover;
 }
+.user-psd2{
+    display: inline-block;
+    width: 14px;
+    height: 16px;
+    background: url(../img/user_psd2.png) no-repeat center;
+    background-size: cover;
+}
 /*去除input边框*/
-#user-name,#user-psd,#user-psd2,#vcode{
+input[name=userName],input[name=userPsd],input[name=userPsd2],input[name=vcode]{
     border: 0;
     box-shadow: none;
     display: inline;
@@ -24,9 +31,6 @@
 }
 
 /*验证信息*/
-.list-group-item{
-    position: relative;
-}
 .checked,.checked-false{
     position: absolute;
     top: 15px;

@@ -5,6 +5,7 @@ function Alert(settings){
     this.$strong = $('<strong>警告！</strong>');
     this.$span = $('<span>网络连接错误</span>');
     this.defaultSettings = {
+        selector: "body",
         type: "alert-warning",
         content: "网络连接错误"
     };
@@ -12,7 +13,7 @@ function Alert(settings){
 }
 Alert.prototype.init = function(){
     this.$alert.append(this.$close).append(this.$strong).append(this.$span);
-    $("body").append(this.$alert);
+    $(this.defaultSettings.selector).append(this.$alert);
     this.$span.html(this.defaultSettings.content);
     this.$alert.addClass(this.defaultSettings.type);
 };

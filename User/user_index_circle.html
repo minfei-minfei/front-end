@@ -7,25 +7,25 @@
     <title>用户首页_圈子界面_文章</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/user_common.css"/>
-    <link rel="stylesheet" href="css/user_index_chat.css"/>
+    <link rel="stylesheet" href="css/user_index_circle.css"/>
 </head>
 <body>
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <a href="user_login.html" class="navbar-brand login-link"></a>
-            <span class="navbar-brand navbar-title">圈子</span>
+            <div id="circle-nav" class="navbar-title">
+                    <ul class="pagination">
+                        <li class="active"><a href="user_index_circle.html">文章</a></li>
+                        <li><a href="user_index_circleTopic.html">话题</a></li>
+                    </ul>
+            </div>
             <a href="javascript:;" class="navbar-brand glyphicon glyphicon-send pull-right"></a>
         </div>
     </div>
 </nav>
-<div id="chat-nav">
-<ul class="pagination">
-    <li class="active"><a href="user_index_chat.html">文章</a></li>
-    <li><a href="user_index_chatTopic.html">话题</a></li>
-</ul>
-</div>
-<ul id="chat-filter" class="nav nav-tabs row">
+
+<ul id="circle-filter" class="nav nav-tabs row">
     <li class="active dropdown col-xs-4">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">发表时间
             <span class="caret"></span></a>
@@ -72,13 +72,13 @@
         <small>发表时间</small>
     </h4>
         <small class="article-info">浏览：转发：评论：</small>
-    <a href="user_index_chatArticleDetail.html">
+    <a href="user_index_circleArticleDetail.html">
         <p class="article-content">文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
             文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
         </p>
     </a>
     </div>
-    <a href="user_index_chatArticleDetail.html" class="row">
+    <a href="user_index_circleArticleDetail.html" class="row">
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
@@ -92,13 +92,13 @@
             <small>发表时间</small>
         </h4>
         <small class="article-info">浏览：转发：评论：</small>
-        <a href="user_index_chatArticleDetail.html">
+        <a href="user_index_circleArticleDetail.html">
             <p class="article-content">文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
                 文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
             </p>
         </a>
     </div>
-    <a href="user_index_chatArticleDetail.html" class="row">
+    <a href="user_index_circleArticleDetail.html" class="row">
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
@@ -112,13 +112,13 @@
             <small>发表时间</small>
         </h4>
         <small class="article-info">浏览：转发：评论：</small>
-        <a href="user_index_chatArticleDetail.html">
+        <a href="user_index_circleArticleDetail.html">
             <p class="article-content">文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
                 文章内容文章内容文章内容文章内容文章内容文章内容文章内容文章内容
             </p>
         </a>
     </div>
-    <a href="user_index_chatArticleDetail.html" class="row">
+    <a href="user_index_circleArticleDetail.html" class="row">
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
         <img class="col-xs-4" src="img/article-img.png" alt="文章图片"/>
@@ -129,7 +129,7 @@
 <ul id="bottom-nav" class="pager">
     <li><a href="user_index.html"><span class="glyphicon glyphicon-home"></span>首页</a></li>
     <li><a href="user_index_nurse.html"><span class="glyphicon glyphicon-leaf"></span>护工</a></li>
-    <li class="active"><a href="user_index_chat.html"><span class="glyphicon glyphicon-globe"></span>圈子</a></li>
+    <li class="active"><a href="user_index_circle.html"><span class="glyphicon glyphicon-globe"></span>圈子</a></li>
     <li><a href="user_index_order.html"><span class="glyphicon glyphicon-list-alt"></span>订单</a></li>
     <li><a href="user_index_me.html"><span class="glyphicon glyphicon-user"></span>我的</a></li>
 </ul>

@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/user_common.css"/>
     <link rel="stylesheet" href="css/user_login.css"/>
-    <link rel="stylesheet" href="css/user_register.css"/>
 </head>
 <body>
 <nav class="navbar navbar-inverse" role="navigation">
@@ -16,15 +15,17 @@
         <a href="#" class="navbar-brand glyphicon glyphicon-chevron-left">用户登录</a>
     </div>
 </nav>
-<form id="user-login-form" class="container" role="form" action="user_index.html">
+<form id="user-login-form" class="container" role="form" action="user_login.html">
     <ul class="list-group">
         <li class="list-group-item">
             <span class="glyphicon glyphicon-user"></span>
-            <input type="text" class="form-control" id="user-name" value="请输入用户名"/>
+            <input type="text" class="form-control" name="userName" value="请输入用户名"
+                   autocomplete="off"/>
         </li>
         <li class="list-group-item">
             <span class="glyphicon glyphicon-lock"></span>
-            <input type="text" class="form-control" id="user-psd" value="请输入密码"/>
+            <input type="text" class="form-control" name="userPsd" value="请输入密码"
+                   autocomplete="off"/>
         </li>
     </ul>
     <div id="login-help">
@@ -33,7 +34,7 @@
     </div>
     <button type="submit" class="btn btn-default btn-lg btn-block">登录</button>
 </form>
-<!-- 忘记密码 -->
+<!-- 忘记密码弹出框 -->
 <div class="modal fade" id="forgetModal" tabindex="-1" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -41,53 +42,54 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title" id="myModalLabel">忘记密码</h4>
             </div>
-            <div class="modal-body">
-                <form id="user-register-form" class="container" role="form" action="user_login.html">
+            <form id="user-forgerPsd-form" role="form" action="user_login.html">
+                <div class="modal-body">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <span class="glyphicon glyphicon-user"></span>
-                            <input type="text" class="form-control" id="user-name" value="请输入用户名"
+                            <input type="text" class="form-control" name="userName" value="请输入用户名"
                                    data-toggle="tooltip" title="用户名小于8位" autocomplete="off"/>
                             <img class="checked" src="img/checked.png" alt="输入正确"/>
                             <img class="checked-false" src="img/checked-false.png" alt="输入错误"/>
                         </li>
                         <li class="list-group-item">
                             <span class="glyphicon glyphicon-lock"></span>
-                            <input type="text" class="form-control user-psd" id="user-psd" value="请输入新密码"
+                            <input type="text" class="form-control user-psd" name="userPsd" value="请输入新密码"
                                    data-toggle="tooltip" title="密码6~12位" autocomplete="off"/>
                             <span class="glyphicon glyphicon-eye-close eye"></span>
                             <img class="checked" src="img/checked.png" alt="输入正确"/>
                             <img class="checked-false" src="img/checked-false.png" alt="输入错误"/>
                         </li>
                         <li class="list-group-item">
-                            <span class="glyphicon glyphicon-lock"></span>
-                            <input type="text" class="form-control user-psd" id="user-psd2" value="请再次输入新密码"
+                            <span class="user-psd2"></span>
+                            <input type="text" class="form-control user-psd" name="userPsd2" value="请再次输入新密码"
                                    data-toggle="tooltip" title="确认密码" autocomplete="off"/>
                             <span class="glyphicon glyphicon-eye-close eye"></span>
                         </li>
                         <li class="list-group-item">
                             <span class="vcode"></span>
-                            <input type="text" class="form-control" id="vcode" value="请输入验证码"
+                            <input type="text" class="form-control" name="vcode" value="请输入验证码"
                                    data-toggle="tooltip" title="不区分大小写" autocomplete="off"/>
                         </li>
                     </ul>
+
                     <div class="code">
                         <span id="code" class="label label-default" title="看不清，换一张"></span>
                         <span id="change-code">看不清？换一张</span>
                     </div>
-                </form>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="submit" class="btn btn-primary">提交更改</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="submit" class="btn btn-primary">提交更改</button>
+                </div>
+            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal -->
 </div>
 <script src="js/jquery-1.12.4.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/user_common.js"></script>
-<script src="js/user_register.js"></script>
+<script src="js/user_login.js"></script>
+
 </body>
 </html>

@@ -27,16 +27,17 @@ $(function(){
         $("#code").html(code);//将验证码写入指定区域
     }
 
-/*效验验证码(表单被提交时触发)*/
-    $("button[type=submit]").on("click",checkCode);
+    /*效验验证码(表单被提交时触发)*/
+    $("#user-forgerPsd-form button[type=submit]").on("click",checkCode);
     var settings1 = {
+        selector: "#forgetModal",
         type: "alert-danger",
         content: "请填写正确信息"
     };
     var submitAlert = new Alert(settings1);
     function checkCode(){
         //获取用户输入的验证码
-        var $vcode = $("input[name=vcode]");
+        var $vcode = $("#user-forgerPsd-form input[name=vcode]");
         if($vcode.val().toLowerCase()==code.toLowerCase())
         {
             //先检查验证码，再检查用户信息
@@ -52,6 +53,7 @@ $(function(){
         //验证码不正确,表单不允许提交
         /*弹出警告框*/
         var settings2 = {
+            selector: "#forgetModal",
             type: "alert-warning",
             content: "验证码不正确"
         };
@@ -61,8 +63,8 @@ $(function(){
         $vcode.trigger("blur");
         return false;
     }
-/*验证用户名*/
-    var $userName = $("input[name=userName]");
+    /*验证用户名*/
+    var $userName = $("#user-forgerPsd-form input[name=userName]");
     $userName.on("keyup",function(){
         //console.log($userName.val().length);
         if($(this).val().length>0 && $(this).val().length<=8){
@@ -75,9 +77,9 @@ $(function(){
             $(this).siblings(".checked-false").hide().siblings(".checked").hide();
         }
     });
-/*验证密码*/
-    var $oUserPsd = $("input[name=userPsd]");
-    var $oUserPsd2 = $("input[name=userPsd2]");
+    /*验证密码*/
+    var $oUserPsd = $("#user-forgerPsd-form input[name=userPsd]");
+    var $oUserPsd2 = $("#user-forgerPsd-form input[name=userPsd2]");
     /*只验证第一个密码的长度*/
     $oUserPsd.on("keyup",function(){
         if($(this).val().length>=6 && $(this).val().length<=12){
@@ -92,6 +94,7 @@ $(function(){
     });
     /*验证两次密码的一致性*/
     var settings3 = {
+        selector: "#forgetModal",
         type: "alert-warning",
         content: "两次密码不一致"
     };
@@ -105,7 +108,7 @@ $(function(){
             psdAlert.close();
         }
     });
-/*小眼睛*/
+    /*小眼睛*/
     var $aUserPsd = $(".user-psd");
     $aUserPsd.on("focus",function(){
         //显示小眼睛
