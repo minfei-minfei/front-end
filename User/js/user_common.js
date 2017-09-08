@@ -68,4 +68,12 @@ $(function(){
     $(".label-group .label").on("click",function(){
         $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
     });
+    /*多项筛选：重置&完成按钮*/
+    $("#multiple-filter button[type=reset]").on("click",function(){
+        $(".label-group .label").removeClass("label-info").addClass("label-default");
+    });
+    $("#multiple-filter button[type=submit]").on("click",function(){
+        $("#filter-icon a").trigger("click");
+
+    });
 });

@@ -66,10 +66,13 @@ a:focus{
 }
 /*修改标签页切换样式*/
 #filter{
+    background: white;
     width: 100%;
+    height: 43px;
     margin: 0;
     position: fixed;
     top: 50px;
+    z-index: 1;
 }
 #filter li{
     padding: 0;
@@ -81,4 +84,16 @@ a:focus{
 #filter .active a{
     border-bottom: 3px solid lightblue;
     font-weight: bolder;
+}
+#filter-icon{
+    position: absolute;
+    right: 0;
+}
+#multiple-filter{
+    width: 100%;
+    padding-top: 10px;
+    position: fixed;
+    top: 93px;
+    background: #f8f8f8;
+    z-index: 1;
 }

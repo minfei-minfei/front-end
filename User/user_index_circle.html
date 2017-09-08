@@ -24,45 +24,32 @@
         </div>
     </div>
 </nav>
-
-<ul id="circle-filter" class="nav nav-tabs row">
-    <li class="active dropdown col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">发表时间
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>今日</li>
-            <li>
-                <a href="#"></a>一星期</li>
-            <li>
-                <a href="#"></a>一个月</li>
-        </ul>
-    </li>
-    <li class="dropdown  col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">浏览量
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>100</li>
-            <li>
-                <a href="#"></a>200</li>
-            <li>
-                <a href="#"></a>500</li>
-        </ul>
-    </li>
-    <li class="dropdown col-xs-4">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">转发量
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>100</li>
-            <li>
-                <a href="#"></a>200</li>
-            <li>
-                <a href="#"></a>500</li>
-        </ul>
-    </li>
+<ul id="filter" class="nav nav-tabs">
+    <li class="active"><a href="javascript:;">发表时间</a></li>
+    <li><a href="javascript:;">浏览量</a></li>
+    <li><a href="javascript:;">转发量</a></li>
+    <li id="filter-icon"><a href="javascript:;" data-toggle="collapse" data-target="#multiple-filter"
+                            class="glyphicon glyphicon-chevron-down"></a>
 </ul>
+<div id="multiple-filter" class="collapse">
+    <div class="container">
+        <p class="label-group">发表时间:
+            <span class="label label-default">1h以内</span>
+            <span class="label label-default">1天以内</span>
+            <span class="label label-default">1星期以内</span>
+        </p>
+        <p class="label-group">文章内容:<br>
+            <span class="label label-default">饮食起居</span>
+            <span class="label label-default">身体健康</span>
+            <span class="label label-default">老年活动</span>
+            <span class="label label-default">护理知识</span>
+        </p>
+        <div class="btn-group btn-group-sm pull-right">
+            <button type="reset" class="btn btn-default">重置</button>
+            <button type="submit" class="btn btn-info">完成</button>
+        </div>
+    </div>
+</div>
 
 <div class="article">
     <div class="container">

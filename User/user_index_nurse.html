@@ -23,8 +23,8 @@
     <li class="active"><a href="javascript:;">距离最近</a></li>
     <li><a href="javascript:;">价格最低</a></li>
     <li><a href="javascript:;">好评优先</a></li>
-    <li><a href="javascript:;" data-toggle="collapse" data-target="#multiple-filter"
-            class="glyphicon glyphicon-chevron-down"></a></li>
+    <li id="filter-icon"><a href="javascript:;" data-toggle="collapse" data-target="#multiple-filter"
+            class="glyphicon glyphicon-chevron-down"></a>
 </ul>
 <div id="multiple-filter" class="collapse">
     <div class="container">
@@ -42,6 +42,10 @@
             <span class="label label-default">男</span>
             <span class="label label-default">女</span>
         </p>
+        <div class="btn-group btn-group-sm pull-right">
+            <button type="reset" class="btn btn-default">重置</button>
+            <button type="submit" class="btn btn-info">完成</button>
+        </div>
     </div>
 </div>
 

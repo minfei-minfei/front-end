@@ -1,22 +1,8 @@
 body{
-    padding: 50px 0;
+    padding: 93px 0 47px 0;
+    background: lightgray;
 }
 .navbar{
-    margin: 0;
-}
-.dropdown-menu{
-    min-width: 100px;
-}
-.media{
-    border-bottom: 1px solid gray;
-}
-.media p{
-    /*溢出文本用省略号替代*/
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    /*-----------------*/
     margin: 0;
 }
 #circle-nav .pagination{
@@ -53,16 +39,13 @@ body{
     border-radius: 50%;
 }
 /*话题*/
-.topic .row{
-    margin: 0;
+.topic .media-object{
+    margin-top: 10px;
 }
-.topic .col-xs-4{
-    padding: 2px;
-}
-.topic .article-header{
+.topic .topic-header{
     margin-bottom: 0;
 }
-.topic .article-content{
+.topic .topic-content{
     margin: 0;
     color: #333;
     /*溢出文本用省略号替代*/
@@ -70,4 +53,8 @@ body{
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
+}
+.article,.topic{
+    background: white;
+    margin-bottom: 8px;
 }

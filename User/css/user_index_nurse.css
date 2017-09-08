@@ -5,12 +5,7 @@ body{
 .navbar{
     margin: 0;
 }
-#filter{
-    background: white;
-}
-#multiple-filter{
-    padding-top: 10px;
-}
+/*护工列表*/
 #nurse-list{
     margin: 0;
 }
