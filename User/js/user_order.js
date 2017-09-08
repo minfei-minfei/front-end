@@ -25,13 +25,7 @@ $(function () {
         }
         $(this).prop("full",!$fullText.prop("full"));
     });
-    /*预约选择*/
-    $("#order-duration .label").on("click",function(){
-        $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
-    });
-    $("#order-place .label").on("click",function(){
-        $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
-    });
+    /*服务后支付*/
     //标志位flag，false表示没选中
     $("#service").prop("flag",false).on("click",function(){
         if(!$(this).prop("flag")){

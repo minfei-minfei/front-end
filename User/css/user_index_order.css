@@ -1,25 +1,8 @@
 body{
-    padding: 90px 0;
+    padding: 90px 0 50px 0;
 }
 .navbar{
     margin: 0;
-}
-#order-filter{
-    width: 100%;
-    margin: 0;
-    position: fixed;
-    top: 50px;
-}
-#order-filter .dropdown{
-    padding: 0;
-    text-align: center;
-}
-/*修改标签页切换样式*/
-#order-filter .dropdown-toggle{
-    border: 0;
-}
-#order-filter .active .dropdown-toggle{
-    border-bottom: 3px solid lightblue;
 }
 .media .media-object{
     border-radius: 50%;

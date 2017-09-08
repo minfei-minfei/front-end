@@ -7,6 +7,7 @@
     <title>用户首页</title>
     <link rel="stylesheet" href="css/bootstrap.min.css"/>
     <link rel="stylesheet" href="css/user_common.css"/>
+    <link rel="stylesheet" href="css/user_index.css"/>
 </head>
 <body>
     <nav class="navbar navbar-default" role="navigation">
@@ -26,7 +27,43 @@
         <li><a href="user_index_me.html"><span class="glyphicon glyphicon-user"></span>我的</a></li>
     </ul>
 
+    <!-- 协议弹出框 -->
+    <div class="modal fade" id="protocolModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">温馨提示</h4>
+                </div>
+                <div class="modal-body">协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容
+                    协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容协议内容
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="not-agree">不同意</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" id="agree">同意</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
     <script src="js/jquery-1.12.4.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(function(){
+            //模拟：判断是否是第一次登录
+            if(localStorage.getItem("firstLogin")==null){
+                $("#protocolModal").modal({
+                    backdrop: "static",/*当用户点击模态框外部时不会关闭模态框*/
+                    show: true
+                });
+                $("#not-agree").on("click",function(){
+                    self.location = "user_login.html";
+                });
+                $("#agree").on("click",function(){
+                    localStorage.setItem("firstLogin","true");
+                });
+            }
+//            localStorage.clear();
+        });
+
+    </script>
 </body>
 </html>

@@ -1,38 +1,28 @@
 body{
-    padding: 50px 0;
-    background: lightgray;
+    padding: 90px 0 50px 0;
+    background: #f8f8f8;
 }
 .navbar{
     margin: 0;
 }
-#search{
-    background: white url(../img/search.png) no-repeat 10px center;
-    text-indent: 20px;
-    border-radius: 20px;
+#filter{
+    background: white;
 }
-#search:focus{
-    border-color: transparent;
+#multiple-filter{
+    padding-top: 10px;
 }
-#nurse-filter{
+#nurse-list{
     margin: 0;
-    background: #f8f8f8;
 }
-#nurse-filter .dropdown{
-    padding: 0;
-    text-align: center;
-}
-#nurse-filter .dropdown-menu{
-    min-width: 80px;
-}
-.media{
+#nurse-list .media{
     padding: 5px 0;
     background: white;
     margin-top: 5px;
 }
-.media .media-object{
+#nurse-list .media .media-object{
     border-radius: 50%;
 }
-.media p{
+#nurse-list .media p{
     /*溢出文本用省略号替代*/
     display: -webkit-box;
     -webkit-box-orient: vertical;

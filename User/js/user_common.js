@@ -23,8 +23,8 @@ Alert.prototype.close = function(){
 /*-----------------------------------*/
 $(function(){
     //切换标签页
-    $(".dropdown-toggle").on("click",function(){
-        $(this).parent("li").addClass("active").siblings().removeClass("active");
+    $("#filter li").on("click",function(){
+        $(this).addClass("active").siblings().removeClass("active");
     });
     /*输入框获得失去焦点*/
     //:input选择所有 input, textarea, select 和 button 元素.
@@ -52,7 +52,20 @@ $(function(){
             history.back();
         });
     });
-    //激活tooltip工具
+    /*激活tooltip工具*/
     $("[data-toggle='tooltip']").tooltip();
-
+    /*切换下拉菜单*/
+    //定义标志位down，false表示折叠
+    $(".glyphicon-chevron-down").prop("down","false").on("click",function(){
+        if($(this).prop("down")){
+            $(this).removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
+        }else{
+            $(this).removeClass("glyphicon-chevron-up").addClass("glyphicon-chevron-down");
+        }
+        $(this).prop("down",!$(this).prop("down"));
+    });
+    /*切换label标签组*/
+    $(".label-group .label").on("click",function(){
+        $(this).removeClass("label-default").addClass("label-info").siblings(".label").removeClass("label-info").addClass("label-default");
+    });
 });

@@ -19,143 +19,118 @@
     </div>
 </nav>
 
-<input type="text" class="form-control" id="search" value="可输入姓名，简介">
-<ul id="nurse-filter" class="nav nav-tabs row">
-    <li class="active dropdown col-xs-3">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">距离
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>1-3km</li>
-            <li>
-                <a href="#"></a>3-5km</li>
-            <li>
-                <a href="#"></a>5km以上</li>
-        </ul>
+<ul id="filter" class="nav nav-tabs">
+    <li class="active"><a href="javascript:;">距离最近</a></li>
+    <li><a href="javascript:;">价格最低</a></li>
+    <li><a href="javascript:;">好评优先</a></li>
+    <li><a href="javascript:;" data-toggle="collapse" data-target="#multiple-filter"
+            class="glyphicon glyphicon-chevron-down"></a></li>
+</ul>
+<div id="multiple-filter" class="collapse">
+    <div class="container">
+        <p class="label-group">距离:
+            <span class="label label-default">3km以内</span>
+            <span class="label label-default">3-10km</span>
+            <span class="label label-default">10km以上</span>
+        </p>
+        <p class="label-group">价格:
+            <span class="label label-default">500/天以内</span>
+            <span class="label label-default">500~800/天</span>
+            <span class="label label-default">800/天以上</span>
+        </p>
+        <p class="label-group">性别:
+            <span class="label label-default">男</span>
+            <span class="label label-default">女</span>
+        </p>
+    </div>
+</div>
+
+<ul id="nurse-list" class="media-list">
+    <li class="media">
+        <div class="container">
+            <a class="media-left" href="#">
+                <img class="media-object" src="img/nurse_portrait_default.png"
+                     alt="张三">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">张三
+                    <span class="star pull-right small">(0人)</span>
+                </h4>
+                <small>级别：初级护工&nbsp;护龄：1年</small>
+                <p style="color: gray">
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                </p>
+                <span class="price">￥150/天</span>
+                <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
+
+            </div>
+        </div>
     </li>
-    <li class="dropdown col-xs-3">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">护龄
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>1-3年</li>
-            <li>
-                <a href="#"></a>3-5年</li>
-            <li>
-                <a href="#"></a>5年以上</li>
-        </ul>
+    <li class="media">
+        <div class="container">
+            <a class="media-left" href="#">
+                <img class="media-object" src="img/nurse_portrait_default.png"
+                     alt="李四">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">李四
+                    <span class="star pull-right small">(0人)</span>
+                </h4>
+                <small>级别：初级护工&nbsp;护龄：1年</small>
+                <p style="color: gray">
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                </p>
+                <span class="price">￥150/天</span>
+                <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
+
+            </div>
+        </div>
     </li>
-    <li class="dropdown col-xs-3">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">好评
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>30%</li>
-            <li>
-                <a href="#"></a>50%</li>
-            <li>
-                <a href="#"></a>80%</li>
-        </ul>
+    <li class="media">
+        <div class="container">
+            <a class="media-left" href="#">
+                <img class="media-object" src="img/nurse_portrait_default.png"
+                     alt="王五">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">王五
+                    <span class="star pull-right small">(0人)</span>
+                </h4>
+                <small>级别：初级护工&nbsp;护龄：1年</small>
+                <p style="color: gray">
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                </p>
+                <span class="price">￥150/天</span>
+                <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
+
+            </div>
+        </div>
     </li>
-    <li class="dropdown col-xs-3">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">价格
-            <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li>
-                <a href="#"></a>100-200/天</li>
-            <li>
-                <a href="#"></a>200-500/天</li>
-            <li>
-                <a href="#"></a>500以上/天</li>
-        </ul>
+    <li class="media">
+        <div class="container">
+            <a class="media-left" href="#">
+                <img class="media-object" src="img/nurse_portrait_default.png"
+                     alt="赵六">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">赵六
+                    <span class="star pull-right small">(0人)</span>
+                </h4>
+                <small>级别：初级护工&nbsp;护龄：1年</small>
+                <p style="color: gray">
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                    个人简介个人简介个人简介个人简介个人简介个人简介个人简介
+                </p>
+                <span class="price">￥150/天</span>
+                <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
+
+            </div>
+        </div>
     </li>
 </ul>
-
-<div class="media">
-    <div class="container">
-        <a class="media-left" href="#">
-            <img class="media-object" src="img/nurse_portrait_default.png"
-                 alt="张三">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">张三
-                <span class="star pull-right small">(0人)</span>
-            </h4>
-            <small>级别：初级护工&nbsp;护龄：1年</small>
-            <p style="color: gray">
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-            </p>
-            <span class="price">￥150/天</span>
-            <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
-
-        </div>
-    </div>
-</div>
-<div class="media">
-    <div class="container">
-        <a class="media-left" href="#">
-            <img class="media-object" src="img/nurse_portrait_default.png"
-                 alt="李四">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">李四
-                <span class="star pull-right small">(0人)</span>
-            </h4>
-            <small>级别：初级护工&nbsp;护龄：1年</small>
-            <p style="color: gray">
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-            </p>
-            <span class="price">￥150/天</span>
-            <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
-
-        </div>
-    </div>
-</div>
-<div class="media">
-    <div class="container">
-        <a class="media-left" href="#">
-            <img class="media-object" src="img/nurse_portrait_default.png"
-                 alt="王五">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">王五
-                <span class="star pull-right small">(0人)</span>
-            </h4>
-            <small>级别：初级护工&nbsp;护龄：1年</small>
-            <p style="color: gray">
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-            </p>
-            <span class="price">￥150/天</span>
-            <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
-
-        </div>
-    </div>
-</div>
-<div class="media">
-    <div class="container">
-        <a class="media-left" href="#">
-            <img class="media-object" src="img/nurse_portrait_default.png"
-                 alt="赵六">
-        </a>
-        <div class="media-body">
-            <h4 class="media-heading">赵六
-                <span class="star pull-right small">(0人)</span>
-            </h4>
-            <small>级别：初级护工&nbsp;护龄：1年</small>
-            <p style="color: gray">
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-                个人简介个人简介个人简介个人简介个人简介个人简介个人简介
-            </p>
-            <span class="price">￥150/天</span>
-            <span class="distance glyphicon glyphicon-map-marker pull-right">约1.5km</span>
-
-        </div>
-    </div>
-</div>
-
 <ul id="bottom-nav" class="pager">
     <li><a href="user_index.html"><span class="glyphicon glyphicon-home"></span>首页</a></li>
     <li class="active"><a href="user_index_nurse.html"><span class="glyphicon glyphicon-leaf"></span>护工</a></li>
