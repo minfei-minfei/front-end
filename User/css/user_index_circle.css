@@ -56,5 +56,6 @@ body{
 }
 .article,.topic{
     background: white;
-    margin-bottom: 8px;
+    margin-bottom: 0;
+    border-bottom: 1px solid lightgray;
 }
