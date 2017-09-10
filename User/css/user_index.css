@@ -1,5 +1,6 @@
 body{
-    padding-top: 50px;
+    padding: 50px 0 47px 0;
+    background: lightgray;
 }
 /*协议*/
 #protocolModal .modal-title{
@@ -7,15 +8,71 @@ body{
 }
 .well{
     margin-bottom: 0;
+    font-size: 12px;
 }
 .pagination{
     margin: 0;
     width: 100%;
+    background: white;
 }
 .pagination li a{
     border: 0;
+    font-size: 12px;
+    text-align: center;
 }
 .pagination img{
     width: 30px;
     height: 30px;
+}
+/*热门话题*/
+#hotTopic{
+    margin-bottom: 5px;
+    background: white;
+}
+#hotTopic img{
+    width: 20px;
+    height: 20px;
+}
+#hotTopic ul{
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e3e3e3;
+}
+#hotTopic li{
+    padding: 10px 15px;
+}
+#hotTopic li:first-child{
+    background: url(../img/separate_line.png) no-repeat right center;
+}
+/*去除列表前缀*/
+li{
+    list-style: none;
+}
+/*热门文章*/
+.article{
+    background: white;
+    margin-bottom: 0;
+    border-bottom: 1px solid lightgray;
+}
+.article .row{
+    margin: 0;
+}
+.article .col-xs-4{
+    padding: 2px;
+}
+.article .article-header{
+    margin-bottom: 0;
+}
+.article .article-content{
+    margin: 0;
+    color: #333;
+    /*溢出文本用省略号替代*/
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.article .publisher{
+    width: 25px;
+    border-radius: 50%;
 }
