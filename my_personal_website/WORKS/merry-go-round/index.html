@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
+    <title>3D旋转木马</title>
+    <style>
+        body{
+            perspective: 1000px;
+            perspective-origin: 50% -100px;
+            background: pink;
+        }
+        #container{
+            width: 125px;
+            height: 125px;
+            position: relative;
+            margin: 200px auto;
+            transform-style: preserve-3d;
+            transition: all 1s ease;
+        }
+        #container img{
+            width: 125px;
+            height: 125px;
+            position: absolute;
+            cursor: pointer;
+            transition: all 2s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        //函数立即调用
+        (function(){
+            var oContainer = document.getElementById("container");
+            /*图片预加载*/
+            var count=0;//计数器，记录成功加载的图片个数
+            for(var i=0; i<9; i++){
+                var oImg = new Image();
+                oImg.onload = function () {
+                    count++;
+                    if(count==9){
+                        loadSuccess();
+                    }
+                };
+                oImg.src = "img/"+ (i+1) +".jpeg";
+                oContainer.appendChild(oImg);
+            }
+
+            function loadSuccess(){
+//                console.log("load success!");
+                var aImg = oContainer.getElementsByTagName("img");
+                for(var i=0; i<aImg.length; i++){
+                    aImg[i].style.transform = "rotateY("+ (i+1)*40 +"deg) translateZ(200px)";
+                    aImg[i].style.transitionDelay = i*50+"ms";
+                }
+            }
+            var number=0;
+            oContainer.onclick = function(){
+                number ++;
+                oContainer.style.transform = "rotateY(-"+ number*40 +"deg)";
+            }
+        })();
+    </script>
+</body>
+</html>

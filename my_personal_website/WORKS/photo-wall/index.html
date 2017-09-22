@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
+    <title>我们结婚啦</title>
+    <link rel="shortcut icon" href="cut.ico"/>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body,html{
+            width: 100%;
+            height: 100%;
+        }
+        #container{
+            width: 100%;
+            height: 100%;
+            background-image: url(img/bg.jpg);
+            position: relative;
+        }
+        #container .img{
+            width: 125px;
+            height: 125px;
+            border: 5px solid white;
+            box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+            position: absolute;
+            left: -500px;
+            top: -500px;/*图片飞入*/
+            transition: all 1s ease ;
+            cursor: pointer;
+        }
+        #container .img span{/*注：span是行级元素，设置宽高要变成块级元素*/
+            display: block;
+            width: 100%;
+            height: 100%;
+            /*background: pink;*/
+            opacity: 0;
+            transition: all 1s ease;
+            cursor: pointer;
+        }
+        #prev,#next{
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255,255,255,0.5);
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 50%;
+            margin-top: -30px;
+            display: none;
+            cursor: pointer;
+        }
+        #prev{
+            background-image: url("img/prev.png");
+            border-radius: 0 8px 8px 0;
+            left: 0;
+        }
+        #next{
+            background-image: url("img/next.png");
+            border-radius: 8px 0 0 8px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="prev"></div>
+    <div id="next"></div>
+    <audio src="music.mp3" autoplay loop></audio>
+    <script>
+        (function(){
+            var COL= 6,ROW= 4,NUM=COL*ROW;
+            var count =0;//计数器，用来保存成功加载图片的个数
+            var oContainer = document.getElementById("container");
+            var oPrev = document.getElementById("prev");
+            var oNext = document.getElementById("next");
+            /*图片预加载*/
+            for(var i=0; i<NUM; i++){//加载大图片
+                var oBigImg = new Image();
+                oBigImg.onload = function(){
+                    count++;
+                    if(count==NUM*2){
+                        loadSuccess();
+                    }
+                };
+                oBigImg.src = "img/"+ (i+1) +".jpg";
+            }
+            for(var i=0; i<NUM; i++){//加载小图片
+                var oThumbImg = new Image();
+                oThumbImg.onload = function(){
+                    count++;
+                    if(count==NUM*2){
+                        loadSuccess();
+                    }
+                };
+                oThumbImg.src = "img/thumbs/"+ (i+1) +".jpg";
+            }
+            //定义全局变量
+            var index = 0;
+            var aImg;
+            var oImg_W;
+            var oImg_H;
+            var fGapCol;
+            var fGapRow;
+            function loadSuccess(){
+                /*-------------------------------------------------*/
+                /*①创建div，设置背景图片*/
+                for(var i=0; i<ROW; i++){
+                    for(var j=0; j<COL; j++){
+                        index++;
+                        var oDiv = document.createElement("div");
+                        oDiv.innerHTML = "<span></span>";//每个div里面包一个span用来切换图片
+                        oDiv.className = "img";
+                        oDiv.style.backgroundImage = "url(img/thumbs/"+ index +".jpg)";
+                        oDiv.pos = {//row和col从0开始
+                            row: i,
+                            col: j,
+                            row_v: Math.floor((index-1)/4),
+                            col_v: (index-1)%4
+                        };
+                        /*console.log("index="+index);
+                        console.log("行："+oDiv.pos.row_v);
+                        console.log("列："+oDiv.pos.col_v);*/
+                        oDiv.index = index;//index从1开始
+                        oContainer.appendChild(oDiv);
+                    }
+                 }
+
+                /*--------------------------------------------------*/
+
+                aImg = oContainer.getElementsByTagName("div");//这里的aImg相当于所有的oDiv
+                /*计算div的宽高*/
+                oImg_W =aImg[0].offsetWidth;
+                oImg_H = aImg[0].offsetHeight;
+                /*计算行距和列距*/
+                fGapCol = (oContainer.offsetWidth - oImg_W*COL)/(COL+1);
+                fGapRow = (oContainer.offsetHeight - oImg_H*ROW)/(ROW+1);
+                /*②计算每个div的位置*/
+                for(var i=0; i<aImg.length; i++){
+                    aImg[i].style.left = (fGapCol+oImg_W)* aImg[i].pos.col+ fGapCol +"px";
+                    aImg[i].style.top = (fGapRow+oImg_H)* aImg[i].pos.row+ fGapRow +"px";
+                    //旋转角度在-20~20度之间
+                    aImg[i].style.transform = "rotate("+ (Math.random()*40-20) +"deg)";
+                    //图片飞入时间不一样
+                    aImg[i].style.transitionDelay = (NUM-i)*100+"ms";
+                }
+            }
+            var flag = true;//定义一个标志位，用来判断当前div是散开的还是聚合的
+            var nowindex = 1;//将当前的index保存下来
+            //将图片宽高定义为常量
+            var BIG_W=750,BIG_H=500,THUMB_W= THUMB_H =125;
+            //重新计算行距和列距
+            var fBigGapCol = (oContainer.offsetWidth-BIG_W)/2;
+            var fBigGapRow = (oContainer.offsetHeight-BIG_H)/2;
+            //竖着的图片排列
+            var fBigGapCol_v = (oContainer.offsetWidth-BIG_H)/2;
+            var fBigGapRow_v = (oContainer.offsetHeight-BIG_W)/2;
+            /*--------------------------------------------------------------*/
+            /*③给每个div绑定点击事件--事件委托*/
+            oContainer.onclick = function(e){
+                //e.target => container/span/div
+                if(e.target != this){//当事件源不是container才执行
+                    if(flag){//当前div是散开的
+                        oPrev.style.display = oNext.style.display = "block";
+                        for(var i=0; i<aImg.length; i++){
+                            /*将当前的index保存下来*/
+                            if(e.target.className=="img"){//点击对象是div
+                                nowindex = e.target.index;
+                            }else{//点击对象是span
+                                nowindex = e.target.parentNode.index;
+                            }
+                            /*给每个div重新定位*/
+                            if(nowindex %3 ==0){//竖着的图片排列
+                                aImg[i].style.left = (fBigGapCol_v +THUMB_W*aImg[i].pos.col_v)+"px";
+                                aImg[i].style.top = (fBigGapRow_v + THUMB_H*aImg[i].pos.row_v)+"px";
+                            }else{
+                                aImg[i].style.left = (fBigGapCol +THUMB_W*aImg[i].pos.col)+"px";
+                                aImg[i].style.top = (fBigGapRow + THUMB_H*aImg[i].pos.row)+"px";
+                            }
+                            /*给每个div重设样式和动画*/
+                            aImg[i].style.borderWidth = "1px";
+                            aImg[i].style.transform = "rotate(0deg)";
+                            aImg[i].style.transitionDelay = "0ms";
+                            /*更改背景图片*/
+                            var oSpan =aImg[i].getElementsByTagName("span")[0];
+                            oSpan.style.opacity = "1";
+                            oSpan.style.backgroundImage = "url(img/"+ nowindex +".jpg)";
+                            var oBigImg = new Image();
+                            oBigImg.src = "img/"+ nowindex +".jpg";
+                            if(nowindex %3 ==0){//竖着的图片排列
+                                oSpan.style.backgroundPosition = "-"+ aImg[i].pos.col_v*THUMB_W +"px -"+ aImg[i].pos.row_v*THUMB_H +"px";
+                            }else{
+                                oSpan.style.backgroundPosition = "-"+ aImg[i].pos.col*THUMB_W +"px -"+ aImg[i].pos.row*THUMB_H +"px";
+
+                            }
+                        }
+                    }else{//当前div是聚合的
+                        oPrev.style.display = oNext.style.display = "none";
+                        for(var i=0; i<aImg.length; i++){
+                            /*给每个div重新定位*/
+                            aImg[i].style.left = (fGapCol+oImg_W)*aImg[i].pos.col+fGapCol+"px";
+                            aImg[i].style.top = (fGapRow+oImg_H)*aImg[i].pos.row+fGapRow+"px";
+                            /*给每个div重设样式和动画*/
+                            aImg[i].style.borderWidth = "5px";
+                            aImg[i].style.transform = "rotate("+ (Math.random()*40-20) +"deg)";
+//                            aImg[i].style.transitionDelay = "0ms";/*注：这句话不用写*/
+                            /*更改背景图片*/
+                            var oSpan = aImg[i].getElementsByTagName("span")[0];
+                            oSpan.style.opacity = 0;
+                            oSpan.style.transitionDelay = "0ms";/*注：这句话替代上面那句话*/
+                        }
+                    }
+                    flag = !flag;//每次点击后改变div散开/聚合状态
+                }
+            };
+            /*-----------------------------------------------------*/
+
+            /*-------------------------------------------------------*/
+            /*④添加左右按钮*/
+            oPrev.onclick = oNext.onclick = function(){
+                if(this===oPrev){
+                    nowindex--;
+                    if(nowindex==0){
+                        nowindex = NUM;
+                    }
+                }
+                if(this===oNext){
+                    nowindex++;
+                    if(nowindex==NUM+1){
+                        nowindex = 1;
+                    }
+                }
+                /*定义随机数组*/
+                var arr = [];
+                for(var i=0; i<NUM; i++){
+                    arr.push(i);
+                }
+                arr.sort(function(){
+                    return Math.random() - 0.5;
+                });
+                var aSpan = oContainer.getElementsByTagName("span");
+                /*切换背景图片*/
+                for(var i=0; i<aImg.length; i++){
+                    var oSpan = aImg[arr[i]].getElementsByTagName("span")[0];
+                    oSpan.style.backgroundImage = "url(img/"+ nowindex +".jpg)";
+//                    oSpan.style.transitionDelay = (i+2)*5+"ms";
+                    if(nowindex %3 ==0){//竖着的图片排列
+                        aImg[i].style.left = (fBigGapCol_v +THUMB_W*aImg[i].pos.col_v)+"px";
+                        aImg[i].style.top = (fBigGapRow_v + THUMB_H*aImg[i].pos.row_v)+"px";
+                        aSpan[i].style.backgroundPosition = "-"+ aImg[i].pos.col_v*THUMB_W +"px -"+ aImg[i].pos.row_v*THUMB_H +"px";
+                     }else{
+                        aImg[i].style.left = (fBigGapCol +THUMB_W*aImg[i].pos.col)+"px";
+                        aImg[i].style.top = (fBigGapRow + THUMB_H*aImg[i].pos.row)+"px";
+                        aSpan[i].style.backgroundPosition = "-"+ aImg[i].pos.col*THUMB_W +"px -"+ aImg[i].pos.row*THUMB_H +"px";
+                     }
+                }
+            };
+            /*-------------------------------------------------------*/
+        })();
+
+    </script>
+</body>
+</html>

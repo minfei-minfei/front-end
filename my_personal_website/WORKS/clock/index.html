@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
+    <title>我的钟表</title>
+    <link rel="stylesheet" href="../../css/style.css"/>
+    <style>
+        body{
+            background: pink;
+        }
+        #container{
+            width: 600px;
+            height: 600px;
+            border: 5px solid;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            zoom: 50%;
+            background: url(clock_bg.jpg) no-repeat center center;
+            background-size: cover;
+        }
+        #pointer li{
+            position: absolute;
+            left: 300px;
+            width: 5px;
+            height: 30px;
+            background: white;
+            transform-origin: 0 300px;
+        }
+        #pointer li:nth-child(5n+1){
+            height: 60px;
+        }
+        #tick{
+            width: 400px;
+            height: 400px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform:translate(-50%,-50%);
+        }
+        #hour{
+            width: 5px;
+            height: 150px;
+            background: lightcoral;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+        }
+        #minute{
+            width: 5px;
+            height: 200px;
+            background: lightgreen;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+        }
+        #second{
+            width: 5px;
+            height: 250px;
+            background: lightblue;
+            position: absolute;
+            bottom: 50%;
+            left: 50%;
+            transform-origin: bottom;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="pointer">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul id="tick">
+            <li id="hour"></li>
+            <li id="minute"></li>
+            <li id="second"></li>
+        </ul>
+    </div>
+    <script>
+        /*函数立即调用*/
+        (function(){
+            var oPointer = document.getElementById("pointer");
+            var aPointer = oPointer.getElementsByTagName("li");
+            var oHour = document.getElementById("hour");
+            var oMinute = document.getElementById("minute");
+            var oSecond = document.getElementById("second");
+            for(var i=0; i<aPointer.length; i++){
+                aPointer[i].style.transform = "rotate("+ i * 6 +"deg)";
+            }
+            run();
+            setInterval(run,1000);/*注意：这里的run不加括号，因为setInterval里的第一个参数function(){}就是声明的意思，而不是调用*/
+            function run(){
+                var now = new Date();
+                var nowSecond = now.getSeconds();
+                var nowMinute = now.getMinutes() + nowSecond/60;
+                var nowHour = now.getHours() + nowMinute/60;
+                oSecond.style.transform = "rotate("+ nowSecond*6 +"deg)";
+                oMinute.style.transform = "rotate("+ nowMinute*6+"deg)";
+                oHour.style.transform = "rotate("+ nowHour*30 +"deg)";
+            }
+
+        })();
+    </script>
+</body>
+</html>

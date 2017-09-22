@@ -2,6 +2,8 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=yes, initial-scale=1.0"/>
     <title>I'm min-fei(=^ ^=)</title>
     <link rel="shortcut icon" href="img/love.png"/>
     <link rel="stylesheet" href="css/style.css"/>
@@ -13,16 +15,63 @@
             <div class="wrapper">
                 <div id="logo"></div>
                 <ul id="nav">
-                    <li><a class="selected" href="">HOME</a></li>
-                    <li><a href="">ABOUT</a></li>
-                    <li><a href="">SERVICES</a></li>
-                    <li><a href="">WORKS</a></li>
-                    <li><a href="">BLOG</a></li>
-                    <li><a href="">CONTACT</a></li>
+                    <li class="nav-item"><a class="selected" href="javascript:;">HOME</a></li>
+                    <li class="nav-item"><a href="javascript:;">ABOUT</a></li>
+                    <li class="nav-item">
+                        <a href="javascript:;">WORKS</a>
+                        <ul class="sub-nav">
+                            <li><a href="javascript:;">HOME</a></li>
+                            <li><a href="WORKS/merry-go-round">MERRY GO ROUND</a></li>
+                            <li><a href="WORKS/photo-wall">PHOTO WALL</a></li>
+                            <li><a href="WORKS/3d-cube">3D CUBE</a></li>
+                            <li><a href="WORKS/clock">CLOCK</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="javascript:;">BLOG</a></li>
+                    <li class="nav-item"><a href="javascript:;">CONTACT</a></li>
+                    <li class="nav-item"><a href="javascript:;">WISH</a></li>
                 </ul>
                 <div id="aside"></div>
             </div>
         </div>
+        <ul id="aside-menu">
+            <li><a href="javascript:;">HOME</a></li>
+            <li><a href="WORKS/merry-go-round">MERRY GO ROUND</a></li>
+            <li><a href="WORKS/photo-wall">PHOTO WALL</a></li>
+            <li><a href="WORKS/3d-cube">3D CUBE</a></li>
+            <li><a href="WORKS/clock">CLOCK</a></li>
+        </ul>
+        <div id="main">
+            happy birthday to my beautiful girls
+        </div>
     </div>
+    <script src="js/jquery.js"></script>
+    <script>
+        $(function(){
+            $("#aside").on("click",function(){
+                $("#aside-menu").slideToggle();
+            });
+            if(window.outerWidth<=768){
+                var num = 1;
+                var $home = $("#home");
+                var timer;
+                function play(){
+                    timer = setInterval(function(){
+                        num++;
+                        if(num>12){
+                            num=1;
+                        }
+//                console.log(num);
+                        $home.css({
+                            background: "url(img/home_bg_mobile"+num+".jpg) no-repeat center center",
+                            backgroundSize: "cover"
+                        });
+                    },3000);
+                }
+                play();
+            }
+
+        });
+    </script>
 </body>
 </html>

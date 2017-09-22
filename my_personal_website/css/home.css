@@ -1,46 +1,141 @@
-#home{
+/*电脑端*/
+#home {
     height: 650px;
-    background: #f6f6f6;
+    background: url(../img/home_bg.jpg) no-repeat 0 100px;
+    background-size: cover;
 }
-#header{
+
+#header {
     width: 100%;
     height: 100px;
-    background:rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     position: absolute;
     top: 0;
 }
-#header .wrapper{
+
+#header .wrapper {
     height: 100%;
     position: relative;
 }
-#logo{
+
+#logo {
     width: 80px;
     height: 80px;
     border: 3px solid antiquewhite;
     border-radius: 50%;
-    background: url(../img/me.jpg);
+    background: url(../img/sister.jpg);
     background-size: contain;
     position: absolute;
     left: 0;
     top: 7px;
 }
-#nav{
+#nav {
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-#nav li{
+#nav .nav-item {
     float: left;
     margin-right: 20px;
 }
-#nav li a{
-    width: 100%;
-    height: 100%;
+#nav .nav-item a {
+    /*width: 100%;
+    height: 100%;*/
     padding: 2px;
     border-bottom: 2px solid transparent;
 }
-#nav li a.selected{
+#nav .nav-item a.selected {
     color: black;
     border-bottom: 2px solid black;
+}
+#nav .nav-item a:hover{
+    color: black;
+    border-bottom: 2px solid black;
+}
+.sub-nav{
+    background: rgba(118, 128, 125, 0.8);
+    position: absolute;
+    display: none;
+}
+.sub-nav li a{
+    color: white;
+}
+#nav .nav-item:hover .sub-nav{
+    display: block;
+}
+#nav .sub-nav a:hover{
+    color: black;
+    border-bottom: none;
+}
+#aside-menu{
+    display: none;
+}
+/*流式布局*/
+@media (max-width: 991px) {
+
+}
+/*移动端*/
+@media (max-width: 767px) {
+    #home{
+        height: 100%;
+        background: url(../img/home_bg_mobile1.jpg) no-repeat center center;
+        background-size: cover;
+        transition: all 1s linear;
+    }
+    #header {
+        width: 100%;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        top: 0;
+    }
+    #logo {
+        width: 40px;
+        height: 40px;
+        top: 3px;
+    }
+    #nav{
+        display: none;
+    }
+    #aside{
+        width: 20px;
+        height: 20px;
+        background: url(../img/aside.png) no-repeat;
+        background-size: contain;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    #aside-menu {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        top: 50px;
+        right: 0;
+        text-align: center;
+        display: none;
+    }
+    #aside-menu li {
+        padding: 10px;
+        border-top: 1px solid #777777;
+    }
+    #aside-menu li a {
+        width: 100%;
+        height: 100%;
+    }
+    #main{
+        position: absolute;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 200px;
+        height: 50px;
+        border: 3px solid rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 20px;
+        font-style: italic;
+        text-align: center;
+    }
 }
