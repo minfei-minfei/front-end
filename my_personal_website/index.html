@@ -44,6 +44,9 @@
         <div id="main">
             happy birthday to my beautiful girls
         </div>
+        <div id="loading">
+            <img src="img/loading.png" alt="加载中"/><br>loading...
+        </div>
     </div>
     <script src="js/jquery.js"></script>
     <script>
@@ -52,6 +55,18 @@
                 $("#aside-menu").slideToggle();
             });
             if(window.outerWidth<=768){
+                var NUM =12,count = 0;
+                for(var i=0; i<NUM; i++){
+                    var oBigImg = new Image();
+                    oBigImg.onload =function(){
+                        count++;
+                        if(count == NUM){//所有的图片加载完成才执行
+                            play();
+                            $("#loading").hide();
+                        }
+                    };
+                    oBigImg.src = "img/home_bg_mobile"+ (i+1) +".jpg";
+                }
                 var num = 1;
                 var $home = $("#home");
                 var timer;
@@ -68,7 +83,6 @@
                         });
                     },3000);
                 }
-                play();
             }
 
         });
